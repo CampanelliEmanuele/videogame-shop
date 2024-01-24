@@ -1,1 +1,2 @@
--- actually empty
+INSERT INTO types (name, description) VALUES ('Action', 'Games focused on physical challenges and hand-eye coordination.');
+INSERT INTO types (name, description) VALUES ('Strategy', 'Games that emphasize thinking and planning.');
