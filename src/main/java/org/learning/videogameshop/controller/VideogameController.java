@@ -67,5 +67,33 @@ public class VideogameController {
         }
     }
 
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable Integer id, Model model) {
+        Optional<Videogame> result = videogameRepository.findById(id);
+        if (result.isPresent()) {
+            model.addAttribute("videogame", result.get());
+            model.addAttribute("typeList", typeRepository.findAll());
+            return "videogames/edit";
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Videogame with id " + id + " not found");
+        }
+    }
+
+    @PostMapping("/edit/{id}")
+    public String update(@PathVariable Integer id, @Valid @ModelAttribute("videogame") Videogame videogameForm,
+                         BindingResult bindingResult) {
+        Optional<Videogame> result = videogameRepository.findById(id);
+        if (result.isPresent()) {
+            if (bindingResult.hasErrors()) {
+                System.out.println(bindingResult.getAllErrors());
+                return "videogames/edit";
+            }
+            Videogame savedRecipe = videogameRepository.save(videogameForm);
+            return "redirect:/videogames/show/" + id;
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Videogame with id " + id + " not found");
+        }
+    }
+
 
 }
