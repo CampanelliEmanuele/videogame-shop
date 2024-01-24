@@ -4,12 +4,24 @@ package org.learning.videogameshop.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
+import org.learning.videogameshop.repository.PurchaseRepository;
+import org.learning.videogameshop.repository.TypeRepository;
+import org.learning.videogameshop.repository.VideogameRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 @Entity
 @Table(name = "videogames")
-public class Videogame {
+public class VideoGame {
+
+    @Autowired
+    private VideogameRepository videogameRepository;
+    @Autowired
+    private TypeRepository typeRepository;
+    @Autowired
+    private PurchaseRepository purchaseRepository;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -86,5 +98,29 @@ public class Videogame {
 
     public void setTypeList(List<Type> typeList) {
         this.typeList = typeList;
+    }
+
+    public VideogameRepository getVideogameRepository() {
+        return videogameRepository;
+    }
+
+    public void setVideogameRepository(VideogameRepository videogameRepository) {
+        this.videogameRepository = videogameRepository;
+    }
+
+    public TypeRepository getTypeRepository() {
+        return typeRepository;
+    }
+
+    public void setTypeRepository(TypeRepository typeRepository) {
+        this.typeRepository = typeRepository;
+    }
+
+    public PurchaseRepository getPurchaseRepository() {
+        return purchaseRepository;
+    }
+
+    public void setPurchaseRepository(PurchaseRepository purchaseRepository) {
+        this.purchaseRepository = purchaseRepository;
     }
 }
