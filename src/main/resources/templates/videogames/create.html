@@ -9,7 +9,7 @@
               id="create-videogame"
               method="post"
               th:object="${videogame}"
-              th:action="@{/videogames/create/{id}(id=${videogame.id})}"
+              th:action="@{/videogames/create}"
         >
             <div class="col-6">
                 <label class="form-label" for="name">Name</label>
