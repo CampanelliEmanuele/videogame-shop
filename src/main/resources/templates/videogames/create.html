@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/resources :: head('Add a videogame')"></head>
+<body>
+
+<main class="container-fluid">
+    <div class="container">
+        <form class="row gy-3"
+              id="create-videogame"
+              method="post"
+              th:object="${videogame}"
+              th:action="@{/videogames/create/{id}(id=${videogame.id})}"
+        >
+            <div class="col-6">
+                <label class="form-label" for="name">Name</label>
+                <input class="form-control" type="text" id="name" th:field="*{name}" th:errorClass="is-invalid">
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('name')}">
+                    <ul>
+                        <li th:each="err : ${#fields.errors('name')}" th:text="${err}"></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <label class="form-label">Description</label>
+                <input type="text" class="form-control" id="description" th:field="*{description}" th:errorClass="is-invalid">
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('description')}">
+                    <ul>
+                        <li th:each="err : ${#fields.errors('text')}" th:text="${err}"></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <label class="form-label">Price</label>
+                <input type="number" class="form-control" id="price" th:field="*{price}" th:errorClass="is-invalid">
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('price')}">
+                    <ul>
+                        <li th:each="err : ${#fields.errors('price')}" th:text="${err}"></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <label class="form-label">Image URL</label>
+                <input type="text" class="form-control" id="image" th:field="*{photo}" th:errorClass="is-invalid">
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('photo')}">
+                    <ul>
+                        <li th:each="err : ${#fields.errors('image')}" th:text="${err}"></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!--            <div class="col-6">-->
+            <!--                <label class="form-label" for="category">Category</label>-->
+            <!--                <select id="category" class="form-select" th:field="*{category}">-->
+            <!--                    <option value="" selected>Choose a category</option>-->
+            <!--                    <option th:each="category : ${categoryList}" th:value="${category.id}"-->
+            <!--                            th:text="${category.name}"></option>-->
+            <!--                </select>-->
+            <!--            </div>-->
+
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <a class="btn btn-primary" th:href="@{/videogames}">Cancel</a>
+            </div>
+        </form>
+    </div>
+</main>
+
+<th:block th:replace="fragments/resources :: script"></th:block>
+
+</body>
+</html>
