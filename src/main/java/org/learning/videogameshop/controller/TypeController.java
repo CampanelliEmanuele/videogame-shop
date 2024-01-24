@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.Optional;
@@ -65,6 +66,19 @@ public class TypeController {
                 return "types/edit";
             }
             Type savedType = typeRepository.save(formType);
+            return "redirect:/types";
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Type with id " + id + " not found");
+        }
+    }
+
+    @PostMapping("/delete/{id}")
+    public String delete(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
+        Optional<Type> result = typeRepository.findById(id);
+        if (result.isPresent()) {
+            typeRepository.deleteById(id);
+            redirectAttributes.addFlashAttribute("redirectMessage",
+                    "Type " + result.get().getName() + " deleted!");
             return "redirect:/types";
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Type with id " + id + " not found");
