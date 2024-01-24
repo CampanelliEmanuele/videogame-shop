@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments/resources :: head('Edit Type')"></head>
-<body class="bg-primary-subtle">
+<body class="bg-dark text-white">
 <div class="container">
     <h1 class="text-center">Edit a type</h1>
+    <hr>
     <form
             id="edit-type"
             method="post"
             th:object="${type}"
             th:action="@{/types/edit/{id}(id=${type.id})}"
-            class="row g-3"
+            class="row g-3 justify-content-center"
     >
         <div class="col-4">
             <label for="name" class="form-label">Name</label>
@@ -20,7 +21,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col-8">
+        <div class="col-4">
             <label for="description" class="form-label">Description</label>
             <input class="form-control" type="text" id="description" th:field="*{description}" th:errorClass="is-invalid">
             <div class="invalid-feedback" th:if="${#fields.hasErrors('description')}">
@@ -29,9 +30,11 @@
                 </ul>
             </div>
         </div>
-        <div class="col-12">
-            <button class="btn btn-primary" type="submit">Save</button>
-            <a class="btn btn-danger" th:href="@{/types}">Cancel</a>
+        <div class="row justify-content-center mt-5">
+            <div class="col-8">
+                <button class="btn btn-primary me-2" type="submit">Save</button>
+                <a class="btn btn-danger" th:href="@{/types}"><span><i class="fa-solid fa-arrow-left"></i></span> Return back</a>
+            </div>
         </div>
 
     </form>
