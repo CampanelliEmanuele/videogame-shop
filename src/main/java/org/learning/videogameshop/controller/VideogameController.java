@@ -72,7 +72,7 @@ public class VideogameController {
         Optional<Videogame> result = videogameRepository.findById(id);
         if (result.isPresent()) {
             model.addAttribute("videogame", result.get());
-            model.addAttribute("typeList", typeRepository.findAll());
+//            model.addAttribute("typeList", typeRepository.findAll());
             return "videogames/edit";
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Videogame with id " + id + " not found");
