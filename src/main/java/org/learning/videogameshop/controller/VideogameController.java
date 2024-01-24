@@ -37,8 +37,8 @@ public class VideogameController {
 
     @GetMapping("/create")
     public String create(Model model) {
-        Videogame recipe = new Videogame();
-        model.addAttribute("videogame", recipe);
+        Videogame videogame = new Videogame();
+        model.addAttribute("videogame", videogame);
 //        model.addAttribute("typeList", typeRepository.findAll());
         return "videogames/create";
     }
@@ -54,6 +54,18 @@ public class VideogameController {
         return "redirect:/videogames/show/" + savedVideogame.getId();
     }
 
+    @GetMapping("/show/{id}")
+    public String show(@PathVariable Integer id, Model model) {
+        Optional<Videogame> result = videogameRepository.findById(id);
+        if (result.isPresent()) {
+            Videogame videogame = result.get();
+            model.addAttribute("videogame", videogame);
+//            model.addAttribute("typeList", typeRepository.findAll());
+            return "videogames/show";
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Videogame with id " + id + " not found");
+        }
+    }
 
 
 }
