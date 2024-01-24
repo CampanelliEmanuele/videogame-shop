@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/resources :: head('Create Type')"></head>
+<body class="bg-primary-subtle">
+<div class="container">
+    <h1 class="text-center">Create a type</h1>
+    <form
+            id="create-type"
+            method="post"
+            th:object="${type}"
+            th:action="@{/types/create}"
+            class="row g-3"
+    >
+        <div class="col-4">
+            <label for="name" class="form-label">Name</label>
+            <input class="form-control" type="text" id="name" th:field="*{name}" th:errorClass="is-invalid">
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('name')}">
+                <ul>
+                    <li th:each="err : ${#fields.errors('name')}" th:text="${err}"></li>
+                </ul>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<th:block th:replace="fragments/resources :: script"></th:block>
+</body>
+</html>
