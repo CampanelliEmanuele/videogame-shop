@@ -13,7 +13,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "videogames")
-public class VideoGame {
+public class Videogame {
 
     @Autowired
     private VideogameRepository videogameRepository;
