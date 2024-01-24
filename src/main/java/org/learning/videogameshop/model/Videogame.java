@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
+import java.util.List;
+
 @Entity
 @Table(name = "videogames")
 public class Videogame {
@@ -16,8 +18,9 @@ public class Videogame {
     @Column(nullable = false)
     private String name;
 
-    @NotEmpty(message = "Videogame must have a price")
-    @Size(min = 2, max = 40)
+    @NotEmpty(message = "Video game must have a price")
+    @Size(min = 2, max = 40, message = "Video game price must be at least 1")
+    @Column(nullable = false)
     private Double price;
     private String description;
     @Lob
@@ -25,6 +28,9 @@ public class Videogame {
 
     @OneToOne
     private Purchase purchase;
+
+    @ManyToMany
+    private List<Type> typeList;
 
     public int getId() {
         return id;
@@ -72,5 +78,13 @@ public class Videogame {
 
     public void setPurchase(Purchase purchase) {
         this.purchase = purchase;
+    }
+
+    public List<Type> getTypeList() {
+        return typeList;
+    }
+
+    public void setTypeList(List<Type> typeList) {
+        this.typeList = typeList;
     }
 }
