@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/resources :: head('Error')}"></head>
+
+<body>
+<div class="container">
+    <h1>An error occurred</h1>
+    <h2 th:text="${status}"></h2>
+    <p>Message: <span th:text="${message}"></span></p>
+    <div><a th:href="@{/videogames}">Back to videogame list</a></div>
+    <pre th:text="${trace}"></pre>
+</div>
+
+<th:block th:replace="~{fragments/resources :: script}"></th:block>
+</body>
+</html>
