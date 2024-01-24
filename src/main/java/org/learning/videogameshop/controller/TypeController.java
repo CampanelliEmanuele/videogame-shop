@@ -23,6 +23,8 @@ public class TypeController {
     @GetMapping
     public String index(Model model) {
         List<Type> typeList = typeRepository.findAll();
-
+        model.addAttribute("typeList", typeList);
+        return "type/list";
     }
 }
+
