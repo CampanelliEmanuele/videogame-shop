@@ -6,15 +6,16 @@ import org.learning.videogameshop.model.Type;
 import org.learning.videogameshop.repository.TypeRepository;
 import org.learning.videogameshop.repository.VideogameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/types")
@@ -44,6 +45,43 @@ public class TypeController {
         } else {
             Type savedType = typeRepository.save(formType);
             return "redirect:/types";
+        }
+    }
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable Integer id, Model model) {
+        Optional<Type> result = typeRepository.findById(id);
+        if (result.isPresent()) {
+            model.addAttribute("type", result.get());
+            return "types/edit";
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "type with id " + id + " not found");
+        }
+    }
+    @PostMapping("/edit/{id}")
+    public String update(@PathVariable Integer id, @Valid @ModelAttribute("type") Type formType, BindingResult bindingResult) {
+        Optional<Type> result = typeRepository.findById(id);
+        if (result.isPresent()) {
+            Type typeToEdit = result.get();
+            if (bindingResult.hasErrors()) {
+                return "types/edit";
+            }
+            Type savedType = typeRepository.save(formType);
+            return "redirect:/types";
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Type with id " + id + " not found");
+        }
+    }
+
+    @PostMapping("/delete/{id}")
+    public String delete(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
+        Optional<Type> result = typeRepository.findById(id);
+        if (result.isPresent()) {
+            typeRepository.deleteById(id);
+            redirectAttributes.addFlashAttribute("redirectMessage",
+                    "Type " + result.get().getName() + " deleted!");
+            return "redirect:/types";
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Type with id " + id + " not found");
         }
     }
 
