@@ -3,11 +3,8 @@ package org.learning.videogameshop.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
-import org.learning.videogameshop.repository.PurchaseRepository;
-import org.learning.videogameshop.repository.TypeRepository;
-import org.learning.videogameshop.repository.VideogameRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.validation.constraints.NotNull;
+//import jakarta.validation.constraints.Size;
 
 import java.util.List;
 
@@ -19,12 +16,12 @@ public class Videogame {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @NotEmpty(message = "Name must not be blank")
-    @Size(min = 2, max = 40, message = "Name size must be from 2 to 40 characters")
+//    @Size(min = 2, max = 40, message = "Name size must be from 2 to 40 characters")
     @Column(nullable = false)
     private String name;
 
-    @NotEmpty(message = "Video game must have a price")
-    @Size(min = 2, max = 40, message = "Video game price must be at least 1")
+    @NotNull(message = "Video game must have a price")
+//    @Size(min = 2, max = 40, message = "Video game price must be at least 1")
     @Column(nullable = false)
     private Double price;
     private String description;
