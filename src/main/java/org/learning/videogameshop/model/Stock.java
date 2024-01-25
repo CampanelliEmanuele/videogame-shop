@@ -1,6 +1,7 @@
 package org.learning.videogameshop.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
 
@@ -12,17 +13,24 @@ public class Stock {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotNull
+    @PastOrPresent
     private LocalDate purchaseDate;
 
-    private Integer quantity;
-
+    @NotEmpty(message = "Supplier's name cannot be empty")
     private String supplierName;
 
+    @Min(1)
+    @NotNull(message = "Enter a valid price value")
     private Double price;
+
+    @Min(1)
+    @NotNull(message = "Enter a valid quantity value")
+    private Integer quantity;
 
     @ManyToOne
     @JoinColumn(name = "videogame_id")
-    private Videogame purchasedVideogame;
+    private Videogame stockedVideogame;
 
     public Integer getId() {
         return id;
@@ -64,11 +72,11 @@ public class Stock {
         this.price = price;
     }
 
-    public Videogame getPurchasedVideogame() {
-        return purchasedVideogame;
+    public Videogame getStockedVideogame() {
+        return stockedVideogame;
     }
 
-    public void setPurchasedVideogame(Videogame purchasedVideogame) {
-        this.purchasedVideogame = purchasedVideogame;
+    public void setStockedVideogame(Videogame stockedVideogame) {
+        this.stockedVideogame = stockedVideogame;
     }
 }
