@@ -16,7 +16,7 @@ public class Purchase {
 
     private Integer quantity;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "videogame_id")
     private Videogame videogame;
 
