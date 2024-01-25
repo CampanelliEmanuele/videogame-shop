@@ -17,6 +17,7 @@ public class Purchase {
     private Integer quantity;
 
     @OneToOne
+    @JoinColumn(name = "videogame_id")
     private Videogame videogame;
 
     public Integer getId() {
