@@ -10,32 +10,32 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         .card {
-    background: rgba(255, 255, 255, 0.1); /* Sfondo con opacità del 10% (colore trasparente) */
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
-    overflow: hidden; /* Assicura che il bordo arrotondato si applichi correttamente */
+    overflow: hidden;
     transition: background 0.3s ease-out;
     position: relative;
     color: #fff;
 }
 
 .card:hover {
-    background: rgba(255, 255, 255, 0.3); /* Cambia l'opacità al passaggio del mouse */
-    backdrop-filter: blur(10px); /* Aggiunge l'effetto glass sfocato */
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
     transform: scale(1.05);
     transition: transform 0.3s ease-out, background 0.3s ease-out;
 }
 
 .card::before {
-    content: ''; /* Contenuto fittizio per occupare spazio */
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: inherit; /* Eredità dello sfondo dalla card */
-    filter: blur(20px); /* Sfoca ulteriormente l'effetto glass */
-    opacity: 0.5; /* Opacità aggiuntiva */
-    z-index: -1; /* Posiziona lo sfondo sotto la card */
+    background: inherit;
+    filter: blur(20px);
+    opacity: 0.5;
+    z-index: -1;
 }
 
         body {
@@ -50,6 +50,7 @@
 
         main {
             flex: 1;
+
         }
 
     </style>
@@ -57,39 +58,34 @@
 
 <body>
 
-<header>
+<header style="background-color: rgba(0, 0, 0, 0.8); padding: 10px;">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <!-- Logo centrato -->
+        <a class="navbar-brand mx-auto" href="#">
+            <img src="https://example.com/your-logo.png" alt="Game Store Logo">
+        </a>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-
-        <ul class="navbar-nav">
+        <!-- Nav links centrati e arrotondati -->
+        <ul class="navbar-nav mx-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#">Offerte</a>
+                <a class="nav-link rounded-pill text-white" href="#">Offerte</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Preordini</a>
+                <a class="nav-link rounded-pill text-white" href="#">Preordini</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Prossime Uscite</a>
+                <a class="nav-link rounded-pill text-white" href="#">Prossime Uscite</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Assistenza 24/7</a>
+                <a class="nav-link rounded-pill text-white" href="#">Assistenza 24/7</a>
             </li>
         </ul>
 
-        <a class="navbar-brand mx-auto" href="#"><img src="https://example.com/your-logo.png" alt="Game Store Logo"></a>
-
+        <!-- Carrello a destra -->
         <div class="navbar-nav ml-auto">
-            <a class="nav-item nav-link" href="#"><i class="fas fa-shopping-cart"></i></a>
-        </div>
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-            </ul>
+            <a class="nav-item nav-link" href="#">
+                <i class="fas fa-shopping-cart text-white"></i> Carrello
+            </a>
         </div>
     </nav>
 </header>
@@ -101,38 +97,59 @@
 
 
 
-
-<!-- Platforms Card Section -->
 <div class="container mt-4">
     <h2 class="text-center mb-4">Piattaforme</h2>
     <div class="row">
         <div th:each="videogame : ${videogames}" class="col-md-4 mb-4">
-            <a th:href="@{'/videogame/' + ${videogame.id}}" class="card">
+            <div class="card">
                 <img th:src="${videogame.photo}" class="card-img-top" alt="Game Image">
                 <div class="card-body">
                     <h5 th:text="${videogame.name}" class="card-title"></h5>
                     <p th:text="'Prezzo: ' + ${videogame.price} + €" class="card-text"></p>
                 </div>
-            </a>
+                <form th:action="@{/store/purchase}" method="post">
+                    <input type="hidden" name="videogameId" th:value="${videogame.id}" />
+                    <label for="quantity">Quantità:</label>
+                    <input type="number" name="quantity" value="1" min="1" required id="quantity"/>
+                    <button type="submit">Acquista</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
 
 
 <!-- Footer -->
-<footer class="bg-dark text-light p-4 mt-auto">
+<footer class="bg-dark text-light p-4">
     <div class="container">
         <div class="row">
-            <div class="col-md-6">
-                <h4>Contatti</h4>
+            <div class="col-md-3">
+                <h5>Link Utili</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Offerte</a></li>
+                    <li><a href="#">Preordini</a></li>
+                    <li><a href="#">Prossime Uscite</a></li>
+                </ul>
             </div>
-            <div class="col-md-6">
-                <h4>Social</h4>
+            <div class="col-md-3">
+                <h5>Assistenza</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#">Centro Assistenza</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Contattaci</a></li>
+                </ul>
             </div>
-        </div>
-        <div class="row mt-3">
-            <div class="col-md-12">
-                <h4>Riscatta una Gift Card</h4>
+            <div class="col-md-3">
+                <h5>Social</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Instagram</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h5>Riscatta una Gift Card</h5>
             </div>
         </div>
     </div>
