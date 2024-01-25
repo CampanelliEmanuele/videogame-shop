@@ -8,12 +8,12 @@
 <main class="container-fluid">
     <div class="container">
         <section>
-            <h1 class="text-center py-2">Stock history</h1>
+            <h1 class="text-center pb-4">Stock history</h1>
 
             <div class="alert alert-info" th:if="${stockList.size() == 0}">There are no recent stock.</div>
 
             <div th:unless="${stockList.size() == 0}">
-                <table class="table">
+                <table class="table table-bordered border-primary">
                     <thead>
                         <tr>
                             <th scope="col">Purchase date</th>
@@ -25,9 +25,9 @@
                     </thead>
                     <tbody>
                         <tr th:each="stock : ${stockList}">
-                            <th scope="row" th:text="${stock.purchaseDate}"></th>
+                            <th th:text="${stock.purchaseDate}"></th>
                             <td th:text="${stock.supplierName}"></td>
-                            <td><span th:text="${stock.price}"></span> €</td>
+                            <td><span th:text="${stock.price}"></span>€</td>
                             <td th:text="${stock.getStockedVideogame().getName()}"></td>
                             <td th:text="${stock.quantity}"></td>
                         </tr>
