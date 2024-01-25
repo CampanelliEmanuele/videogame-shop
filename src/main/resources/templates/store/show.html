@@ -1,46 +1,130 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Store</title>
-</head>
-<body>
-<h2>Videogiochi disponibili</h2>
+    <title>Game Store</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Add a simple hover effect to enlarge the card */
+        .card:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease-out;
+        }
 
-<table>
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Nome</th>
-        <th>Prezzo</th>
-        <th>Descrizione</th>
-        <th>Categorie</th>
-        <th>Quantità desiderata</th>
-        <th>Azione</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="videogame : ${videogames}">
-        <td th:text="${videogame.id}">ID</td>
-        <td th:text="${videogame.name}">Nome</td>
-        <td th:text="${videogame.price}">Prezzo</td>
-        <td th:text="${videogame.description}">Descrizione</td>
-        <td>
-            <span th:each="category : ${videogame.typeList}" th:text="${category.name} + ' '"></span>
-        </td>
-        <td>
-            <form method="post" action="/store/purchase">
-                <input type="hidden" name="videogameId" th:value="${videogame.id}" />
-                <input type="number" name="quantity" min="1" required />
-                <button type="submit">Acquista</button>
-            </form>
-        </td>
-    </tr>
-    </tbody>
-</table>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        main {
+            flex: 1;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Header with Navbar -->
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <!-- Nav links on the left -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Offerte</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Preordini</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Prossime Uscite</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Assistenza 24/7</a>
+            </li>
+        </ul>
+
+        <!-- Logo centrato -->
+        <a class="navbar-brand mx-auto" href="#"><img src="https://example.com/your-logo.png" alt="Game Store Logo"></a>
+
+        <!-- Carrello a destra -->
+        <div class="navbar-nav ml-auto">
+            <a class="nav-item nav-link" href="#"><i class="fas fa-shopping-cart"></i></a>
+        </div>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Menu a comparsa per schermi più piccoli -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <!-- Aggiungi voci del menu a comparsa se necessario -->
+            </ul>
+        </div>
+    </nav>
+</header>
+
+
+
+
+
+
+
+
+<!-- Platforms Card Section -->
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Piattaforme</h2>
+    <div class="card-deck">
+        <!-- Loop through each videogame using Thymeleaf -->
+        <a th:each="videogame : ${videogames}" th:href="@{'/videogame/' + ${videogame.id}}" class="card">
+            <img th:src="${videogame.photo}" class="card-img-top" alt="Game Image">
+            <div class="card-body">
+                <h5 th:text="${videogame.description}" class="card-title"></h5>
+                <p th:text="'Prezzo: ' + ${videogame.price}" class="card-text"></p>
+                <!-- Add more details as needed -->
+            </div>
+        </a>
+    </div>
+</div>
+
+
+<!-- Game Sections (Trending, Preorders, Reviews, Best Selling) -->
+<!-- Insert the provided code for the game sections here -->
+
+<!-- Footer -->
+<footer class="bg-dark text-light p-4 mt-auto">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Contatti</h4>
+                <!-- Add contact information -->
+            </div>
+            <div class="col-md-6">
+                <h4>Social</h4>
+                <!-- Add social links -->
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-12">
+                <h4>Riscatta una Gift Card</h4>
+                <!-- Add gift card redemption section -->
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<!-- Include Bootstrap JS (if needed) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </body>
+
 </html>
