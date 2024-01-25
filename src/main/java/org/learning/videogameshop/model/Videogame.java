@@ -29,8 +29,8 @@ public class Videogame {
     @Lob
     private String photo;
 
-//    @OneToOne
-//    private Purchase purchase;
+    @OneToMany(mappedBy = "videogame")
+    private List<Purchase> purchaseList;
 
     @ManyToMany
     @JoinTable(name = "videogame_type",
@@ -79,13 +79,13 @@ public class Videogame {
         this.price = price;
     }
 
-//    public Purchase getPurchase() {
-//        return purchase;
-//    }
-//
-//    public void setPurchase(Purchase purchase) {
-//        this.purchase = purchase;
-//    }
+    public List<Purchase> getPurchaseList() {
+        return purchaseList;
+    }
+
+    public void setPurchaseList(List<Purchase> purchaseList) {
+        this.purchaseList = purchaseList;
+    }
 
     public List<Type> getTypeList() {
         return typeList;

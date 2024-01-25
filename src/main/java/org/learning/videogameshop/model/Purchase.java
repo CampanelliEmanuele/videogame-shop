@@ -17,7 +17,7 @@ public class Purchase {
 
     private Integer quantity;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "videogame_id")
     private Videogame videogame;
 
@@ -52,4 +52,8 @@ public class Purchase {
     public void setVideogame(Videogame videogame) {
         this.videogame = videogame;
     }
+
+
+
+
 }
