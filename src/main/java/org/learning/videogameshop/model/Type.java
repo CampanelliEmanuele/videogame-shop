@@ -19,8 +19,8 @@ public class Type {
 
     @NotEmpty
     private String description;
-    
-    @ManyToMany
+
+    @ManyToMany(mappedBy = "typeList")
     private List<Videogame> videogameList;
     
     // GETTER AND SETTER

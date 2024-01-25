@@ -28,10 +28,14 @@ public class Videogame {
     @Lob
     private String photo;
 
-    @OneToOne
-    private Purchase purchase;
+//    @OneToOne
+//    private Purchase purchase;
 
     @ManyToMany
+    @JoinTable(name = "videogame_type",
+            joinColumns = @JoinColumn(name = "videogame_id"),
+            inverseJoinColumns = @JoinColumn(name = "type_id")
+    )
     private List<Type> typeList;
 
     public int getId() {
@@ -74,13 +78,13 @@ public class Videogame {
         this.price = price;
     }
 
-    public Purchase getPurchase() {
-        return purchase;
-    }
-
-    public void setPurchase(Purchase purchase) {
-        this.purchase = purchase;
-    }
+//    public Purchase getPurchase() {
+//        return purchase;
+//    }
+//
+//    public void setPurchase(Purchase purchase) {
+//        this.purchase = purchase;
+//    }
 
     public List<Type> getTypeList() {
         return typeList;

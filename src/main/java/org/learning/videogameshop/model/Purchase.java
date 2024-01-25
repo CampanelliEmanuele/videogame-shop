@@ -16,8 +16,8 @@ public class Purchase {
 
     private Integer quantity;
 
-    @OneToOne
-    private Videogame videogame;
+//    @OneToOne
+//    private Videogame videogame;
 
     public Integer getId() {
         return id;
@@ -43,11 +43,11 @@ public class Purchase {
         this.quantity = quantity;
     }
 
-    public Videogame getVideogame() {
-        return videogame;
-    }
-
-    public void setVideogame(Videogame videogame) {
-        this.videogame = videogame;
-    }
+//    public Videogame getVideogame() {
+//        return videogame;
+//    }
+//
+//    public void setVideogame(Videogame videogame) {
+//        this.videogame = videogame;
+//    }
 }

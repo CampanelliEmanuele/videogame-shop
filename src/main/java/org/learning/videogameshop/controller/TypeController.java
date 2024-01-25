@@ -1,8 +1,8 @@
 package org.learning.videogameshop.controller;
 
-import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import org.learning.videogameshop.model.Type;
+import org.learning.videogameshop.model.Videogame;
 import org.learning.videogameshop.repository.TypeRepository;
 import org.learning.videogameshop.repository.VideogameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,6 +76,11 @@ public class TypeController {
     public String delete(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
         Optional<Type> result = typeRepository.findById(id);
         if (result.isPresent()) {
+            Type typeToDelete = result.get();
+            List<Videogame> videogameList = typeToDelete.getVideogameList();
+            for (Videogame videogame : videogameList) {
+                videogame.getTypeList().remove(typeToDelete);
+            }
             typeRepository.deleteById(id);
             redirectAttributes.addFlashAttribute("redirectMessage",
                     "Type " + result.get().getName() + " deleted!");
