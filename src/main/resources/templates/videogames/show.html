@@ -17,7 +17,9 @@
             </p>
 
             <h5>Types</h5>
-            <div th:each="type : ${videogame.getTypeList()}">
+
+            <div class="alert alert-info" th:if="${videogame.getTypeList().size() == 0}">This game has no types</div>
+            <div th:unless="${videogame.getTypeList().size() == 0}" th:each="type : ${videogame.getTypeList()}">
                 <p th:text="${type.name}"></p>
             </div>
 
