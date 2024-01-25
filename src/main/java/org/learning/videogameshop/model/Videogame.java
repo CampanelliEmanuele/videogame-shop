@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 //import jakarta.validation.constraints.Size;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
@@ -23,7 +24,7 @@ public class Videogame {
     @NotNull(message = "Video game must have a price")
 //    @Size(min = 2, max = 40, message = "Video game price must be at least 1")
     @Column(nullable = false)
-    private Double price;
+    private BigDecimal price;
     private String description;
     @Lob
     private String photo;
@@ -66,11 +67,11 @@ public class Videogame {
         this.photo = photo;
     }
 
-    public Double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

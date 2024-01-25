@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -43,7 +44,7 @@ public class StoreController {
 
         Purchase purchase = new Purchase();
         purchase.setVideogame(videogame);
-        purchase.setPurchaseDate(LocalDate.now());
+        purchase.setPurchaseDate(LocalDateTime.now());
         purchase.setQuantity(quantity);
 
         purchaseRepository.save(purchase);
