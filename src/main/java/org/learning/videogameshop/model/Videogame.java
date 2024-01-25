@@ -39,6 +39,9 @@ public class Videogame {
     )
     private List<Type> typeList;
 
+    @OneToMany(mappedBy = "stockedVideogame")
+    private List<Stock> stockList;
+
     public int getId() {
         return id;
     }
@@ -95,4 +98,11 @@ public class Videogame {
         this.typeList = typeList;
     }
 
+    public List<Stock> getStockList() {
+        return stockList;
+    }
+
+    public void setStockList(List<Stock> stockList) {
+        this.stockList = stockList;
+    }
 }
