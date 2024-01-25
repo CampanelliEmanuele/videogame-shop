@@ -80,16 +80,17 @@
 <!-- Platforms Card Section -->
 <div class="container mt-4">
     <h2 class="text-center mb-4">Piattaforme</h2>
-    <div class="card-deck">
-        <!-- Loop through each videogame using Thymeleaf -->
-        <a th:each="videogame : ${videogames}" th:href="@{'/videogame/' + ${videogame.id}}" class="card">
-            <img th:src="${videogame.photo}" class="card-img-top" alt="Game Image">
-            <div class="card-body">
-                <h5 th:text="${videogame.description}" class="card-title"></h5>
-                <p th:text="'Prezzo: ' + ${videogame.price}" class="card-text"></p>
-                <!-- Add more details as needed -->
-            </div>
-        </a>
+    <div class="row">
+        <div th:each="videogame : ${videogames}" class="col-md-4 mb-4">
+            <a th:href="@{'/videogame/' + ${videogame.id}}" class="card">
+                <img th:src="${videogame.photo}" class="card-img-top" alt="Game Image">
+                <div class="card-body">
+                    <h5 th:text="${videogame.name}" class="card-title"></h5>
+                    <p th:text="'Prezzo: ' + ${videogame.price} + €" class="card-text"></p>
+                    <!-- Aggiungi ulteriori dettagli se necessario -->
+                </div>
+            </a>
+        </div>
     </div>
 </div>
 

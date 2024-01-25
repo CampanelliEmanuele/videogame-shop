@@ -34,7 +34,7 @@ public class StoreController {
         List<Type> types = typeRepository.findAll();
         model.addAttribute("videogames", videogames);
         model.addAttribute("types", types);
-        return "store/show"; //
+        return "store/list"; //
     }
 
     @PostMapping("/purchase")
