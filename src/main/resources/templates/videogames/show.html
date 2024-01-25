@@ -15,7 +15,11 @@
             <p>
                 <img th:src="@{${videogame.photo}}" alt="videogame image" class="img-fluid">
             </p>
-            <!--            <p><b>Category:</b> <span th:text="${videogame.getCategory().getName()}"></span></p>-->
+
+            <h5>Types</h5>
+            <div th:each="type : ${videogame.getTypeList()}">
+                <p th:text="${type.name}"></p>
+            </div>
 
             <div class="mt-3">
                 <a th:href="@{/videogames}" class="btn btn-primary">

@@ -39,14 +39,14 @@ public class VideogameController {
     public String create(Model model) {
         Videogame videogame = new Videogame();
         model.addAttribute("videogame", videogame);
-//        model.addAttribute("typeList", typeRepository.findAll());
+        model.addAttribute("typeList", typeRepository.findAll());
         return "videogames/create";
     }
 
     @PostMapping("/create")
     public String store(@Valid @ModelAttribute("videogame") Videogame videogameForm, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-//            model.addAttribute("typeList", typeRepository.findAll());
+            model.addAttribute("typeList", typeRepository.findAll());
             System.out.println(bindingResult.getAllErrors());
             return "videogames/create";
         }
@@ -60,7 +60,7 @@ public class VideogameController {
         if (result.isPresent()) {
             Videogame videogame = result.get();
             model.addAttribute("videogame", videogame);
-//            model.addAttribute("typeList", typeRepository.findAll());
+            model.addAttribute("typeList", typeRepository.findAll());
             return "videogames/show";
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Videogame with id " + id + " not found");
