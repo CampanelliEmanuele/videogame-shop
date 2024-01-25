@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head th:replace="fragments/resources :: head('VideoGame list')"></head>
+<head th:replace="fragments/resources :: head('VideoGame list')">
+    <style>
+        body
+    </style>
+</head>
 
 <body>
 <nav th:replace="fragments/navbar :: topNavbar('videogames')"></nav>
 
 <main class="container-fluid">
     <div class="container">
-        <h1>Details</h1>
-        <a class="btn btn-primary" th:href="@{/videogames/create}">New videogame</a>
+        <h1 class="text-center">Details</h1>
+        <hr>
+        <a class="btn btn-primary mb-2" th:href="@{/videogames/create}">New videogame</a>
         <div class="alert alert-info" th:if="${videogameList.size() == 0}">The list is empty</div>
-        <table class="table" th:unless="${videogameList.size() == 0}">
+        <table class="table table-secondary" th:unless="${videogameList.size() == 0}">
             <thead>
             <tr>
                 <th>Name</th>
@@ -28,13 +33,13 @@
                 <td th:text="${videogame.description}"></td>
                 <td><span th:text="${videogame.price}"></span>€</td>
                 <td>
-                    <img th:src="@{${videogame.photo}}" alt="videogame photo" class="img-fluid">
+                    <img th:src="@{${videogame.photo}}" alt="videogame photo" width="100" lenght="100" class="img-fluid">
                 </td>
                 <td>
-                    <a class="btn btn-primary" th:href="@{/videogames/show/{id}(id=${videogame.id})}" role="button">Details</a>
+                    <a class="btn btn-primary btn-sm" th:href="@{/videogames/show/{id}(id=${videogame.id})}" role="button">Details</a>
                 </td>
                 <td>
-                    <a class="btn btn-primary" th:href="@{/videogames/edit/{id}(id=${videogame.id})}" role="button">
+                    <a class="btn btn-primary btn-sm" th:href="@{/videogames/edit/{id}(id=${videogame.id})}" role="button">
                         <i class="fa-solid fa-pencil"></i>  Edit
                     </a>
                 </td>
@@ -44,7 +49,7 @@
                             method="post"
                             onsubmit="return confirm('Are you sure?')"
                     >
-                        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-trash-can"></i>
+                        <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i>
                         </button>
                     </form>
                 </td>
