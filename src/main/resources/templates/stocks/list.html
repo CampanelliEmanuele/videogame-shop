@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/resources :: head('Stock history')"></head>
+
+<body>
+<nav th:replace="fragments/navbar :: topNavbar('stocks')"></nav>
+
+<main class="container-fluid">
+    <div class="container">
+        <section>
+            <h1 class="text-center py-2">Stock history</h1>
+
+            <div class="alert alert-info" th:if="${stockList.size() == 0}">There are no recent stock.</div>
+
+            <div th:unless="${stockList.size() == 0}">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Purchase date</th>
+                            <th scope="col">Supplier name</th>
+                            <th scope="col">Price each</th>
+                            <th scope="col">Videogame's name</th>
+                            <th scope="col">Items purchased</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="stock : ${stockList}">
+                            <th scope="row" th:text="${stock.purchaseDate}"></th>
+                            <td th:text="${stock.supplierName}"></td>
+                            <td><span th:text="${stock.price}"></span> €</td>
+                            <td th:text="${stock.getStockedVideogame().getName()}"></td>
+                            <td th:text="${stock.quantity}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</main>
+
+<th:block th:replace="fragments/resources :: script"></th:block>
+
+</body>
+</html>
