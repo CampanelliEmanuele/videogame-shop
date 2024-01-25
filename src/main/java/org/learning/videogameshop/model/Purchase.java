@@ -3,6 +3,7 @@ package org.learning.videogameshop.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "purchases")
@@ -12,12 +13,13 @@ public class Purchase {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private LocalDate purchaseDate;
+    private LocalDateTime purchaseDate;
 
     private Integer quantity;
 
-//    @OneToOne
-//    private Videogame videogame;
+    @ManyToOne
+    @JoinColumn(name = "videogame_id")
+    private Videogame videogame;
 
     public Integer getId() {
         return id;
@@ -27,11 +29,11 @@ public class Purchase {
         this.id = id;
     }
 
-    public LocalDate getPurchaseDate() {
+    public LocalDateTime getPurchaseDate() {
         return purchaseDate;
     }
 
-    public void setPurchaseDate(LocalDate purchaseDate) {
+    public void setPurchaseDate(LocalDateTime purchaseDate) {
         this.purchaseDate = purchaseDate;
     }
 
@@ -43,11 +45,11 @@ public class Purchase {
         this.quantity = quantity;
     }
 
-//    public Videogame getVideogame() {
-//        return videogame;
-//    }
-//
-//    public void setVideogame(Videogame videogame) {
-//        this.videogame = videogame;
-//    }
+    public Videogame getVideogame() {
+        return videogame;
+    }
+
+    public void setVideogame(Videogame videogame) {
+        this.videogame = videogame;
+    }
 }
