@@ -2,9 +2,6 @@ package org.learning.videogameshop.controller;
 
 import jakarta.validation.Valid;
 import org.learning.videogameshop.model.Stock;
-import org.learning.videogameshop.model.Stock;
-import org.learning.videogameshop.model.Stock;
-import org.learning.videogameshop.model.Videogame;
 import org.learning.videogameshop.repository.StockRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -16,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,6 +33,7 @@ public class StockController {
     @GetMapping("/create")
     public String create(Model model) {
         Stock stock = new Stock();
+        stock.setPurchaseDate(LocalDate.now());
         model.addAttribute("stock", stock);
         return "stocks/create";
     }
@@ -46,7 +45,7 @@ public class StockController {
             return "stocks/create";
         }
         Stock savedStock = stockRepository.save(stockForm);
-        return "redirect:/stocks/list";
+        return "redirect:/stocks";
     }
 
     @GetMapping("/edit/{id}")
