@@ -1,0 +1,117 @@
+ /* Common styles for both light and dark modes */
+       body {
+           display: flex;
+           flex-direction: column;
+           min-height: 100vh;
+           background-size: cover;
+           background-repeat: no-repeat;
+           background-attachment: fixed;
+           margin: 0;
+       }
+
+       header {
+           background-color: rgba(0, 0, 0, 0.8);
+           padding: 10px;
+       }
+
+       .card {
+           background: rgba(255, 255, 255, 0.1);
+           border-radius: 10px;
+           overflow: hidden;
+           transition: background 0.3s ease-out;
+           position: relative;
+           color: #fff;
+           backdrop-filter: blur(10px); /* Aggiungi l'effetto glass */
+       }
+
+       .card:hover {
+           background: rgba(255, 255, 255, 0.3);
+           transform: scale(1.05);
+           transition: transform 0.3s ease-out, background 0.3s ease-out;
+       }
+
+       .card::before {
+           content: '';
+           position: absolute;
+           top: 0;
+           left: 0;
+           right: 0;
+           bottom: 0;
+           background: inherit;
+           filter: blur(20px);
+           opacity: 0.5;
+           z-index: -1;
+       }
+
+       /* Light mode styles */
+       body.light-mode {
+           background-image: url('https://www.bhmpics.com/downloads/Firewatch-Wallpapers/76.firewatch-sunny-day-wallpaper.jpg');
+           background-color: #fff;
+           color: #000;
+       }
+
+       header.light-mode {
+           background-color: rgba(255, 255, 255, 0.8);
+       }
+
+       .card.light-mode {
+           background: rgba(255, 255, 255, 0.9);
+           color: #000;
+       }
+
+       .card.light-mode:hover {
+           background: rgba(255, 255, 255, 0.7);
+       }
+
+       .card.light-mode .card-body {
+           color: #000; /* Colore del testo nelle card durante la modalità chiara */
+       }
+
+       /* Dark mode styles */
+       body.dark-mode {
+           background-image: url('https://wallpaperaccess.com/full/970936.jpg');
+           background-color: #1a1a1a;
+           color: #fff;
+       }
+
+       header.dark-mode {
+           background-color: rgba(0, 0, 0, 0.8);
+       }
+
+       .card.dark-mode {
+           background: rgba(0, 0, 0, 0.6);
+           color: #fff;
+       }
+
+       .card.dark-mode:hover {
+           background: rgba(0, 0, 0, 0.8);
+       }
+
+       .card.dark-mode .card-body {
+           color: #fff; /* Colore del testo nelle card durante la modalità scura */
+       }
+
+       /* Navbar button styles */
+       #toggle-mode-btn {
+           background: transparent;
+           border: none;
+           color: #fff;
+           cursor: pointer;
+           font-size: 20px;
+           margin-right: 10px;
+       }
+
+       /* Form button styles */
+       .card form button {
+           background-color: #007bff;
+           color: #fff;
+           padding: 8px 16px;
+           border: none;
+           border-radius: 5px;
+           cursor: pointer;
+           transition: background-color 0.3s ease-out;
+       }
+
+       .card form button:hover {
+           background-color: #0056b3;
+       }

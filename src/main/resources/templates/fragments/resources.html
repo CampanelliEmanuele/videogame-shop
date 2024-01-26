@@ -13,6 +13,26 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
           integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script>
+        // Funzione per cambiare la modalità
+        function toggleMode() {
+            // Se il body ha la classe dark-mode, passa a light-mode e viceversa
+            $('body').toggleClass('dark-mode');
+            $('body').toggleClass('light-mode');
+
+            // Cambia l'icona del bottone
+            var btn = $('#toggle-mode-btn');
+            if (btn.text() === '☀️') {
+                btn.text('🌙');
+                btn.attr('title', 'Modalità scura');
+            } else {
+                btn.text('☀️');
+                btn.attr('title', 'Modalità chiara');
+            }
+        }
+    </script>
     <title th:text="${title}"></title>
 </head>
 <body>
