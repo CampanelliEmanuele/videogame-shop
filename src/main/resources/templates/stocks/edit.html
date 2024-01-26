@@ -16,6 +16,7 @@
                 method="post"
                 class="row g-3"
         >
+            <input type="hidden" th:field="*{purchaseDate}">
             <div class="col-6">
                 <label class="form-label" for="supplierName">Name Supplier</label>
                 <input class="form-control" type="text" id="supplierName" th:field="*{supplierName}" th:errorClass="is-invalid">
@@ -40,6 +41,15 @@
                 <div class="invalid-feedback" th:if="${#fields.hasErrors('quantity')}">
                     <ul>
                         <li th:each="err : ${#fields.errors('quantity')}" th:text="${err}"></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-6">
+                <label class="form-label" for="stockedVideogame">Videogame ID</label>
+                <input class="form-control" type="number" id="stockedVideogame" th:field="*{stockedVideogame}" th:errorClass="is-invalid">
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('stockedVideogame')}">
+                    <ul>
+                        <li th:each="err : ${#fields.errors('stockedVideogame')}" th:text="${err}"></li>
                     </ul>
                 </div>
             </div>

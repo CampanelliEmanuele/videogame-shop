@@ -16,6 +16,7 @@
                 method="post"
                 class="row g-3"
         >
+            <input type="hidden" th:field="*{purchaseDate}">
             <div class="col-6">
                 <label class="form-label" for="supplierName">Name Supplier</label>
                 <input class="form-control" type="text" id="supplierName" th:field="*{supplierName}" th:errorClass="is-invalid">
