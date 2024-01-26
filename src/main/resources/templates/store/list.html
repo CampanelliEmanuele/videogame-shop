@@ -9,56 +9,106 @@
     <!-- Include Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        .card {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    overflow: hidden;
-    transition: background 0.3s ease-out;
-    position: relative;
-    color: #fff;
-}
-
-.card:hover {
-    background: rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(10px);
-    transform: scale(1.05);
-    transition: transform 0.3s ease-out, background 0.3s ease-out;
-}
-
-.card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: inherit;
-    filter: blur(20px);
-    opacity: 0.5;
-    z-index: -1;
-}
-
+        /* Common styles for both light and dark modes */
         body {
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            background-image: url('https://wallpaperaccess.com/full/970936.jpg');
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
-             }
-
-        main {
-            flex: 1;
-
+            margin: 0;
         }
 
+        header {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: background 0.3s ease-out;
+            position: relative;
+            color: #fff;
+        }
+
+        .card:hover {
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            transform: scale(1.05);
+            transition: transform 0.3s ease-out, background 0.3s ease-out;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: inherit;
+            filter: blur(20px);
+            opacity: 0.5;
+            z-index: -1;
+        }
+
+        /* Light mode styles */
+        body.light-mode {
+            background-image: url('https://www.bhmpics.com/downloads/Firewatch-Wallpapers/76.firewatch-sunny-day-wallpaper.jpg');
+            background-color: #fff;
+            color: #000;
+        }
+
+        header.light-mode {
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .card.light-mode {
+            background: rgba(0, 0, 0, 0.1);
+            color: #000;
+        }
+
+        .card.light-mode:hover {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        /* Dark mode styles */
+        body.dark-mode {
+            background-image: url('https://wallpaperaccess.com/full/970936.jpg');
+            background-color: #1a1a1a;
+            color: #fff;
+        }
+
+        header.dark-mode {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .card.dark-mode {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .card.dark-mode:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Navbar button styles */
+        #toggle-mode-btn {
+            background: transparent;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            font-size: 20px;
+            margin-right: 10px;
+        }
     </style>
 </head>
 
-<body>
+<body class="light-mode">
 
-<header style="background-color: rgba(0, 0, 0, 0.8); padding: 10px;">
+<header>
     <nav class="navbar navbar-expand-lg navbar-dark">
         <!-- Logo centrato -->
         <a class="navbar-brand mx-auto" href="#">
@@ -66,20 +116,25 @@
         </a>
 
         <!-- Nav links centrati e arrotondati -->
-        <ul class="navbar-nav mx-auto">
-            <li class="nav-item">
-                <a class="nav-link rounded-pill text-white" href="#">Offerte</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link rounded-pill text-white" href="#">Preordini</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link rounded-pill text-white" href="#">Prossime Uscite</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link rounded-pill text-white" href="#">Assistenza 24/7</a>
-            </li>
-        </ul>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link rounded-pill text-white" href="#">Offerte</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link rounded-pill text-white" href="#">Preordini</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link rounded-pill text-white" href="#">Prossime Uscite</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link rounded-pill text-white" href="#">Assistenza 24/7</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Bottone per cambiare modalità -->
+        <button id="toggle-mode-btn" onclick="toggleMode()" title="Cambia modalità">☀️</button>
 
         <!-- Carrello a destra -->
         <div class="navbar-nav ml-auto">
@@ -90,15 +145,8 @@
     </nav>
 </header>
 
-
-
-
-
-
-
-
 <div class="container mt-4">
-    <h2 class="text-center mb-4">Piattaforme</h2>
+    <!-- La scritta "Piattaforme" è stata eliminata -->
     <div class="row">
         <div th:each="videogame : ${videogames}" class="col-md-4 mb-4">
             <div class="card">
@@ -108,16 +156,14 @@
                     <p th:text="'Prezzo: ' + ${videogame.price} + €" class="card-text"></p>
                 </div>
                 <form th:action="@{/store/purchase}" method="post">
-                    <input type="hidden" name="videogameId" th:value="${videogame.id}" />
                     <label for="quantity">Quantità:</label>
-                    <input type="number" name="quantity" value="1" min="1" required id="quantity"/>
+                    <input type="number" name="quantity" value="1" min="1" required id="quantity" />
                     <button type="submit">Acquista</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
-
 
 <!-- Footer -->
 <footer class="bg-dark text-light p-4">
@@ -150,16 +196,35 @@
             </div>
             <div class="col-md-3">
                 <h5>Riscatta una Gift Card</h5>
+                <!-- Aggiungi qui il codice per la sezione "Riscatta una Gift Card" -->
             </div>
         </div>
     </div>
 </footer>
-</body>
-
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+<script>
+    // Funzione per cambiare la modalità
+    function toggleMode() {
+        // Se il body ha la classe dark-mode, passa a light-mode e viceversa
+        $('body').toggleClass('dark-mode');
+        $('body').toggleClass('light-mode');
+
+        // Cambia l'icona del bottone
+        var btn = $('#toggle-mode-btn');
+        if (btn.text() === '☀️') {
+            btn.text('🌙');
+            btn.attr('title', 'Modalità scura');
+        } else {
+            btn.text('☀️');
+            btn.attr('title', 'Modalità chiara');
+        }
+    }
+</script>
+
+</body>
 
 </html>
