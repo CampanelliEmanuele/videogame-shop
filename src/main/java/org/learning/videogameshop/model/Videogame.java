@@ -29,9 +29,6 @@ public class Videogame {
     @Lob
     private String photo;
 
-    @OneToMany(mappedBy = "videogame")
-    private List<Purchase> purchaseList;
-
     @ManyToMany
     @JoinTable(name = "videogame_type",
             joinColumns = @JoinColumn(name = "videogame_id"),
@@ -39,8 +36,17 @@ public class Videogame {
     )
     private List<Type> typeList;
 
-    @OneToMany(mappedBy = "stockedVideogame")
+    @OneToMany(mappedBy = "videogame")
+    private List<Purchase> purchaseList;
+
+    @OneToMany(mappedBy = "stockedVideogame", orphanRemoval = true)
     private List<Stock> stockList;
+
+//    public boolean isDeletable() {
+//        return stockList.isEmpty() && purchaseList.isEmpty();
+//    }
+
+    /* GETTER AND SETTER */
 
     public int getId() {
         return id;

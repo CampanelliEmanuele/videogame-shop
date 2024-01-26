@@ -1,6 +1,7 @@
 package org.learning.videogameshop.controller;
 
 import jakarta.validation.Valid;
+import org.learning.videogameshop.model.Stock;
 import org.learning.videogameshop.model.Videogame;
 import org.learning.videogameshop.repository.PurchaseRepository;
 import org.learning.videogameshop.repository.TypeRepository;
