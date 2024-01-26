@@ -84,7 +84,7 @@ public class StockController {
                     "Stock with id " + result.get().getId() + " deleted!");
             return "redirect:/stocks";
         } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Stock with di " + id + " not found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Stock with id " + id + " not found");
         }
     }
 
