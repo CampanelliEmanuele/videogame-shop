@@ -46,6 +46,19 @@ public class Videogame {
 //        return stockList.isEmpty() && purchaseList.isEmpty();
 //    }
 
+    public Integer getAvailableCopies() {
+        Integer availableCopies = 0;
+        for (Stock stock : stockList) {
+            if (stock.getStockedVideogame().getId() == id)
+                availableCopies += stock.getQuantity();
+        }
+        for (Purchase purchase : purchaseList) {
+            if (purchase.getVideogame().getId() == id)
+                availableCopies -= purchase.getQuantity();
+        }
+        return availableCopies;
+    }
+
     /* GETTER AND SETTER */
 
     public int getId() {

@@ -2,7 +2,9 @@ package org.learning.videogameshop.controller;
 
 import jakarta.validation.Valid;
 import org.learning.videogameshop.model.Stock;
+import org.learning.videogameshop.model.Videogame;
 import org.learning.videogameshop.repository.StockRepository;
+import org.learning.videogameshop.repository.VideogameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
@@ -23,6 +25,9 @@ public class StockController {
     @Autowired
     private StockRepository stockRepository;
 
+    @Autowired
+    private VideogameRepository videogameRepository;
+
     @GetMapping
     public String list(Model model) {
         List<Stock> stockList = stockRepository.findAll(Sort.by("purchaseDate").descending());
@@ -35,6 +40,8 @@ public class StockController {
         Stock stock = new Stock();
         stock.setPurchaseDate(LocalDate.now());
         model.addAttribute("stock", stock);
+        List<Videogame> videogameList = videogameRepository.findAll();
+        model.addAttribute("videogameList", videogameList);
         return "stocks/create";
     }
 
@@ -87,7 +94,5 @@ public class StockController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Stock with id " + id + " not found");
         }
     }
-
-
 
 }

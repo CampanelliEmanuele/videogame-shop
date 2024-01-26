@@ -1,9 +1,9 @@
 package org.learning.videogameshop.controller;
 
 import jakarta.validation.Valid;
-import org.learning.videogameshop.model.Stock;
 import org.learning.videogameshop.model.Videogame;
 import org.learning.videogameshop.repository.PurchaseRepository;
+import org.learning.videogameshop.repository.StockRepository;
 import org.learning.videogameshop.repository.TypeRepository;
 import org.learning.videogameshop.repository.VideogameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,7 @@ public class VideogameController {
     private PurchaseRepository purchaseRepository;
 
     @GetMapping
-    public String index(Model model) {
+    public String list(Model model) {
         List<Videogame> videogameList = videogameRepository.findAll();
         model.addAttribute("videogameList", videogameList);
         return "/videogames/list";
