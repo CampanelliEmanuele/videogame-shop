@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/resources :: head('Test')"></head>
+
+<body>
+<!--<nav th:replace="fragments/navbar :: topNavbar('stocks')"></nav>-->
+    <h1> TEST </h1>
+
+    <div class="container">
+
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/stocks}">interface</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/stocks/list}">list</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" th:href="@{/stocks/test}">test</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Empty</a>
+            </li>
+        </ul>
+
+    </div>
+
+<th:block th:replace="fragments/resources :: script"></th:block>
+
+</body>
+</html>

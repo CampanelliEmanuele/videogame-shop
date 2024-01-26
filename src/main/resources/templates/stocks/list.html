@@ -7,6 +7,22 @@
 
 <main class="container-fluid">
     <div class="container">
+
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/stocks}">interface</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" th:href="@{/stocks/list}">list</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/stocks/test}">test</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Empty</a>
+            </li>
+        </ul>
+
         <section>
             <h1 class="text-center pb-4">Stock history</h1>
 
