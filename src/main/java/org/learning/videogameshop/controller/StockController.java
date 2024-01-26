@@ -18,24 +18,24 @@ public class StockController {
     private StockRepository stockRepository;
 
     @GetMapping
-    public String stockInterface(Model model) {
-        List<Stock> stockList = stockRepository.findAll(Sort.by("purchaseDate").descending());
-        model.addAttribute("stockList", stockList);
-        return "stocks/interface";
-    }
-
-    @GetMapping("/list")
     public String list(Model model) {
         List<Stock> stockList = stockRepository.findAll(Sort.by("purchaseDate").descending());
         model.addAttribute("stockList", stockList);
         return "stocks/list";
     }
 
-    @GetMapping("/test")
-    public String test(Model model) {
+    @GetMapping("/create")
+    public String create(Model model) {
         List<Stock> stockList = stockRepository.findAll(Sort.by("purchaseDate").descending());
         model.addAttribute("stockList", stockList);
-        return "stocks/test";
+        return "stocks/create";
+    }
+
+    @GetMapping("/edit")
+    public String edit(Model model) {
+        List<Stock> stockList = stockRepository.findAll(Sort.by("purchaseDate").descending());
+        model.addAttribute("stockList", stockList);
+        return "stocks/edit";
     }
 
 //    @PostMapping("/assortment")
