@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import org.learning.videogameshop.model.Stock;
 import org.learning.videogameshop.model.Stock;
 import org.learning.videogameshop.model.Stock;
+import org.learning.videogameshop.model.Videogame;
 import org.learning.videogameshop.repository.StockRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -33,8 +34,8 @@ public class StockController {
 
     @GetMapping("/create")
     public String create(Model model) {
-        List<Stock> stockList = stockRepository.findAll(Sort.by("purchaseDate").descending());
-        model.addAttribute("stockList", stockList);
+        Stock stock = new Stock();
+        model.addAttribute("stock", stock);
         return "stocks/create";
     }
 
