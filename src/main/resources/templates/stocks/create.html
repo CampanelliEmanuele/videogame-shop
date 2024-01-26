@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/resources :: head('Stock history')"></head>
+
+<body>
+<nav th:replace="fragments/navbar :: topNavbar('stocks')"></nav>
+
+<main class="container-fluid">
+    <div class="container">
+        <ul th:replace="fragments/navbar :: stockNavbar('create')"></ul>
+
+    </div>
+</main>
+
+<th:block th:replace="fragments/resources :: script"></th:block>
+
+</body>
+</html>

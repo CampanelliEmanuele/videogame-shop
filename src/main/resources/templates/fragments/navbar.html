@@ -44,5 +44,28 @@
         </div>
     </div>
 </nav>
+
+<!-- navbar per lo stocks -->
+
+<ul th:fragment="stockNavbar(area)" class="nav nav-tabs">
+    <li class="nav-item">
+        <a class="nav-link"
+           th:classappend="${area == 'list' ? 'active' : ''}"
+           th:href="@{/stocks}">List
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link"
+           th:classappend="${area == 'create' ? 'active' : ''}"
+           th:href="@{/stocks/create}">Create
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link"
+           th:classappend="${area == 'edit' ? 'active' : ''}"
+           th:href="@{/stocks/edit}">Edit
+        </a>
+    </li>
+</ul>
 </body>
 </html>
