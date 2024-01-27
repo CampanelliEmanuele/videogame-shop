@@ -34,7 +34,7 @@
                 </thead>
                 <tbody>
                 <tr  th:each="videogame : ${videogameList}"
-                     th:classappend="${(videogame.getAvailableCopies() < 50 ? 'table-danger' : '') + (videogame.getAvailableCopies() >= 50 && videogame.getAvailableCopies() <= 100 ? 'table-warning' : '')}">
+                     th:classappend="${(videogame.getAvailableCopies() < lowerBound ? 'table-danger' : '') + (videogame.getAvailableCopies() >= lowerBound && videogame.getAvailableCopies() <= middleBound ? 'table-warning' : '')}">
                     <td th:text="${videogame.id}"></td>
                     <td th:text="${videogame.name}"></td>
                     <td th:text="${videogame.getAvailableCopies()}"></td>
