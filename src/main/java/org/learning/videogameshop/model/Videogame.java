@@ -42,9 +42,29 @@ public class Videogame {
     @OneToMany(mappedBy = "stockedVideogame", orphanRemoval = true)
     private List<Stock> stockList;
 
+    /* AUXILIARY METHODS */
+
 //    public boolean isDeletable() {
 //        return stockList.isEmpty() && purchaseList.isEmpty();
 //    }
+
+    public Integer getPurchasedCopies() {
+        Integer purchasedCopies = 0;
+        for (Purchase purchase : purchaseList) {
+            if (purchase.getVideogame().getId() == id)
+                purchasedCopies -= purchase.getQuantity();
+        }
+        return purchasedCopies;
+    }
+
+    public Integer getStockedCopies() {
+        Integer stockedCopies = 0;
+        for (Stock stock : stockList) {
+            if (stock.getStockedVideogame().getId() == id)
+                stockedCopies += stock.getQuantity();
+        }
+        return stockedCopies;
+    }
 
     public Integer getAvailableCopies() {
         Integer availableCopies = 0;
