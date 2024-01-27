@@ -22,20 +22,25 @@
     </div>
     <div class="row">
         <div class="alert alert-info" th:if="${videogameList.size() == 0}">The list is empty</div>
-        <div class="col-12" th:unless="${videogameList.size() == 0}">
+        <div class="col-12" th:unless="${videogameList.size() == 0}" >
             <table class="table">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
                     <th scope="col">Quantity</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr  th:each="videogame : ${videogameList}">
+                <tr  th:each="videogame : ${videogameList}"
+                     th:classappend="${(videogame.getAvailableCopies() < 50 ? 'table-danger' : '') + (videogame.getAvailableCopies() >= 50 && videogame.getAvailableCopies() <= 100 ? 'table-warning' : '')}">
                     <td th:text="${videogame.id}"></td>
                     <td th:text="${videogame.name}"></td>
                     <td th:text="${videogame.getAvailableCopies()}"></td>
+                    <td>
+                        <a class="btn btn-primary" th:href="@{/stocks/create}">Aggiungi</a>
+                    </td>
                 </tr>
                 </tbody>
             </table>
