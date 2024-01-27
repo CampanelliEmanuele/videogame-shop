@@ -31,9 +31,9 @@ public class WarehouseController {
         List<Purchase> purchaseList = purchaseRepository.findAll();
         List<Stock> stockList = stockRepository.findAll();
 
-        model.addAttribute(videogameList);
-        model.addAttribute(purchaseList);
-        model.addAttribute(stockList);
+        model.addAttribute("videogameList", videogameList);
+        model.addAttribute("purchaseList", purchaseList);
+        model.addAttribute("stockList", stockList);
 
         return "warehouse/show";
     }
