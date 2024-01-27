@@ -23,10 +23,9 @@ import java.util.Optional;
 @RequestMapping("/stocks")
 public class StockController {
     @Autowired
-    private StockRepository stockRepository;
-
-    @Autowired
     private VideogameRepository videogameRepository;
+    @Autowired
+    private StockRepository stockRepository;
 
     @GetMapping
     public String list(Model model) {
