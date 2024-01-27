@@ -35,6 +35,10 @@ public class WarehouseController {
         model.addAttribute("purchaseList", purchaseList);
         model.addAttribute("stockList", stockList);
 
+        Integer lowerBound = 100, middleBound = 200;
+        model.addAttribute("lowerBound", lowerBound);
+        model.addAttribute("middleBound", middleBound);
+
         return "warehouse/show";
     }
 }
