@@ -40,6 +40,13 @@
                             th:href="@{/store}"
                     >Shop</a>
                 </li>
+                <li class="nav-item">
+                    <a
+                            class="nav-link"
+                            th:classappend="${area == 'warehouse' ? 'active' : ''}"
+                            th:href="@{/warehouse}"
+                    >Warehouse</a>
+                </li>
             </ul>
         </div>
     </div>
