@@ -34,15 +34,18 @@ public class StockController {
         return "stocks/list";
     }
 
-    @GetMapping("/create/{id}")
-    public String create(@PathVariable(required = false, name = "videogameId") Integer videogameId, Model model) {
+    @GetMapping("/create")
+    public String create(@RequestParam(name = "videogameId", required = false) Integer videogameId, Model model) {
         Stock stock = new Stock();
-        Optional<Videogame> newVideogame =  videogameRepository.findBy(videogameId);
         stock.setPurchaseDate(LocalDate.now());
-        model.addAttribute("videogame",newVideogame);
         model.addAttribute("stock", stock);
+
         List<Videogame> videogameList = videogameRepository.findAll();
         model.addAttribute("videogameList", videogameList);
+
+        Optional<Videogame> videogame = videogameRepository.findById(videogameId);
+        model.addAttribute("videogame", videogame);
+
         return "stocks/create";
     }
 
