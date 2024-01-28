@@ -236,6 +236,8 @@
         $('body').toggleClass('dark-mode');
         $('body').toggleClass('light-mode');
 
+        console.log($('body').attr('class'));
+
         // Cambia l'icona del bottone
         var btn = $('#toggle-mode-btn');
         if (btn.text() === '☀️') {
