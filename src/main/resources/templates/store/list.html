@@ -177,7 +177,7 @@
                 <div class="card-body">
                     <h5 th:text="${videogame.name}" class="card-title"></h5>
                     <p th:text="'Prezzo: ' + ${videogame.price} + €" class="card-text"></p>
-                    <form th:action="@{/store/purchase}" method="post" class="d-flex align-items-center">
+                    <form th:action="@{'/store/purchase?videogameId=' + ${videogame.id}}" method="post" class="d-flex align-items-center">
                         <label for="quantity" class="mr-2">Quantità:</label>
                         <input type="number" name="quantity" value="1" min="1" required id="quantity" class="form-control form-control-sm mr-2" />
                         <button type="submit" class="btn btn-sm">Acquista</button>
