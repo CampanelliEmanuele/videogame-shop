@@ -35,7 +35,8 @@ public class StockController {
     }
 
     @GetMapping("/create")
-    public String create(@RequestParam(name = "videogameId", required = false) Integer videogameId, Model model) {
+    public String create(Model model) {
+//    public String create(@RequestParam(name = "videogameId", required = false) Integer videogameId, Model model) {
         Stock stock = new Stock();
         stock.setPurchaseDate(LocalDate.now());
         model.addAttribute("stock", stock);
@@ -43,8 +44,9 @@ public class StockController {
         List<Videogame> videogameList = videogameRepository.findAll();
         model.addAttribute("videogameList", videogameList);
 
-        Optional<Videogame> videogame = videogameRepository.findById(videogameId);
-        model.addAttribute("videogame", videogame);
+//        Optional<Videogame> videogame = videogameRepository.findById(videogameId);
+//        if (videogame.isPresent())
+//            model.addAttribute("selectedVideogame", videogame.get());
 
         return "stocks/create";
     }

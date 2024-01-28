@@ -39,7 +39,8 @@
                     <td th:text="${videogame.name}"></td>
                     <td th:text="${videogame.getAvailableCopies()}"></td>
                     <td>
-                        <a class="btn btn-primary" th:href="@{/stocks/create(videogameId=${videogame.id})}">Refueling</a>
+<!--                        <a class="btn btn-primary" th:href="@{/stocks/create(videogameId=${videogame.id})}">Refueling</a>-->
+                        <a class="btn btn-primary" th:href="@{/stocks/create}">Refueling</a>
                     </td>
                 </tr>
                 </tbody>
