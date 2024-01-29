@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/resources :: head('Limits')"></head>
+
+<body>
+<nav th:replace="fragments/navbar :: topNavbar('limits')"></nav>
+<div class="container">
+<table class="table">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Lower Bound</th>
+        <th>Middle Bound</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td th:text="${limit.id}"></td>
+        <td th:text="${limit.videogameLowerBound}"></td>
+        <td th:text="${limit.videogameMiddleBound}"></td>
+        <td>
+            <a class="btn btn-primary" th:href="@{/limits/edit/{id}(id=${limit.id})}" role="button">
+                <i class="fa-solid fa-pencil"></i>  Edit
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</div>
+
+<th:block th:replace="fragments/resources :: script"></th:block>
+</body>
+</html>
