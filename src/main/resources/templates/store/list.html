@@ -124,9 +124,11 @@
     <div class="container mt-4">
         <!-- La scritta "Piattaforme" è stata eliminata -->
         <div class="row">
-            <div th:each="videogame : ${videogames}" class="col-md-4 mb-4 d-flex align-items-stretch">
-                <div class="card">
-                    <img th:src="${videogame.photo}" class="card-img-top" alt="Game Image" style="max-height: 500px;">
+            <div th:each="videogame : ${videogames}" class="col-md-4 mb-4">
+                <div class="card d-flex flex-column h-100">
+                    <a th:href="@{'/videogames/show/' + ${videogame.id}}">
+                        <img th:src="${videogame.photo}" class="card-img-top" alt="Game Image" style="max-height: 500px;">
+                    </a>
                     <div class="card-body">
                         <h5 th:text="${videogame.name}" class="card-title"></h5>
                         <p th:text="'Prezzo: ' + ${videogame.price} + €" class="card-text"></p>
