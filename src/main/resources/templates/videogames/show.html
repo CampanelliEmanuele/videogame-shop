@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments/resources :: head('VideoGame details')"></head>
 
-<body>
+<body class="light-mode">
 <nav th:replace="fragments/navbar :: topNavbar('videogames')"></nav>
 
 <main class="container-fluid">
@@ -14,7 +14,7 @@
             <p><b>Description:</b> <span th:text="${videogame.description}"></span></p>
             <p><b>Price:</b> <span th:text="${videogame.price}"></span> €</p>
             <p>
-                <img th:src="@{${videogame.photo}}" alt="videogame image" class="img-fluid">
+                <img th:src="@{${videogame.photo}}" alt="videogame image" width="200" lenght="200" class="img-fluid">
             </p>
 
             <h5>Types</h5>
