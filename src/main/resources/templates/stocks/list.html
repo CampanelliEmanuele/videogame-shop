@@ -9,14 +9,12 @@
     <div class="container">
         <ul th:replace="fragments/navbar :: stockNavbar('list')"></ul>
 
-
         <section>
             <h1 class="text-center pb-4">Stock history</h1>
 
             <div class="alert alert-info" th:if="${stockList.size() == 0}">There are no recent stock.</div>
-
             <div th:unless="${stockList.size() == 0}">
-                <table class="table table-bordered border-primary">
+                <table class="table improved-table table-bordered border-primary">
                     <thead>
                         <tr>
                             <th scope="col">Purchase date</th>
@@ -47,14 +45,15 @@
                                             <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></button>
                                         </form>
                                     </div>
-
                                 </div>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+
         </section>
+
     </div>
 </main>
 
