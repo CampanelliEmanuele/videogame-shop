@@ -23,4 +23,12 @@ function addClassToBody(className) {
     bodyTag.classList.add(className);
 }
 
-addClassToBody('dark-mode');
+document.addEventListener('DOMContentLoaded', function() {
+    // Codice da eseguire dopo il caricamento completo del DOM
+    var bodyTag = document.body;
+    if (bodyTag) {
+        addClassToBody('dark-mode');
+    } else {
+        console.error('Il tag body non è stato trovato.');
+    }
+});
