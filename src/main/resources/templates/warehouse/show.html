@@ -63,6 +63,7 @@
                     <th scope="col">Supplier Name</th>
                     <th scope="col">Quantity</th>
                     <th scope="col">Date</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -72,6 +73,9 @@
                     <td th:text="${stock.supplierName}"></td>
                     <td th:text="${stock.quantity}"></td>
                     <td th:text="${stock.purchaseDate}"></td>
+                    <td>
+                        <a class="btn btn-primary" th:href="@{/stocks/show/{id}(id=${stock.id})}" role="button">Details</a>
+                    </td>
                 </tr>
                 </tbody>
             </table>

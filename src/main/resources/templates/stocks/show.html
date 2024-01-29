@@ -8,7 +8,7 @@
     <h1>Stock del  <span th:text="${stock.stockedVideogame.name}"></span></h1>
     <h3>Lo stock del <span th:text="${stock.stockedVideogame.name}"></span> è stato effettuato il giorno <span th:text="${stock.purchaseDate}"></span> presso il fornitore : <span th:text="${stock.supplierName}"></span></h3>
     <a class="btn btn-primary me-3" th:href="@{/stocks}">Return Back</a>
-    <a class="btn btn-primary" th:href="@{/stocks/create}">Refuiling</a>
+    <a class="btn btn-primary" th:href="@{/stocks/create(videogameId=${stock.stockedVideogame.id})}">Refueling</a>
 
 </div>
 

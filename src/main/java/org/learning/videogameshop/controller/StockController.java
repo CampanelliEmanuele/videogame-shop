@@ -47,7 +47,7 @@ public class StockController {
         if (videogameId != null) {
             Optional<Videogame> videogame = videogameRepository.findById(videogameId);
             if (videogame.isPresent()) {
-                model.addAttribute("selectedVideogame", videogame.orElse(null));
+                //model.addAttribute("selectedVideogame", videogame.orElse(null));
                 stock.setStockedVideogame(videogame.orElse(null));
             }
         }
@@ -110,6 +110,7 @@ public class StockController {
         Optional<Stock> result = stockRepository.findById(id);
         if (result.isPresent()) {
             model.addAttribute("stock", result.get());
+
             return "stocks/show";
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Stock with id " + id + " not found");
