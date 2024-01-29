@@ -67,7 +67,14 @@
         }
 
         .container-fluid {
+        padding: 20px;
+        }
+
+        .description-container {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
             padding: 20px;
+            border-radius: 10px;
         }
 
         .btn-primary {
@@ -84,13 +91,6 @@
             background-color: #0056b3;
         }
 
-        .table th, .table td {
-            color: #fff;
-        }
-
-        .table {
-    background-color: rgba(0, 0, 0, 0.8);
-    border-radius: 10px;
 }
     </style>
 </head>
@@ -132,42 +132,49 @@
         </div>
     </nav>
 </header>
-<main class="container-fluid">
-    <div class="container">
-        <section>
-            <h2 th:text="${videogame.name}"></h2>
-            <hr>
-            <p><b>Name:</b> <span th:text="${videogame.name}"></span></p>
-            <p><b>Description:</b> <span th:text="${videogame.description}"></span></p>
-            <p><b>Price:</b> <span th:text="${videogame.price}"></span> €</p>
-            <p>
-                <img th:src="@{${videogame.photo}}" alt="videogame image" width="200" lenght="200" class="img-fluid">
-            </p>
 
-            <h5>Types</h5>
-
-            <div class="alert alert-info" th:if="${videogame.getTypeList().size() == 0}">This game has no types</div>
-            <div th:unless="${videogame.getTypeList().size() == 0}" th:each="type : ${videogame.getTypeList()}">
-                <p th:text="${type.name}"></p>
+<main>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Immagine -->
+            <div class="col-md-4">
+                <img th:src="@{${videogame.photo}}" alt="videogame image" width="200" height="200" class="img-fluid">
             </div>
 
-            <div class="mt-3">
-                <a th:href="@{/videogames}" class="btn btn-primary">
-                    <i class="fa-solid fa-arrow-left"></i>  Back to list
-                </a>
-                <a class="btn btn-primary" th:href="@{/videogames/edit/{id}(id=${videogame.id})}" role="button">
-                    <i class="fa-solid fa-pencil"></i>  Edit
-                </a>
-                <!--                <form-->
-                <!--                        th:action="@{/videogames/delete/{id}(id=${videogame.id})}"-->
-                <!--                        method="post"-->
-                <!--                        onsubmit="return confirm('Are you sure?')"-->
-                <!--                >-->
-                <!--                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-trash-can"></i>-->
-                <!--                    </button>-->
-                <!--                </form>-->
+            <!-- Parte descrittiva -->
+            <div class="col-md-8 description-container">
+                <h2 th:text="${videogame.name}"></h2>
+                <hr>
+                <p><b>Name:</b> <span th:text="${videogame.name}"></span></p>
+                <p><b>Description:</b> <span th:text="${videogame.description}"></span></p>
+                <p><b>Price:</b> <span th:text="${videogame.price}"></span> €</p>
+
+                <h5>Types</h5>
+
+                <div class="alert alert-info" th:if="${videogame.getTypeList().size() == 0}">This game has no types</div>
+                <div th:unless="${videogame.getTypeList().size() == 0}" th:each="type : ${videogame.getTypeList()}">
+                    <p th:text="${type.name}"></p>
+                </div>
+
+                <div class="mt-3">
+                    <a th:href="@{/videogames}" class="btn btn-primary">
+                        <i class="fa-solid fa-arrow-left"></i> Back to list
+                    </a>
+                    <a class="btn btn-primary" th:href="@{/videogames/edit/{id}(id=${videogame.id})}" role="button">
+                        <i class="fa-solid fa-pencil"></i> Edit
+                    </a>
+                    <!--
+                    <form
+                        th:action="@{/videogames/delete/{id}(id=${videogame.id})}"
+                        method="post"
+                        onsubmit="return confirm('Are you sure?')"
+                    >
+                        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-trash-can"></i></button>
+                    </form>
+                    -->
+                </div>
             </div>
-        </section>
+        </div>
     </div>
 </main>
 
