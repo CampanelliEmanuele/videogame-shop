@@ -1,10 +1,134 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head th:replace="fragments/resources :: head('VideoGame details')"></head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Videogames List</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofGJj+fcCEVAOjzAl4P96L4Fq08djRD1Q/" crossorigin="anonymous">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-image: url('https://wallpaperaccess.com/full/970936.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        header {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+        }
+
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+        }
+
+        .navbar-brand img {
+            max-width: 60px;
+        }
+
+        .navbar-nav {
+            text-align: center;
+        }
+
+        .nav-link {
+            padding: 10px;
+            margin: 0 10px;
+            border-radius: 15px;
+            color: #fff;
+            transition: background-color 0.3s ease-out;
+        }
+
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        #toggle-mode-btn {
+            background: transparent;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            font-size: 20px;
+            margin-right: 10px;
+        }
+
+        .navbar-nav .nav-item:last-child {
+            margin-right: 0;
+        }
+
+        .container-fluid {
+            padding: 20px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: #fff;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-out;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .table th, .table td {
+            color: #fff;
+        }
+
+        .table {
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+}
+    </style>
+</head>
 
 <body class="light-mode">
-<nav th:replace="fragments/navbar :: topNavbar('videogames')"></nav>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <!-- Logo centrato -->
+        <a class="navbar-brand mx-auto" href="#">
+            <img src="https://media.tenor.com/2a4KThsm4YgAAAAi/gaming-game-on.gif" alt="Game Store Logo" style="max-width: 60px;">
+        </a>
 
+        <!-- Nav links centrati e arrotondati -->
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link rounded-pill text-white" href="#">Offerte</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link rounded-pill text-white" href="/videogames">Videogames</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link rounded-pill text-white" href="/types">Types</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link rounded-pill text-white" href="/store">Store</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Bottone per cambiare modalità -->
+        <button id="toggle-mode-btn" onclick="toggleMode()" title="Cambia modalità">☀️</button>
+
+        <!-- Carrello a destra -->
+        <div class="navbar-nav ml-auto">
+            <a class="nav-item nav-link" href="#">
+                <i class="fas fa-shopping-cart text-white"></i> Carrello
+            </a>
+        </div>
+    </nav>
+</header>
 <main class="container-fluid">
     <div class="container">
         <section>
