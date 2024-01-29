@@ -1,91 +1,93 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Game Store</title>
-    <!-- Include Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-          crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <style>
-        /* Common styles for both light and dark modes */
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            background-image: url('https://wallpaperaccess.com/full/970936.jpg');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <meta http-equiv="X-UA-Compatible" content="ie=edge">-->
+<!--    <title>Game Store</title>-->
+<!--    &lt;!&ndash; Include Bootstrap CSS &ndash;&gt;-->
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">-->
+<!--    <link rel="stylesheet"-->
+<!--          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"-->
+<!--          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="-->
+<!--          crossorigin="anonymous" referrerpolicy="no-referrer"/>-->
+<!--    <style>-->
+<!--        /* Common styles for both light and dark modes */-->
+<!--        body {-->
+<!--            display: flex;-->
+<!--            flex-direction: column;-->
+<!--            min-height: 100vh;-->
+<!--            background-size: cover;-->
+<!--            background-image: url('https://wallpaperaccess.com/full/970936.jpg');-->
+<!--            background-repeat: no-repeat;-->
+<!--            background-attachment: fixed;-->
+<!--        }-->
 
-        header {
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 10px;
-        }
+<!--        header {-->
+<!--            background-color: rgba(0, 0, 0, 0.8);-->
+<!--            padding: 10px;-->
+<!--        }-->
 
-        .card {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
-            transition: background 0.3s ease-out;
-            position: relative;
-            color: #fff;
-        }
+<!--        .card {-->
+<!--            background: rgba(255, 255, 255, 0.1);-->
+<!--            border-radius: 10px;-->
+<!--            overflow: hidden;-->
+<!--            transition: background 0.3s ease-out;-->
+<!--            position: relative;-->
+<!--            color: #fff;-->
+<!--        }-->
 
-        .card:hover {
-            background: rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(10px);
-            transform: scale(1.05);
-            transition: transform 0.3s ease-out, background 0.3s ease-out;
-        }
+<!--        .card:hover {-->
+<!--            background: rgba(255, 255, 255, 0.3);-->
+<!--            backdrop-filter: blur(10px);-->
+<!--            transform: scale(1.05);-->
+<!--            transition: transform 0.3s ease-out, background 0.3s ease-out;-->
+<!--        }-->
 
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: inherit;
-            filter: blur(20px);
-            opacity: 0.5;
-            z-index: -1;
-        }
+<!--        .card::before {-->
+<!--            content: '';-->
+<!--            position: absolute;-->
+<!--            top: 0;-->
+<!--            left: 0;-->
+<!--            right: 0;-->
+<!--            bottom: 0;-->
+<!--            background: inherit;-->
+<!--            filter: blur(20px);-->
+<!--            opacity: 0.5;-->
+<!--            z-index: -1;-->
+<!--        }-->
 
-        /* Navbar button styles */
-        #toggle-mode-btn {
-            background: transparent;
-            border: none;
-            color: #fff;
-            cursor: pointer;
-            font-size: 20px;
-            margin-right: 10px;
-        }
+<!--        /* Navbar button styles */-->
+<!--        #toggle-mode-btn {-->
+<!--            background: transparent;-->
+<!--            border: none;-->
+<!--            color: #fff;-->
+<!--            cursor: pointer;-->
+<!--            font-size: 20px;-->
+<!--            margin-right: 10px;-->
+<!--        }-->
 
-        /* Form button styles */
-        .card form button {
-            background-color: #007bff;
-            color: #fff;
-            padding: 8px 16px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease-out;
-        }
+<!--        /* Form button styles */-->
+<!--        .card form button {-->
+<!--            background-color: #007bff;-->
+<!--            color: #fff;-->
+<!--            padding: 8px 16px;-->
+<!--            border: none;-->
+<!--            border-radius: 5px;-->
+<!--            cursor: pointer;-->
+<!--            transition: background-color 0.3s ease-out;-->
+<!--        }-->
 
-        .card form button:hover {
-            background-color: #0056b3;
-        }
-    </style>
-</head>
+<!--        .card form button:hover {-->
+<!--            background-color: #0056b3;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
 
-<body>
+<head th:replace="fragments/resources :: head('Store')"></head>
+
+<body class="dark-mode">
 
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark">
@@ -122,6 +124,7 @@
             </a>
         </div>
     </nav>
+<!--    <nav th:replace="fragments/navbar :: topNavbar('store')"></nav>-->
 </header>
 
 <main>
@@ -185,31 +188,6 @@
         </div>
     </div>
 </footer>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-<script>
-    // Funzione per cambiare la modalità
-    function toggleMode() {
-        // Se il body ha la classe dark-mode, passa a light-mode e viceversa
-        $('body').toggleClass('dark-mode');
-        $('body').toggleClass('light-mode');
-
-        console.log($('body').attr('class'));
-
-        // Cambia l'icona del bottone
-        var btn = $('#toggle-mode-btn');
-        if (btn.text() === '☀️') {
-            btn.text('🌙');
-            btn.attr('title', 'Modalità scura');
-        } else {
-            btn.text('☀️');
-            btn.attr('title', 'Modalità chiara');
-        }
-    }
-</script>
 
 </body>
 
