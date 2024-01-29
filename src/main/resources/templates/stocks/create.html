@@ -50,7 +50,8 @@
                     <option value="" >-- Select a videogame --</option>
                     <option th:each="videogame : ${videogameList}"
                             th:value="${videogame.id}"
-                            th:text="${videogame.name}"></option>
+                            th:text="${videogame.name}"
+                            th:selected="${videogame.id == stockedVideogame?.id}"></option>
                 </select>
 <!--                    Failed attemp to implement the pre-select the choosed option.-->
 <!--                <label class="form-label" for="type">Available videogames</label>-->
