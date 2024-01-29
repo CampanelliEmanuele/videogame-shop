@@ -16,3 +16,4 @@ INSERT INTO stocks (purchase_date, supplier_name, price, quantity, videogame_id)
 INSERT INTO stocks (purchase_date, supplier_name, price, quantity, videogame_id) VALUES ('2024-01-17', 'Supplier I', 11.99, 110, 3);
 INSERT INTO stocks (purchase_date, supplier_name, price, quantity, videogame_id) VALUES ('2024-01-24', 'Supplier B', 9.99, 80, 1);
 
+INSERT INTO limits (id, videogame_lower_bound, videogame_middle_bound) VALUES(1, 100, 200);
