@@ -23,10 +23,9 @@ import java.util.Optional;
 @RequestMapping("/stocks")
 public class StockController {
     @Autowired
-    private StockRepository stockRepository;
-
-    @Autowired
     private VideogameRepository videogameRepository;
+    @Autowired
+    private StockRepository stockRepository;
 
     @GetMapping
     public String list(Model model) {
@@ -36,12 +35,23 @@ public class StockController {
     }
 
     @GetMapping("/create")
-    public String create(Model model) {
+    //   public String create(Model model) {
+    public String create(@RequestParam(name = "videogameId", required = false) Integer videogameId, Model model) {
         Stock stock = new Stock();
         stock.setPurchaseDate(LocalDate.now());
         model.addAttribute("stock", stock);
+
         List<Videogame> videogameList = videogameRepository.findAll();
         model.addAttribute("videogameList", videogameList);
+
+        if (videogameId != null) {
+            Optional<Videogame> videogame = videogameRepository.findById(videogameId);
+            if (videogame.isPresent()) {
+                //model.addAttribute("selectedVideogame", videogame.orElse(null));
+                stock.setStockedVideogame(videogame.orElse(null));
+            }
+        }
+
         return "stocks/create";
     }
 
@@ -93,6 +103,19 @@ public class StockController {
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Stock with id " + id + " not found");
         }
+    }
+
+    @GetMapping("/show/{id}")
+    public String show(@PathVariable Integer id, Model model) {
+        Optional<Stock> result = stockRepository.findById(id);
+        if (result.isPresent()) {
+            model.addAttribute("stock", result.get());
+
+            return "stocks/show";
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Stock with id " + id + " not found");
+        }
+
     }
 
 }

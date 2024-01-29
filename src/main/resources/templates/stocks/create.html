@@ -47,11 +47,36 @@
             <div class="col-6">
                 <label class="form-label" for="type">Available videogames</label>
                 <select id="type" class="form-select" th:field="*{stockedVideogame}">
-                    <option value="" selected>Choose a videogame</option>
-                    <option th:each="videogame : ${videogameList}" th:value="${videogame.id}"
-                            th:text="${videogame.name}"></option>
+                    <option value="" >-- Select a videogame --</option>
+                    <option th:each="videogame : ${videogameList}"
+                            th:value="${videogame.id}"
+                            th:text="${videogame.name}"
+                            th:selected="${videogame.id == stockedVideogame?.id}"></option>
                 </select>
+<!--                    Failed attemp to implement the pre-select the choosed option.-->
+<!--                <label class="form-label" for="type">Available videogames</label>-->
+<!--                <select id="type" class="form-select" th:field="*{stockedVideogame}">-->
+<!--                    <option value="" th:selected="${selectedVideogame == null}">Choose a videogame</option>-->
+<!--                    <option th:each="videogame : ${videogameList}"-->
+<!--                            th:value="${videogame.id}"-->
+<!--                            th:text="${videogame.name}"-->
+<!--                            th:selected="${selectedVideogame != null and videogame.id eq selectedVideogame.id}"></option>-->
+<!--                </select>-->
+<!--                <br>-->
+
+<!--                <p th:text="selectedVideogame == null"></p>-->
+<!--                <hr>-->
+<!--                <div th:each="videogame : ${videogameList}">-->
+<!--                    <p th:text="${selectedVideogame != null and videogame.id == selectedVideogame.id}"></p>-->
+<!--                </div>-->
+<!--                <hr>-->
+<!--                <div th:each="videogame : ${videogameList}">-->
+<!--                    <p th:text="${videogame.id}"></p>-->
+<!--                    <p th:text="${selectedVideogame.id}"></p>-->
+<!--                    <p th:text="${selectedVideogame != null and videogame.id eq selectedVideogame.id}"></p>-->
+<!--                </div>-->
             </div>
+
 
             <div class="col-12">
                 <button type="submit" class="btn btn-primary">Save</button>
