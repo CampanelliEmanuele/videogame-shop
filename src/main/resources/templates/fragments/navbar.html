@@ -54,6 +54,13 @@
                             th:href="@{/warehouse}"
                     >Warehouse</a>
                 </li>
+                <li class="nav-item">
+                    <a
+                            class="nav-link"
+                            th:classappend="${area == 'limits' ? 'active' : ''}"
+                            th:href="@{/limits}"
+                    >Limits</a>
+                </li>
             </ul>
         </div>
     </div>
