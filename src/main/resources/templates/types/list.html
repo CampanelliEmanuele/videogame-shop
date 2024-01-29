@@ -9,41 +9,45 @@
     <div th:text="${redirectMessage}"></div>
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
+
 <div class="container">
     <h1 class="text-center">Type List</h1>
     <hr>
     <div class="col-12">
         <a th:href="@{/types/create}" class="btn btn-primary">New Type</a>
     </div>
-    <table class="table improved-table table-dark" >
+
+    <table class="table table-dark">
         <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Description</th>
-                <th></th>
-            </tr>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th></th>
+        </tr>
         </thead>
         <tbody>
-            <tr th:each="type : ${typeList}">
-                <th scope="row" th:text="${type.id}"></th>
-                <td th:text=${type.name}></td>
-                <td th:text=${type.description}></td>
-                <td class="d-flex justify-content-around">
-                    <a class="btn btn-primary btn-sm" th:href="@{/types/edit/{id}(id=${type.id})}"><i class="fa-solid fa-pen-to-square"></i></a>
-                    <form
-                            method="post"
-                            th:action="@{/types/delete/{id}(id=${type.id})}"
-                            onsubmit="return confirm('Are you sure?')"
-                    >
-                        <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></button>
-
-                    </form>
-                </td>
-            </tr>
+        <tr th:each="type : ${typeList}">
+            <th scope="row" th:text="${type.id}"></th>
+            <td th:text=${type.name}></td>
+            <td th:text=${type.description}></td>
+            <td class="d-flex justify-content-around">
+                <a class="btn btn-primary btn-sm" th:href="@{/types/edit/{id}(id=${type.id})}">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </a>
+                <form method="post" th:action="@{/types/delete/{id}(id=${type.id})}"
+                      onsubmit="return confirm('Are you sure?')">
+                    <button type="submit" class="btn btn-danger btn-sm">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                </form>
+            </td>
+        </tr>
         </tbody>
     </table>
 </div>
+
 <th:block th:replace="fragments/resources :: script"></th:block>
 </body>
+
 </html>

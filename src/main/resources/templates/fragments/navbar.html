@@ -4,41 +4,35 @@
 <body>
 <nav th:fragment="topNavbar(area)" class="navbar navbar-expand-lg bg-primary navbar-dark mb-5">
     <div class="container-fluid">
-        <a class="navbar-brand" th:href="@{/}">Game Store</a>
+        <a class="navbar-brand mx-auto" href="#">
+            <img src="https://media.tenor.com/2a4KThsm4YgAAAAi/gaming-game-on.gif" alt="Game Store Logo" style="max-width: 60px;">
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#top-navbar" aria-controls="navbarNav" aria-expanded="false"
                 aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="top-navbar">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                    <a
-                            class="nav-link"
-                            th:classappend="${area == 'home' ? 'active' : ''}"
-                            th:href="@{/}"
-                    >Home Page</a>
+                    <a class="nav-link rounded-pill text-white"
+                       th:classappend="${area == 'home' ? 'active' : ''}"
+                       th:href="@{/}">Home Page</a>
                 </li>
                 <li class="nav-item">
-                    <a
-                            class="nav-link"
-                            th:classappend="${area == 'videogames' ? 'active' : ''}"
-                            th:href="@{/videogames}"
-                    >Videogames</a>
+                    <a class="nav-link rounded-pill text-white"
+                       th:classappend="${area == 'videogames' ? 'active' : ''}"
+                       th:href="@{/videogames}">Videogames</a>
                 </li>
                 <li class="nav-item">
-                    <a
-                            class="nav-link"
-                            th:classappend="${area == 'types' ? 'active' : ''}"
-                            th:href="@{/types}"
-                    >Categories</a>
+                    <a class="nav-link rounded-pill text-white"
+                       th:classappend="${area == 'types' ? 'active' : ''}"
+                       th:href="@{/types}">Categories</a>
                 </li>
                 <li class="nav-item">
-                    <a
-                            class="nav-link"
-                            th:classappend="${area == 'store' ? 'active' : ''}"
-                            th:href="@{/store}"
-                    >Shop</a>
+                    <a class="nav-link rounded-pill text-white"
+                       th:classappend="${area == 'store' ? 'active' : ''}"
+                       th:href="@{/store}">Shop</a>
                 </li>
                 <li class="nav-item">
                     <a
@@ -63,6 +57,14 @@
                 </li>
             </ul>
         </div>
+        <!-- Bottone per cambiare modalità -->
+        <button id="toggle-mode-btn" onclick="toggleMode()" title="Cambia modalità">☀️</button>
+        <!-- Carrello a destra -->
+        <div class="navbar-nav ml-auto">
+            <a class="nav-item nav-link" href="#">
+                <i class="fas fa-shopping-cart text-white"></i> Carrello
+            </a>
+        </div>
     </div>
 </nav>
 
@@ -81,12 +83,7 @@
            th:href="@{/stocks/create}">Create
         </a>
     </li>
-    <!--<li class="nav-item">
-        <a class="nav-link"
-           th:classappend="${area == 'edit' ? 'active' : ''}"
-           th:href="@{/stocks/edit}">Edit
-        </a>
-    </li>-->
+    <!-- Altri elementi per lo stock -->
 </ul>
 </body>
 </html>
