@@ -47,8 +47,9 @@
             <div class="col-6">
                 <label class="form-label" for="type">Available videogames</label>
                 <select id="type" class="form-select" th:field="*{stockedVideogame}">
-                    <option value="" selected>Choose a videogame</option>
-                    <option th:each="videogame : ${videogameList}" th:value="${videogame.id}"
+                    <option value="" >-- Select a videogame --</option>
+                    <option th:each="videogame : ${videogameList}"
+                            th:value="${videogame.id}"
                             th:text="${videogame.name}"></option>
                 </select>
 <!--                    Failed attemp to implement the pre-select the choosed option.-->

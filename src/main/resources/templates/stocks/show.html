@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/resources :: head('Stock Show')"></head>
+
+<body>
+<nav th:replace="fragments/navbar :: topNavbar('stocks')"></nav>
+<div class="container">
+    <h1>Stock del  <span th:text="${stock.stockedVideogame.name}"></span></h1>
+    <h3>Lo stock del <span th:text="${stock.stockedVideogame.name}"></span> è stato effettuato il giorno <span th:text="${stock.purchaseDate}"></span> presso il fornitore : <span th:text="${stock.supplierName}"></span></h3>
+    <a class="btn btn-primary me-3" th:href="@{/stocks}">Return Back</a>
+    <a class="btn btn-primary" th:href="@{/stocks/create}">Refuiling</a>
+
+</div>
+
+<th:block th:replace="fragments/resources :: script"></th:block>
+</body>
+</html>

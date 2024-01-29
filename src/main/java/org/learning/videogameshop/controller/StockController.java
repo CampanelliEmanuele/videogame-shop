@@ -101,4 +101,16 @@ public class StockController {
         }
     }
 
+    @GetMapping("/show/{id}")
+    public String show(@PathVariable Integer id, Model model) {
+        Optional<Stock> result = stockRepository.findById(id);
+        if (result.isPresent()) {
+            model.addAttribute("stock", result.get());
+            return "stocks/show";
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Stock with id " + id + " not found");
+        }
+
+    }
+
 }
