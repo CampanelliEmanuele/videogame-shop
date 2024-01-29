@@ -9,21 +9,11 @@
         <div class="col-3 mb-2">
             <h1>Game List</h1>
         </div>
-        <div class="col-2" >
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown button
-            </button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-        </div>
     </div>
     <div class="row">
         <div class="alert alert-info" th:if="${videogameList.size() == 0}">The list is empty</div>
         <div class="col-12" th:unless="${videogameList.size() == 0}" >
-            <table class="table">
+            <table class="table improved-table">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -55,7 +45,7 @@
         </div>
         <div class="alert alert-info" th:if="${stockList.size() == 0}">The list of stock is empty</div>
         <div class="col-12 " th:unless="${stockList.size() == 0}">
-            <table class="table table-borderless">
+            <table class="table improved-table table-borderless">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -88,7 +78,7 @@
         </div>
         <div class="alert alert-info" th:if="${videogameList.size() == 0}">The list of stock is empty</div>
         <div class="col-12 " th:unless="${videogameList.size() == 0}">
-            <table class="table table-borderless">
+            <table class="table improved-table table-borderless">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
