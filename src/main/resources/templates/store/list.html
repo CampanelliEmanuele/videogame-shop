@@ -8,6 +8,7 @@
     <title>Game Store</title>
     <!-- Include Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofGJj+fcCEVAOjzAl4P96L4Fq08djRD1Q/" crossorigin="anonymous">
     <style>
         /* Common styles for both light and dark modes */
         body {
@@ -124,19 +125,21 @@
     <div class="container mt-4">
         <!-- La scritta "Piattaforme" è stata eliminata -->
         <div class="row">
-            <div th:each="videogame : ${videogames}" class="col-md-4 mb-4">
-                <div class="card d-flex flex-column h-100">
+            <div th:each="videogame : ${videogames}" class="col-md-4 mb-4 d-flex align-items-center">
+                <div class="card mx-auto">
                     <a th:href="@{'/videogames/show/' + ${videogame.id}}">
                         <img th:src="${videogame.photo}" class="card-img-top" alt="Game Image" style="max-height: 500px;">
                     </a>
-                    <div class="card-body">
+                    <div class="card-body text-center">
                         <h5 th:text="${videogame.name}" class="card-title"></h5>
                         <p th:text="'Prezzo: ' + ${videogame.price} + €" class="card-text"></p>
-                        <form th:action="@{'/store/purchase?videogameId=' + ${videogame.id}}" method="post" class="d-flex align-items-center">
-                            <label for="quantity" class="mr-2">Quantità:</label>
-                            <input type="number" name="quantity" value="1" min="1" required id="quantity" class="form-control form-control-sm mr-2" />
-                            <button type="submit" class="btn btn-sm">Acquista</button>
-                        </form>
+                        <div class="mt-auto mb-2">
+                            <form th:action="@{'/store/purchase?videogameId=' + ${videogame.id}}" method="post" class="d-flex align-items-center">
+                                <label for="quantity" class="mr-2">Quantità:</label>
+                                <input type="number" name="quantity" value="1" min="1" required id="quantity" class="form-control form-control-sm mr-2" />
+                                <button type="submit" class="btn btn-sm">Acquista</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
