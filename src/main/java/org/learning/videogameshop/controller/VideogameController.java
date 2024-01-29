@@ -100,9 +100,11 @@ public class VideogameController {
     public String delete(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
         Optional<Videogame> result = videogameRepository.findById(id);
         if (result.isPresent()) {
-            videogameRepository.deleteById(id);
-            redirectAttributes.addFlashAttribute("redirectMessage",
-                    "Videogame " + result.get().getName() + " deleted!");
+            if (result.get().isDeletable()) {
+                videogameRepository.deleteById(id);
+                redirectAttributes.addFlashAttribute("redirectMessage",
+                        "Videogame " + result.get().getName() + " deleted!");
+            }
             return "redirect:/videogames";
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Videogame with di " + id + " not found");

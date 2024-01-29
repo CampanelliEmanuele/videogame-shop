@@ -39,14 +39,14 @@ public class Videogame {
     @OneToMany(mappedBy = "videogame")
     private List<Purchase> purchaseList;
 
-    @OneToMany(mappedBy = "stockedVideogame", orphanRemoval = true)
+    @OneToMany(mappedBy = "stockedVideogame")
     private List<Stock> stockList;
 
     /* AUXILIARY METHODS */
 
-//    public boolean isDeletable() {
-//        return stockList.isEmpty() && purchaseList.isEmpty();
-//    }
+    public boolean isDeletable() {
+        return stockList.isEmpty() && purchaseList.isEmpty();
+    }
 
     public Integer getPurchasedCopies() {
         Integer purchasedCopies = 0;
