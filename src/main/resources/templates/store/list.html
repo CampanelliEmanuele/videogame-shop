@@ -14,10 +14,10 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            background-image: url('https://wallpaperaccess.com/full/970936.jpg');
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
-            margin: 0;
         }
 
         header {
@@ -32,11 +32,11 @@
             transition: background 0.3s ease-out;
             position: relative;
             color: #fff;
-            backdrop-filter: blur(10px); /* Aggiungi l'effetto glass */
         }
 
         .card:hover {
             background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
             transform: scale(1.05);
             transition: transform 0.3s ease-out, background 0.3s ease-out;
         }
@@ -52,54 +52,6 @@
             filter: blur(20px);
             opacity: 0.5;
             z-index: -1;
-        }
-
-        /* Light mode styles */
-        body.light-mode {
-            background-image: url('https://www.bhmpics.com/downloads/Firewatch-Wallpapers/76.firewatch-sunny-day-wallpaper.jpg');
-            background-color: #fff;
-            color: #000;
-        }
-
-        header.light-mode {
-            background-color: rgba(255, 255, 255, 0.8);
-        }
-
-        .card.light-mode {
-            background: rgba(255, 255, 255, 0.9);
-            color: #000;
-        }
-
-        .card.light-mode:hover {
-            background: rgba(255, 255, 255, 0.7);
-        }
-
-        .card.light-mode .card-body {
-            color: #000; /* Colore del testo nelle card durante la modalità chiara */
-        }
-
-        /* Dark mode styles */
-        body.dark-mode {
-            background-image: url('https://wallpaperaccess.com/full/970936.jpg');
-            background-color: #1a1a1a;
-            color: #fff;
-        }
-
-        header.dark-mode {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-
-        .card.dark-mode {
-            background: rgba(0, 0, 0, 0.6);
-            color: #fff;
-        }
-
-        .card.dark-mode:hover {
-            background: rgba(0, 0, 0, 0.8);
-        }
-
-        .card.dark-mode .card-body {
-            color: #fff; /* Colore del testo nelle card durante la modalità scura */
         }
 
         /* Navbar button styles */
@@ -129,7 +81,7 @@
     </style>
 </head>
 
-<body class="light-mode">
+<body>
 
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark">
@@ -145,10 +97,10 @@
                     <a class="nav-link rounded-pill text-white" href="#">Offerte</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link rounded-pill text-white" href="#">Preordini</a>
+                    <a class="nav-link rounded-pill text-white" href="/videogames">Videogames</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link rounded-pill text-white" href="#">Prossime Uscite</a>
+                    <a class="nav-link rounded-pill text-white" href="/types">Types</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link rounded-pill text-white" href="#">Assistenza 24/7</a>
@@ -168,25 +120,27 @@
     </nav>
 </header>
 
-<div class="container mt-4">
-    <!-- La scritta "Piattaforme" è stata eliminata -->
-    <div class="row">
-        <div th:each="videogame : ${videogames}" class="col-md-4 mb-4">
-            <div class="card light-mode">
-                <img th:src="${videogame.photo}" class="card-img-top" alt="Game Image">
-                <div class="card-body">
-                    <h5 th:text="${videogame.name}" class="card-title"></h5>
-                    <p th:text="'Prezzo: ' + ${videogame.price} + €" class="card-text"></p>
-                    <form th:action="@{'/store/purchase?videogameId=' + ${videogame.id}}" method="post" class="d-flex align-items-center">
-                        <label for="quantity" class="mr-2">Quantità:</label>
-                        <input type="number" name="quantity" value="1" min="1" required id="quantity" class="form-control form-control-sm mr-2" />
-                        <button type="submit" class="btn btn-sm">Acquista</button>
-                    </form>
+<main>
+    <div class="container mt-4">
+        <!-- La scritta "Piattaforme" è stata eliminata -->
+        <div class="row">
+            <div th:each="videogame : ${videogames}" class="col-md-4 mb-4">
+                <div class="card">
+                    <img th:src="${videogame.photo}" class="card-img-top" alt="Game Image">
+                    <div class="card-body">
+                        <h5 th:text="${videogame.name}" class="card-title"></h5>
+                        <p th:text="'Prezzo: ' + ${videogame.price} + €" class="card-text"></p>
+                        <form th:action="@{'/store/purchase?videogameId=' + ${videogame.id}}" method="post" class="d-flex align-items-center">
+                            <label for="quantity" class="mr-2">Quantità:</label>
+                            <input type="number" name="quantity" value="1" min="1" required id="quantity" class="form-control form-control-sm mr-2" />
+                            <button type="submit" class="btn btn-sm">Acquista</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</main>
 
 <!-- Footer -->
 <footer class="bg-dark text-light p-4">
