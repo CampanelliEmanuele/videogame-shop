@@ -13,10 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 @Controller
@@ -35,7 +32,7 @@ public class StoreController {
         List<Type> types = typeRepository.findAll();
         model.addAttribute("videogames", videogames);
         model.addAttribute("types", types);
-        return "store/list"; //
+        return "store/list";
     }
 
     @PostMapping("/purchase")
