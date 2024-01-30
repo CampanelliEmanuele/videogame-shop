@@ -21,12 +21,12 @@ INSERT INTO stocks (purchase_date, supplier_name, price, quantity, videogame_id)
 
 INSERT INTO limits (id, videogame_lower_bound, videogame_middle_bound) VALUES(1, 100, 200);
 
-INSERT INTO db_videogame.purchases (purchase_date, quantity, videogame_id) VALUES ('2024-01-29', 100, 3);
-INSERT INTO db_videogame.purchases (purchase_date, quantity, videogame_id) VALUES ('2024-01-28', 27, 1);
-INSERT INTO db_videogame.purchases (purchase_date, quantity, videogame_id) VALUES ('2023-12-27', 90, 2);
-INSERT INTO db_videogame.purchases (purchase_date, quantity, videogame_id) VALUES ('2024-01-26', 3, 3);
-INSERT INTO db_videogame.purchases (purchase_date, quantity, videogame_id) VALUES ('2023-12-25', 1, 1);
-INSERT INTO db_videogame.purchases (purchase_date, quantity, videogame_id) VALUES ('2024-01-24', 2, 2);
-INSERT INTO db_videogame.purchases (purchase_date, quantity, videogame_id) VALUES ('2023-12-23', 1, 3);
-INSERT INTO db_videogame.purchases (purchase_date, quantity, videogame_id) VALUES ('2024-01-22', 3, 1);
-INSERT INTO db_videogame.purchases (purchase_date, quantity, videogame_id) VALUES ('2023-12-21', 1, 2);
+INSERT INTO purchases (purchase_date, quantity, videogame_id) VALUES ('2024-01-29', 100, 3);
+INSERT INTO purchases (purchase_date, quantity, videogame_id) VALUES ('2024-01-28', 27, 1);
+INSERT INTO purchases (purchase_date, quantity, videogame_id) VALUES ('2023-12-27', 90, 2);
+INSERT INTO purchases (purchase_date, quantity, videogame_id) VALUES ('2024-01-26', 3, 3);
+INSERT INTO purchases (purchase_date, quantity, videogame_id) VALUES ('2023-12-25', 1, 1);
+INSERT INTO purchases (purchase_date, quantity, videogame_id) VALUES ('2024-01-24', 2, 2);
+INSERT INTO purchases (purchase_date, quantity, videogame_id) VALUES ('2023-12-23', 1, 3);
+INSERT INTO purchases (purchase_date, quantity, videogame_id) VALUES ('2024-01-22', 3, 1);
+INSERT INTO purchases (purchase_date, quantity, videogame_id) VALUES ('2023-12-21', 1, 2);
