@@ -2,14 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/resources :: head('Add a videogame')"></head>
 
-<body class="light-mode">
+<body class="dark-mode">
 
 <header>
     <nav th:replace="fragments/navbar :: topNavbar('videogames')"></nav>
 </header>
 
 <main class="container-fluid">
-    <div class="container">
+    <div class="container custom-container">
         <form class="row gy-3"
               id="create-videogame"
               method="post"

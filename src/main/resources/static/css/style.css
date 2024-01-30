@@ -166,6 +166,43 @@
            background-color: #0056b3;
        }
 
+       /* Stile container custom */
+       .custom-container {
+           border-radius: 10px;
+           overflow: hidden;
+           transition: background 0.3s ease-out;
+           padding: 20px;
+           backdrop-filter: blur(10px); /* Effetto glass */
+           position: relative;
+       }
+
+       .custom-container:hover {
+           background: rgba(255, 255, 255, 0.3);
+           transition: background 0.3s ease-out;
+       }
+
+
+       /* Aggiunti stili per modalità chiara */
+       body.light-mode .custom-container {
+           background: rgba(255, 255, 255, 0.3);
+           color: #000;
+       }
+
+       body.light-mode .custom-container:hover {
+           background: rgba(255, 255, 255, 0.5);
+       }
+
+ /* Aggiunti stili per modalità scura */
+       body.dark-mode .custom-container {
+           background: rgba(0, 0, 0, 0.6);
+           color: #fff;
+       }
+
+       body.dark-mode .custom-container:hover {
+           background: rgba(0, 0, 0, 0.8);
+       }
+
+
 
 
 
