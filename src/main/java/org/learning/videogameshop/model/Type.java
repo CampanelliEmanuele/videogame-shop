@@ -5,7 +5,6 @@ import jakarta.validation.constraints.NotEmpty;
 
 import java.util.List;
 
-
 @Entity
 @Table(name = "types")
 public class Type {

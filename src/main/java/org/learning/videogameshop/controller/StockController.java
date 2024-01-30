@@ -33,7 +33,6 @@ public class StockController {
         model.addAttribute("stockList", stockList);
         return "stocks/list";
     }
-
     @GetMapping("/create")
     //   public String create(Model model) {
     public String create(@RequestParam(name = "videogameId", required = false) Integer videogameId, Model model) {
@@ -119,3 +118,4 @@ public class StockController {
     }
 
 }
+
