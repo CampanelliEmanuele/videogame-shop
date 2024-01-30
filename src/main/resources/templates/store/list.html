@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
+<head th:replace="fragments/resources :: head('Store')"></head>
+
 <!--<head>-->
 <!--    <meta charset="UTF-8">-->
 <!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
@@ -85,8 +87,6 @@
 <!--    </style>-->
 <!--</head>-->
 
-<head th:replace="fragments/resources :: head('Store')"></head>
-
 <body class="dark-mode">
 
 <header>
@@ -126,6 +126,7 @@
     </nav>
 <!--    <nav th:replace="fragments/navbar :: topNavbar('store')"></nav>-->
 </header>
+
 <main>
     <div class="container mt-4">
         <div class="row">

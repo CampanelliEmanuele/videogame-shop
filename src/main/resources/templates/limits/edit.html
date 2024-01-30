@@ -1,45 +1,51 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments/resources :: head('Edit Limit')"></head>
-<body class="bg-dark text-white">
-<nav th:replace="fragments/navbar :: topNavbar('limits')"></nav>
-<div class="container">
-    <h1 class="text-center">Edit the limit</h1>
-    <hr>
-    <form
-            id="edit-type"
-            method="post"
-            th:object="${limit}"
-            th:action="@{/limits/edit/{id}(id=${limit.id})}"
-            class="row g-3 justify-content-center"
-    >
-        <div class="col-4">
-            <label for="videogameLowerBound" class="form-label">Lower Bound</label>
-            <input class="form-control" type="number" id="videogameLowerBound" th:field="*{videogameLowerBound}" th:errorClass="is-invalid">
-            <div class="invalid-feedback" th:if="${#fields.hasErrors('videogameLowerBound')}">
-                <ul>
-                    <li th:each="err : ${#fields.errors('videogameLowerBound')}" th:text="${err}"></li>
-                </ul>
-            </div>
-        </div>
-        <div class="col-4">
-            <label for="videogameMiddleBound" class="form-label">Middle Bound</label>
-            <input class="form-control" type="number" id="videogameMiddleBound" th:field="*{videogameMiddleBound}" th:errorClass="is-invalid">
-            <div class="invalid-feedback" th:if="${#fields.hasErrors('videogameMiddleBound')}">
-                <ul>
-                    <li th:each="err : ${#fields.errors('videogameMiddleBound')}" th:text="${err}"></li>
-                </ul>
-            </div>
-        </div>
-        <div class="row justify-content-center mt-5">
-            <div class="col-8">
-                <button class="btn btn-primary me-2" type="submit">Save</button>
-                <a class="btn btn-danger" th:href="@{/limits}"><span><i class="fa-solid fa-arrow-left"></i></span> Return back</a>
-            </div>
-        </div>
 
-    </form>
-</div>
+<body class="bg-dark text-white">
+
+<header>
+    <nav th:replace="fragments/navbar :: topNavbar('limits')"></nav>
+</header>
+
+<main>
+    <div class="container">
+        <h1 class="text-center">Edit the limit</h1>
+        <hr>
+        <form
+                id="edit-type"
+                method="post"
+                th:object="${limit}"
+                th:action="@{/limits/edit/{id}(id=${limit.id})}"
+                class="row g-3 justify-content-center"
+        >
+            <div class="col-4">
+                <label for="videogameLowerBound" class="form-label">Lower Bound</label>
+                <input class="form-control" type="number" id="videogameLowerBound" th:field="*{videogameLowerBound}" th:errorClass="is-invalid">
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('videogameLowerBound')}">
+                    <ul>
+                        <li th:each="err : ${#fields.errors('videogameLowerBound')}" th:text="${err}"></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="videogameMiddleBound" class="form-label">Middle Bound</label>
+                <input class="form-control" type="number" id="videogameMiddleBound" th:field="*{videogameMiddleBound}" th:errorClass="is-invalid">
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('videogameMiddleBound')}">
+                    <ul>
+                        <li th:each="err : ${#fields.errors('videogameMiddleBound')}" th:text="${err}"></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row justify-content-center mt-5">
+                <div class="col-8">
+                    <button class="btn btn-primary me-2" type="submit">Save</button>
+                    <a class="btn btn-danger" th:href="@{/limits}"><span><i class="fa-solid fa-arrow-left"></i></span> Return back</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</main>
 
 <th:block th:replace="fragments/resources :: script"></th:block>
 </body>

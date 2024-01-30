@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/resources :: head('Add a videogame')"></head>
+
 <body class="light-mode">
-<nav th:replace="fragments/navbar :: topNavbar('videogames')"></nav>
+
+<header>
+    <nav th:replace="fragments/navbar :: topNavbar('videogames')"></nav>
+</header>
+
 <main class="container-fluid">
     <div class="container">
         <form class="row gy-3"
