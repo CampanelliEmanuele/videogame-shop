@@ -8,12 +8,12 @@
     <nav th:replace="fragments/navbar :: topNavbar('stocks')"></nav>
 </header>
 
-<main class="container-fluid">
-    <div class="custom-container">
+<main>
+    <div class="custom-container mx-md-5 mb-5 mt-5">
         <ul th:replace="fragments/navbar :: stockNavbar('list')"></ul>
 
         <section>
-            <h1 class="text-center pb-4">Stock history</h1>
+            <h1 class="text-center pb-3 pt-3">Stock history</h1>
 
             <div class="alert alert-info" th:if="${stockList.size() == 0}">There are no recent stock.</div>
             <div th:unless="${stockList.size() == 0}">
