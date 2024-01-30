@@ -36,37 +36,6 @@ public class SecurityConfiguration {
     return authenticationProvider;
   }
 
-  // metodo che crea la SecurityFilterChain
-  /*
-   * rotta / pubblica
-   * rotta /books/create, /books/update, /books/delete solo ADMIN
-   * rotta /books e /books/show sia USER che ADMIN
-   * rotta /categories solo ADMIN
-   * rotta /borrowings/** solo ADMIN
-   */
-
-  @Bean
-  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-    http.authorizeHttpRequests()
-        .requestMatchers("/books/create", "/books/edit/**", "/books/delete/**")
-        .hasAuthority("ADMIN")
-        .requestMatchers("/books", "/books/show/**").hasAnyAuthority("ADMIN", "USER")
-        .requestMatchers("/categories", "/categories/**").hasAuthority("ADMIN")
-        .requestMatchers("/borrowings/**").hasAuthority("ADMIN")
-        .requestMatchers(HttpMethod.POST, "/books/**").hasAuthority("ADMIN")
-        .requestMatchers(HttpMethod.POST, "/categories/**").hasAuthority("ADMIN")
-        .requestMatchers(HttpMethod.POST, "/borrowings/**").hasAuthority("ADMIN")
-        .requestMatchers("/", "/**").permitAll()
-        .requestMatchers("/api/v1/**").permitAll()
-        .and().formLogin()
-        .and().logout()
-        .and().exceptionHandling()
-        .and().csrf().disable();
-
-    return http.build();
-  }
-
-
   /*
    * /videogames
    * user:  /videogames
@@ -93,26 +62,29 @@ public class SecurityConfiguration {
    * /limits
    * admin: /limits/**
    */
+  @Bean
+  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    http.authorizeHttpRequests()
+        .requestMatchers("/videogames/create", "/videogames/edit/**", "/videogames/delete/**")
+        .hasAuthority("ADMIN")
+        .requestMatchers("/videogames", "/videogames/show/**").hasAnyAuthority("ADMIN", "USER")
+        .requestMatchers("/types/show/**", "/types/edit/**", "/types/delete/**").hasAuthority("ADMIN")
+        .requestMatchers("/types").hasAnyAuthority("ADMIN", "USER")
+        .requestMatchers("/").hasAnyAuthority("ADMIN", "USER")
+        .requestMatchers("/store").hasAnyAuthority("ADMIN", "USER")
+        .requestMatchers("/warehouse").hasAuthority("ADMIN")
+        .requestMatchers("/stocks/**").hasAuthority("ADMIN")
+        .requestMatchers("/limits/**").hasAuthority("ADMIN")
+        .requestMatchers(HttpMethod.POST, "/videogames/**").hasAuthority("ADMIN")
+        .requestMatchers(HttpMethod.POST, "/types/**").hasAuthority("ADMIN")
+        .requestMatchers(HttpMethod.POST, "/stocks/**").hasAuthority("ADMIN")
+        .requestMatchers(HttpMethod.POST, "/limits/**").hasAuthority("ADMIN")
+        .requestMatchers("/", "/**").permitAll()
+        .and().formLogin()
+        .and().logout()
+        .and().exceptionHandling()
+        .and().csrf().disable();
 
-//  @Bean
-//  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//    http.authorizeHttpRequests()
-//            .requestMatchers("/books/create", "/books/edit/**", "/books/delete/**")
-//            .hasAuthority("ADMIN")
-//            .requestMatchers("/books", "/books/show/**").hasAnyAuthority("ADMIN", "USER")
-//            .requestMatchers("/categories", "/categories/**").hasAuthority("ADMIN")
-//            .requestMatchers("/borrowings/**").hasAuthority("ADMIN")
-//            .requestMatchers(HttpMethod.POST, "/books/**").hasAuthority("ADMIN")
-//            .requestMatchers(HttpMethod.POST, "/categories/**").hasAuthority("ADMIN")
-//            .requestMatchers(HttpMethod.POST, "/borrowings/**").hasAuthority("ADMIN")
-//            .requestMatchers("/", "/**").permitAll()
-//            .requestMatchers("/api/v1/**").permitAll()
-//            .and().formLogin()
-//            .and().logout()
-//            .and().exceptionHandling()
-//            .and().csrf().disable();
-//
-//    return http.build();
-//  }
-
+    return http.build();
+  }
 }
