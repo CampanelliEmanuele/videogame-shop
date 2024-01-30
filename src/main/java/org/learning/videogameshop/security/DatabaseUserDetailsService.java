@@ -1,7 +1,7 @@
 package org.learning.videogameshop.security;
 
 import org.learning.videogameshop.model.User;
-import org.learning.videogameshop.repository.LibraryUserRepository;
+import org.learning.videogameshop.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,15 +14,15 @@ import java.util.Optional;
 public class DatabaseUserDetailsService implements UserDetailsService {
 
   @Autowired
-  private LibraryUserRepository repository;
+  private UserRepository repository;
 
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-    // cerco il LibraryUser con l'email = a quello username
-    Optional<User> libraryUser = repository.findByEmail(username);
+    // cerco l'user con l'email = a quello username
+    Optional<User> user = repository.findByEmail(username);
     // se lo trovo lo converto in un DatabaseUserDetail e lo restituisco
-    if (libraryUser.isPresent()) {
-      return new DatabaseUserDetails(libraryUser.get());
+    if (user.isPresent()) {
+      return new DatabaseUserDetails(user.get());
     } else {
       // se non lo trovo sollevo un'eccezione UsernameNotFoundException
       throw new UsernameNotFoundException(username);

@@ -18,14 +18,14 @@ public class DatabaseUserDetails implements UserDetails {
 
   private Set<GrantedAuthority> authorities;
 
-  // costruttore che copia i dati da LibraryUser e valorizza gli attributi che servono a Spring
-  public DatabaseUserDetails(User libraryUser) {
-    this.id = libraryUser.getId();
-    this.username = libraryUser.getEmail();
-    this.password = libraryUser.getPassword();
-    // itero sui roles del LibraryUser e li trasformo in GrantedAuthority
+  // costruttore che copia i dati da User e valorizza gli attributi che servono a Spring
+  public DatabaseUserDetails(User user) {
+    this.id = user.getId();
+    this.username = user.getEmail();
+    this.password = user.getPassword();
+    // itero sui roles del User e li trasformo in GrantedAuthority
     authorities = new HashSet<>();
-    for (Role role : libraryUser.getRoleSet()) {
+    for (Role role : user.getRoleSet()) {
       authorities.add(new SimpleGrantedAuthority(role.getName()));
     }
   }
