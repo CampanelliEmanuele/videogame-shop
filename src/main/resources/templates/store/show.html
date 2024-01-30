@@ -58,24 +58,6 @@
     </table>
 </div>
 
-<div class="container">
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Videogame</th>
-            <th>Quantity</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="entry : ${entryList}">
-            <td th:text="${entry.key}"></td>
-            <td th:text="${entry.value}"></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-
-
 <th:block th:replace="fragments/resources :: script"></th:block>
 
 </body>

@@ -35,7 +35,7 @@ public class HomeController {
 
         model.addAttribute("purchasesRanking", purchasesRanking);
 
-        return "redirect:/store";
+        return "home/index";
     }
 
     private Map<String, Integer> getPurchaseMap(List<Purchase> lastMonthPurchases) {

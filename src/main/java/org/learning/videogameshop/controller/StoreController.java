@@ -36,8 +36,7 @@ public class StoreController {
 
         model.addAttribute("videogames", videogames);
         model.addAttribute("types", types);
-//        model.addAttribute("lastMonthPurchases", lastMonthPurchases);
-//        model.addAttribute("entryList", entryList);
+
         return "store/show";
     }
 

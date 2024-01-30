@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/resources :: head('Home Page')"></head>
+
+<body>
+<header>
+    <nav th:replace="fragments/navbar :: topNavbar('home')"></nav>
+</header>
+<main>
+    <div class="container">
+        <h1 class="text-center">Classifica dei videogiochi più venduti nell'ultimo mese</h1>
+        <table class="table">
+            <thead>
+            <tr>
+                <td>#</td>
+                <th>Name</th>
+                <th>Quantity</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="purchase, rowStat : ${purchasesRanking}">
+                <td th:text="${rowStat.index + 1}"></td>
+                <td th:text="${purchase.key}"></td>
+                <td th:text="${purchase.value}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+<th:block th:replace="fragments/resources :: script"></th:block>
+</body>
+</html>
