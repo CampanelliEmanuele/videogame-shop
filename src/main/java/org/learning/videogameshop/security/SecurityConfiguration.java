@@ -45,24 +45,74 @@ public class SecurityConfiguration {
    * rotta /borrowings/** solo ADMIN
    */
 
+  @Bean
+  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    http.authorizeHttpRequests()
+        .requestMatchers("/books/create", "/books/edit/**", "/books/delete/**")
+        .hasAuthority("ADMIN")
+        .requestMatchers("/books", "/books/show/**").hasAnyAuthority("ADMIN", "USER")
+        .requestMatchers("/categories", "/categories/**").hasAuthority("ADMIN")
+        .requestMatchers("/borrowings/**").hasAuthority("ADMIN")
+        .requestMatchers(HttpMethod.POST, "/books/**").hasAuthority("ADMIN")
+        .requestMatchers(HttpMethod.POST, "/categories/**").hasAuthority("ADMIN")
+        .requestMatchers(HttpMethod.POST, "/borrowings/**").hasAuthority("ADMIN")
+        .requestMatchers("/", "/**").permitAll()
+        .requestMatchers("/api/v1/**").permitAll()
+        .and().formLogin()
+        .and().logout()
+        .and().exceptionHandling()
+        .and().csrf().disable();
+
+    return http.build();
+  }
+
+
+  /*
+   * /videogames
+   * user:  /videogames
+   * user:  /videogames/show/**
+   * admin: /videogames/create
+   * admin: /videogames/edit/**
+   * admin: /videogames/delete/**
+   *
+   * /types
+   * user:  /types
+   * admin: /types/show/**
+   * admin: /types/edit/**
+   * admin: /types/delete/**
+   *
+   * /store e /home
+   * public: /
+   *
+   * /warehouse
+   * admin: /warehouse
+   *
+   * /stock
+   * admin: /stock/**
+   *
+   * /limits
+   * admin: /limits/**
+   */
+
 //  @Bean
 //  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 //    http.authorizeHttpRequests()
-//        .requestMatchers("/books/create", "/books/edit/**", "/books/delete/**")
-//        .hasAuthority("ADMIN")
-//        .requestMatchers("/books", "/books/show/**").hasAnyAuthority("ADMIN", "USER")
-//        .requestMatchers("/categories", "/categories/**").hasAuthority("ADMIN")
-//        .requestMatchers("/borrowings/**").hasAuthority("ADMIN")
-//        .requestMatchers(HttpMethod.POST, "/books/**").hasAuthority("ADMIN")
-//        .requestMatchers(HttpMethod.POST, "/categories/**").hasAuthority("ADMIN")
-//        .requestMatchers(HttpMethod.POST, "/borrowings/**").hasAuthority("ADMIN")
-//        .requestMatchers("/", "/**").permitAll()
-//        .requestMatchers("/api/v1/**").permitAll()
-//        .and().formLogin()
-//        .and().logout()
-//        .and().exceptionHandling()
-//        .and().csrf().disable();
+//            .requestMatchers("/books/create", "/books/edit/**", "/books/delete/**")
+//            .hasAuthority("ADMIN")
+//            .requestMatchers("/books", "/books/show/**").hasAnyAuthority("ADMIN", "USER")
+//            .requestMatchers("/categories", "/categories/**").hasAuthority("ADMIN")
+//            .requestMatchers("/borrowings/**").hasAuthority("ADMIN")
+//            .requestMatchers(HttpMethod.POST, "/books/**").hasAuthority("ADMIN")
+//            .requestMatchers(HttpMethod.POST, "/categories/**").hasAuthority("ADMIN")
+//            .requestMatchers(HttpMethod.POST, "/borrowings/**").hasAuthority("ADMIN")
+//            .requestMatchers("/", "/**").permitAll()
+//            .requestMatchers("/api/v1/**").permitAll()
+//            .and().formLogin()
+//            .and().logout()
+//            .and().exceptionHandling()
+//            .and().csrf().disable();
 //
 //    return http.build();
 //  }
+
 }
