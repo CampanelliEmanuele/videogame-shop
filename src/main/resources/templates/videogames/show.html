@@ -97,7 +97,7 @@
 <!--    </style>-->
 <!--</head>-->
 
-<body class="light-mode">
+<body class="dark-mode">
 <header>
 <!--    <nav class="navbar navbar-expand-lg navbar-dark">-->
 <!--        &lt;!&ndash; Logo centrato &ndash;&gt;-->
@@ -136,16 +136,16 @@
     <nav th:replace="fragments/navbar :: topNavbar('videogames')"></nav>
 </header>
 
-<main>
+<main class="mx-3">
     <div class="container-fluid">
         <div class="row">
             <!-- Immagine -->
             <div class="col-md-4">
-                <img th:src="@{${videogame.photo}}" alt="videogame image" width="200" height="200" class="img-fluid">
+                <img th:src="@{${videogame.photo}}" alt="videogame image" class="img-fluid">
             </div>
 
             <!-- Parte descrittiva -->
-            <div class="col-md-8 description-container">
+            <div class="col-md-8 custom-container">
                 <h2 th:text="${videogame.name}"></h2>
                 <hr>
                 <p><b>Name:</b> <span th:text="${videogame.name}"></span></p>
