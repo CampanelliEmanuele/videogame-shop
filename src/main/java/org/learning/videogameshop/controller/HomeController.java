@@ -28,12 +28,12 @@ public class HomeController {
         Map<String, Integer> purchaseMap = getPurchaseMap(lastMonthPurchases);
 
         // Ottenere una lista degli entry dalla mappa
-        List<Map.Entry<String, Integer>> entryList = new ArrayList<>(purchaseMap.entrySet());
+        List<Map.Entry<String, Integer>> purchasesRanking = new ArrayList<>(purchaseMap.entrySet());
 
         // Ordinamento della lista in base ai valori utilizzando una lambda expression
-        entryList.sort((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()));
+        purchasesRanking.sort((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()));
 
-        model.addAttribute("entryList", entryList);
+        model.addAttribute("purchasesRanking", purchasesRanking);
 
         return "redirect:/store";
     }
