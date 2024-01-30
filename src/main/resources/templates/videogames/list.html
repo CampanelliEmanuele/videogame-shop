@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.springframework.org/security/tags">
+
 <head th:replace="fragments/resources :: head('VideoGame list')"></head>
 
 <body>
@@ -11,7 +13,7 @@
     <div class="container">
         <h1 class="text-center">Details</h1>
         <hr>
-        <a class="btn btn-primary mb-2" th:href="@{/videogames/create}">New videogame</a>
+        <a sec:authorize="hasAuthority('ADMIN')" class="btn btn-primary mb-2" th:href="@{/videogames/create}">New videogame</a>
         <div class="alert alert-info" th:if="${videogameList.size() == 0}">The list is empty</div>
         <table class="table table-secondary" th:unless="${videogameList.size() == 0}">
             <thead>
@@ -36,15 +38,16 @@
                 </td>
                 <td th:text="${videogame.getAvailableCopies()}"></td>
                 <td>
-                    <a class="btn btn-primary btn-sm" th:href="@{/videogames/show/{id}(id=${videogame.id})}" role="button">Details</a>
+                    <a sec:authorize="hasAuthority('ADMIN')" class="btn btn-primary btn-sm" th:href="@{/videogames/show/{id}(id=${videogame.id})}" role="button">Details</a>
                 </td>
                 <td>
-                    <a class="btn btn-primary btn-sm" th:href="@{/videogames/edit/{id}(id=${videogame.id})}" role="button">
+                    <a sec:authorize="hasAuthority('ADMIN')" class="btn btn-primary btn-sm" th:href="@{/videogames/edit/{id}(id=${videogame.id})}" role="button">
                         <i class="fa-solid fa-pencil"></i>
                     </a>
                 </td>
                 <td>
                     <form
+                            sec:authorize="hasAuthority('ADMIN')"
                             th:action="@{/videogames/delete/{id}(id=${videogame.id})}"
                             method="post"
                             onsubmit="return confirm('Are you sure?')"
