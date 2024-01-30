@@ -140,12 +140,12 @@
     <div class="container-fluid">
         <div class="row">
             <!-- Immagine -->
-            <div class="col-md-4">
+            <div class="col-md-4 align-self-start">
                 <img th:src="@{${videogame.photo}}" alt="videogame image" class="img-fluid">
             </div>
 
             <!-- Parte descrittiva -->
-            <div class="col-md-8 custom-container">
+            <div class="col-md-8 custom-container align-self-start">
                 <h2 th:text="${videogame.name}"></h2>
                 <hr>
                 <p><b>Name:</b> <span th:text="${videogame.name}"></span></p>
