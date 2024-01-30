@@ -28,6 +28,13 @@ document.addEventListener('DOMContentLoaded', function() {
     var bodyTag = document.body;
     if (bodyTag) {
         addClassToBody('dark-mode');
+
+        var headers = document.querySelectorAll('header');
+
+        // Itera attraverso ogni header e aggiungi la classe specifica
+        headers.forEach(function(header) {
+            header.classList.add('mb-3');
+        });
     } else {
         console.error('Il tag body non è stato trovato.');
     }
