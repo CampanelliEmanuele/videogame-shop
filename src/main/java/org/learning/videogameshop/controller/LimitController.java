@@ -19,7 +19,6 @@ import java.util.Optional;
 public class LimitController {
     @Autowired
     LimitRepository limitRepository;
-
     @GetMapping
     public String show(Model model) {
         Optional<Limit> result = limitRepository.findById(1);
