@@ -34,43 +34,10 @@ public class StoreController {
         List<Videogame> videogames = videogameRepository.findAll();
         List<Type> types = typeRepository.findAll();
 
-        LocalDateTime lastMonth = LocalDate.now().minus(1, ChronoUnit.MONTHS).atStartOfDay();
-        List<Purchase> lastMonthPurchases = purchaseRepository.findByPurchaseDateAfterOrderByPurchaseDateDesc(lastMonth.toLocalDate());
-        Set<String> videogameNames = new HashSet<>();
-
-        for (Purchase purchase : lastMonthPurchases) {
-            String iteratedName = purchase.getVideogame().getName();
-            videogameNames.add(iteratedName);
-        }
-
-        Map<String, Integer> purchaseMap = new HashMap<>();
-
-        // Inizializza la mappa con le quantità iniziali a 0
-        for (String videogameName : videogameNames) {
-            purchaseMap.put(videogameName, 0);
-        }
-
-        // Aggiorna le quantità con gli acquisti dell'ultimo mese
-        for (Purchase purchase : lastMonthPurchases) {
-            String iteratedVideogameName = purchase.getVideogame().getName();
-            // Ottieni l'attuale quantità del gioco acquistato
-            Integer oldValue = purchaseMap.getOrDefault(iteratedVideogameName, 0);
-            // Aggiungi la quantità acquistata a quella esistente
-            purchaseMap.put(iteratedVideogameName, oldValue + purchase.getQuantity());
-        }
-
-        // Ottenere una lista degli entry dalla mappa
-        List<Map.Entry<String, Integer>> entryList = new ArrayList<>(purchaseMap.entrySet());
-
-        // Ordinamento della lista in base alle chiavi utilizzando lambda expression
-        Collections.sort(entryList, (entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()));
-
-
         model.addAttribute("videogames", videogames);
         model.addAttribute("types", types);
-
-        model.addAttribute("lastMonthPurchases", lastMonthPurchases);
-        model.addAttribute("entryList", entryList);
+//        model.addAttribute("lastMonthPurchases", lastMonthPurchases);
+//        model.addAttribute("entryList", entryList);
         return "store/show";
     }
 
