@@ -20,15 +20,18 @@ public class HomeController {
     private PurchaseRepository purchaseRepository;
     @GetMapping
     public String home(Model model){
-        LocalDateTime lastMonth = LocalDate.now().minus(1, ChronoUnit.MONTHS).atStartOfDay();
-        List<Purchase> lastMonthPurchases = purchaseRepository.findByPurchaseDateAfterOrderByPurchaseDateDesc(lastMonth.toLocalDate());
+        // Lista delle vendite effettuate nell'ultimo mese
+        LocalDate lastMonth = LocalDate.now().minusMonths(1);
+        List<Purchase> lastMonthPurchases = purchaseRepository.findByPurchaseDateAfterOrderByPurchaseDateDesc(lastMonth);
+
+        // Mappa contenente i nomi dei videogiochi come chiavi e le quantità vendute come valori
         Map<String, Integer> purchaseMap = getPurchaseMap(lastMonthPurchases);
 
         // Ottenere una lista degli entry dalla mappa
         List<Map.Entry<String, Integer>> entryList = new ArrayList<>(purchaseMap.entrySet());
 
-        // Ordinamento della lista in base alle chiavi utilizzando lambda expression
-        Collections.sort(entryList, (entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()));
+        // Ordinamento della lista in base ai valori utilizzando una lambda expression
+        entryList.sort((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()));
 
         model.addAttribute("entryList", entryList);
 
