@@ -16,7 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
+import java.time.temporal.ChronoUnit;
+import java.util.*;
 
 @Controller
 @RequestMapping("/store")
@@ -44,7 +45,7 @@ public class StoreController {
 
         Purchase purchase = new Purchase();
         purchase.setVideogame(videogame);
-        purchase.setPurchaseDate(LocalDateTime.now());
+        purchase.setPurchaseDate(LocalDate.now());
         purchase.setQuantity(quantity);
 
         purchaseRepository.save(purchase);
