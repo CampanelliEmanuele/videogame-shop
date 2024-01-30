@@ -115,3 +115,46 @@
        .card form button:hover {
            background-color: #0056b3;
        }
+
+       /* Stili specifici per le tabelle */
+       body table {
+           width: 100%;
+           border-collapse: collapse;
+           margin: 20px 0;
+           font-size: 16px;
+           border-radius: 10px; /* Aggiunto border-radius */
+       }
+
+       body table thead, body table tbody {
+           border: 1px solid rgba(255, 255, 255, 0.1);
+       }
+
+       body table th, body table td {
+           padding: 12px;
+           text-align: left;
+       }
+
+       body table tbody tr:hover {
+           background: rgba(255, 255, 255, 0.3);
+           transition: background 0.3s ease-out;
+       }
+
+       /* Stili per la modalità chiara */
+       body.light-mode table {
+           background: rgba(255, 255, 255, 0.9);
+           color: #000;
+       }
+
+       body.light-mode table tbody tr:hover {
+           background: rgba(255, 255, 255, 0.7);
+       }
+
+       /* Stili per la modalità scura */
+       body.dark-mode table {
+           background: rgba(0, 0, 0, 0.6);
+           color: #fff;
+       }
+
+       body.dark-mode table tbody tr:hover {
+           background: rgba(0, 0, 0, 0.8);
+       }

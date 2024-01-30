@@ -13,7 +13,7 @@
         <hr>
         <a class="btn btn-primary mb-2" th:href="@{/videogames/create}">New videogame</a>
         <div class="alert alert-info" th:if="${videogameList.size() == 0}">The list is empty</div>
-        <table class="table table-secondary" th:unless="${videogameList.size() == 0}">
+        <table th:unless="${videogameList.size() == 0}">
             <thead>
             <tr>
                 <th>Name</th>
