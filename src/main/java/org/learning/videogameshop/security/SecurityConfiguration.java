@@ -36,45 +36,16 @@ public class SecurityConfiguration {
     return authenticationProvider;
   }
 
-  /*
-   * /videogames
-   * user:  /videogames
-   * user:  /videogames/show/**
-   * admin: /videogames/create
-   * admin: /videogames/edit/**
-   * admin: /videogames/delete/**
-   *
-   * /types
-   * user:  /types
-   * admin: /types/show/**
-   * admin: /types/edit/**
-   * admin: /types/delete/**
-   *
-   * /store e /home
-   * public: /
-   *
-   * /warehouse
-   * admin: /warehouse
-   *
-   * /stock
-   * admin: /stock/**
-   *
-   * /limits
-   * admin: /limits/**
-   */
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http.authorizeHttpRequests()
-        .requestMatchers("/videogames/create", "/videogames/edit/**", "/videogames/delete/**")
-        .hasAuthority("ADMIN")
-        .requestMatchers("/videogames", "/videogames/show/**").hasAnyAuthority("ADMIN", "USER")
+        .requestMatchers("/", "/videogames", "/videogames/show/**", "/types", "/store").permitAll()
+        .requestMatchers("/store/purchase").hasAnyAuthority("ADMIN", "USER")
+        .requestMatchers("/videogames/create", "/videogames/edit/**", "/videogames/delete/**").hasAuthority("ADMIN")
         .requestMatchers("/types/show/**", "/types/edit/**", "/types/delete/**").hasAuthority("ADMIN")
-        .requestMatchers("/types").hasAnyAuthority("ADMIN", "USER")
-        .requestMatchers("/").hasAnyAuthority("ADMIN", "USER")
-        .requestMatchers("/store").hasAnyAuthority("ADMIN", "USER")
+        .requestMatchers("/limits/**").hasAuthority("ADMIN")
         .requestMatchers("/warehouse").hasAuthority("ADMIN")
         .requestMatchers("/stocks/**").hasAuthority("ADMIN")
-        .requestMatchers("/limits/**").hasAuthority("ADMIN")
         .requestMatchers(HttpMethod.POST, "/videogames/**").hasAuthority("ADMIN")
         .requestMatchers(HttpMethod.POST, "/types/**").hasAuthority("ADMIN")
         .requestMatchers(HttpMethod.POST, "/stocks/**").hasAuthority("ADMIN")
@@ -84,7 +55,6 @@ public class SecurityConfiguration {
         .and().logout()
         .and().exceptionHandling()
         .and().csrf().disable();
-
     return http.build();
   }
 }
