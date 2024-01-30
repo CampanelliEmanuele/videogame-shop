@@ -1,16 +1,11 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Store</title>
-</head>
+<head th:replace="fragments/resources :: head('Show List')"></head>
+
 <body>
 <h2>Videogiochi disponibili</h2>
 
-<table>
+<table class="table">
     <thead>
     <tr>
         <th>ID</th>
@@ -41,6 +36,28 @@
     </tr>
     </tbody>
 </table>
+
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Videogame</th>
+            <th>Date</th>
+            <th>Quantity</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="lmp : ${lastMonthPurchase}">
+            <td th:text="${lmp.id}"></td>
+            <td th:text="${lmp.videogame.name}"></td>
+            <td th:text="${lmp.purchaseDate}"></td>
+            <td th:text="${lmp.quantity}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<th:block th:replace="fragments/resources :: script"></th:block>
 
 </body>
 </html>

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @Controller
@@ -32,8 +33,13 @@ public class StoreController {
     public String viewGames(Model model) {
         List<Videogame> videogames = videogameRepository.findAll();
         List<Type> types = typeRepository.findAll();
+
+        LocalDateTime lastMonth = LocalDate.now().minus(1, ChronoUnit.MONTHS).atStartOfDay();
+        List<Purchase> lastMonthPurchase = purchaseRepository.findByPurchaseDateAfterOrderByPurchaseDateDesc(lastMonth.toLocalDate());
+
         model.addAttribute("videogames", videogames);
         model.addAttribute("types", types);
+        model.addAttribute("lastMonthPurchase", lastMonthPurchase);
         return "store/show"; //
     }
 
@@ -44,7 +50,7 @@ public class StoreController {
 
         Purchase purchase = new Purchase();
         purchase.setVideogame(videogame);
-        purchase.setPurchaseDate(LocalDateTime.now());
+        purchase.setPurchaseDate(LocalDate.now());
         purchase.setQuantity(quantity);
 
         purchaseRepository.save(purchase);
