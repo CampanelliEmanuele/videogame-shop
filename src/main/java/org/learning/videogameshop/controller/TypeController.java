@@ -89,14 +89,4 @@ public class TypeController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Type with id " + id + " not found");
         }
     }
-
-
-
-
-
-
-
-
-
 }
-
