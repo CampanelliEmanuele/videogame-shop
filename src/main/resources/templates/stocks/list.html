@@ -9,7 +9,7 @@
 </header>
 
 <main class="container-fluid">
-    <div class="container">
+    <div class="custom-container">
         <ul th:replace="fragments/navbar :: stockNavbar('list')"></ul>
 
         <section>
@@ -17,7 +17,7 @@
 
             <div class="alert alert-info" th:if="${stockList.size() == 0}">There are no recent stock.</div>
             <div th:unless="${stockList.size() == 0}">
-                <table class="table improved-table table-bordered border-primary">
+                <table class="improved-table">
                     <thead>
                         <tr>
                             <th scope="col">Purchase date</th>
