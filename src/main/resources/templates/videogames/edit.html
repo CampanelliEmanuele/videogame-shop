@@ -2,14 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/resources :: head('Edit a videogame')"></head>
 
-<body class="bg-secondary-subtle light-mode">
+<body class="dark-mode">
 
 <header>
     <nav th:replace="fragments/navbar :: topNavbar('videogames')"></nav>
 </header>
 
-<main class="container-fluid">
-    <div class="container">
+<main>
+    <div class="custom-container mx-auto col-md-8">
         <h1 class="text-center mb-4">Edit</h1>
         <form class="row gy-3"
               id="edit-videogame"
