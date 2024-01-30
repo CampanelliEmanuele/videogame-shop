@@ -1,6 +1,6 @@
 package org.learning.videogameshop.security;
 
-import org.learning.videogameshop.model.LibraryUser;
+import org.learning.videogameshop.model.User;
 import org.learning.videogameshop.model.Role;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -19,7 +19,7 @@ public class DatabaseUserDetails implements UserDetails {
   private Set<GrantedAuthority> authorities;
 
   // costruttore che copia i dati da LibraryUser e valorizza gli attributi che servono a Spring
-  public DatabaseUserDetails(LibraryUser libraryUser) {
+  public DatabaseUserDetails(User libraryUser) {
     this.id = libraryUser.getId();
     this.username = libraryUser.getEmail();
     this.password = libraryUser.getPassword();
