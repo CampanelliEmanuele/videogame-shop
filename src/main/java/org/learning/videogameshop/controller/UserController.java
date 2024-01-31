@@ -36,14 +36,14 @@ public class UserController {
     }
 
     @GetMapping("/show/{id}")
-    public String show(@PathVariable Integer userId, Model model) {
-        Optional<User> result = userRepository.findById(userId);
+    public String show(@PathVariable Integer id, Model model) {
+        Optional<User> result = userRepository.findById(id);
         if (result.isPresent()) {
             User user = result.get();
             model.addAttribute("user", user);
-            return "register/users/show/" + userId;
+            return "register/users/show";
         } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User with id " + userId + " not found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User with id " + id + " not found");
         }
     }
     
