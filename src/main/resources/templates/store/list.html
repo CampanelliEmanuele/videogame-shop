@@ -134,6 +134,7 @@
                 <div class="card mx-auto">
                     <a th:href="@{'/videogames/show/' + ${videogame.id}}">
                         <img th:src="${videogame.photo}" class="card-img-top" alt="Game Image" style="max-height: 500px;">
+                        <!--Grandezze img +- 810x1080 (questo rateo)-->
                     </a>
                     <div class="card-body text-center">
                         <h5 th:text="${videogame.name}" class="card-title"></h5>
