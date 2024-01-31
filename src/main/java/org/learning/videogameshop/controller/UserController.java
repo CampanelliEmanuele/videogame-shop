@@ -24,10 +24,11 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    @GetMapping
     public String list(Model model) {
         List<User> userList = userRepository.findAll();
         model.addAttribute("userList", userList);
-        return "/register/users/list";
+        return "register/users/list";
     }
 
     @GetMapping("/show/{id}")
@@ -36,7 +37,7 @@ public class UserController {
         if (result.isPresent()) {
             User user = result.get();
             model.addAttribute("user", user);
-            return "/register/users/show/" + userId;
+            return "register/users/show/" + userId;
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User with id " + userId + " not found");
         }
@@ -46,7 +47,7 @@ public class UserController {
     public String createUser(Model model) {
         User user = new User();
         model.addAttribute("user", user);
-        return "/register/users/create";
+        return "register/users/create";
     }
 
     @PostMapping("/create")
@@ -56,7 +57,7 @@ public class UserController {
             return "register/users/create";
         }
         User savedUser = userRepository.save(userForm);
-        return "/register/users/show/" + savedUser.getId();
+        return "register/users/show/" + savedUser.getId();
     }
 
     @GetMapping("/edit/{id}")
@@ -64,7 +65,7 @@ public class UserController {
         Optional<User> result = userRepository.findById(userId);
         if (result.isPresent()) {
             model.addAttribute("user", result.get());
-            return "/register/users/edit/" + userId;
+            return "register/users/edit/" + userId;
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User with id " + userId + " not found");
         }
@@ -77,7 +78,7 @@ public class UserController {
         if (result.isPresent()) {
             if (bindingResult.hasErrors()) {
                 System.out.println(bindingResult.getAllErrors());
-                return "/register/users/edit";
+                return "register/users/edit";
             }
             User savedRecipe = userRepository.save(videogameForm);
             return "register/users/show/" + id;
