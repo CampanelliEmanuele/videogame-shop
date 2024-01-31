@@ -7,16 +7,24 @@
     <nav th:replace="fragments/navbar :: topNavbar('register')"></nav>
 </header>
 <main class="container-fluid">
-    <div class="container">
+    <div class="container text-center">
         <h1><span th:text="${user.firstName}"></span> <span th:text="${user.lastName}"></span></h1>
-        <h3>L'utente <span th:text="${user.firstName}"></span> ( <span th:each="role, iterStat : ${user.getRoleSet}">
+        <h3>L'utente <span th:text="${user.firstName}"></span> <span th:text="${user.lastName}"></span> ( <span th:each="role, iterStat : ${user.getRoleSet}">
             <span th:text="${role.name}"></span>
             <span th:if="${not iterStat.last}"> / </span>
         </span> ) ha effettuato la registrazione il giorno <span>TOT</span></h3>
-        <h2>Dati dell'utente : </h2>
+        <!--<h2 class="mt-4">Dati dell'utente : </h2>
         <h3>Email : <span th:text="${user.email}"></span></h3>
         <h3>Password : <span th:text="${user.password}"></span></h3>
-        <a class="btn btn-primary me-3" th:href="@{/register/users}">Return Back</a>
+        <a class="btn btn-primary me-3" th:href="@{/register/users}">Return Back</a>-->
+        <div class="card text-bg-dark mt-5 d-flex" style="max-width: 18rem;">
+            <div class="card-header"><span th:text="${user.firstName}"></span> <span th:text="${user.lastName}"></div>
+            <div class="card-body">
+                <h5 class="card-title">Dati Utente</h5>
+                <p class="card-text" >Email : <span th:text="${user.email}"></span></p>
+                <p class="card-text" >Password : <span th:text="${user.password}"></span></p>
+            </div>
+        </div>
     </div>
 </main>
 

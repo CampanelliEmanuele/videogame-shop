@@ -61,7 +61,7 @@ public class UserController {
             return "register/users/create";
         }
         User savedUser = userRepository.save(userForm);
-        return "register/users/show/" + savedUser.getId();
+        return "redirect:/register/users/show/" + savedUser.getId();
     }
 
     @GetMapping("/edit/{id}")
@@ -86,7 +86,7 @@ public class UserController {
                 return "register/users/edit";
             }
             User savedRecipe = userRepository.save(videogameForm);
-            return "register/users/show/" + id;
+            return "redirect:/register/users/show/" + id;
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User with id " + id + " not found");
         }
