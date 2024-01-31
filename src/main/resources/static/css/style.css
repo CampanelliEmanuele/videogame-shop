@@ -115,3 +115,40 @@
        .card form button:hover {
            background-color: #0056b3;
        }
+
+        @keyframes noScale {
+                            to {
+                                transform: scale(1); /* Imposta la scala a 1 (dimensioni originali) */
+                            }
+                        }
+
+                        .card-login:hover {
+                            animation: noScale 0.1s; /* Applica l'animazione quando si passa il mouse sopra */
+                        }
+
+               .card-login {
+                   background: rgba(255, 255, 255, 0.1);
+                   border-radius: 10px;
+                   overflow: hidden;
+                   position: relative;
+                   color: #fff;
+                   backdrop-filter: blur(10px); /* Aggiungi l'effetto glass */
+               }
+
+               .card-login:hover {
+                   background: rgba(255, 255, 255, 0.3);
+
+               }
+
+               .card-login::before {
+                   content: '';
+                   position: absolute;
+                   top: 0;
+                   left: 0;
+                   right: 0;
+                   bottom: 0;
+                   background: inherit;
+                   filter: blur(20px);
+                   opacity: 0.5;
+                   z-index: -1;
+               }
