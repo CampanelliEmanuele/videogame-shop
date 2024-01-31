@@ -32,6 +32,13 @@ public class StoreController {
         List<Type> types = typeRepository.findAll();
         model.addAttribute("videogames", videogames);
         model.addAttribute("types", types);
+        LocalDate lastMonth = LocalDate.now().minusMonths(1);
+        List<Purchase> lastMonthPurchases = purchaseRepository.findByPurchaseDateAfterOrderByPurchaseDateDesc(lastMonth);
+        Map<String, Integer> purchaseMap = getPurchaseMap(lastMonthPurchases);
+        List<Map.Entry<String, Integer>> purchasesRanking = new ArrayList<>(purchaseMap.entrySet());
+        purchasesRanking.sort((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()));
+
+        model.addAttribute("purchasesRanking", purchasesRanking);
         return "store/list";
     }
 
@@ -48,5 +55,30 @@ public class StoreController {
         purchaseRepository.save(purchase);
 
         return "redirect:/store";
+    }
+
+    private Map<String, Integer> getPurchaseMap(List<Purchase> lastMonthPurchases) {
+        // Set contenente i nomi dei videogame venduti nell'ultimo mese
+        Set<String> videogameNames = new HashSet<>();
+        for (Purchase purchase : lastMonthPurchases) {
+            String iteratedName = purchase.getVideogame().getName();
+            videogameNames.add(iteratedName);
+        }
+
+        // Inizializzazione della mappa con le quantità iniziali a 0
+        Map<String, Integer> purchaseMap = new HashMap<>();
+        for (String videogameName : videogameNames) {
+            purchaseMap.put(videogameName, 0);
+        }
+
+        // Si aggiorna la mappa con le quantità degli acquisti dell'ultimo mese
+        for (Purchase purchase : lastMonthPurchases) {
+            String iteratedVideogameName = purchase.getVideogame().getName();
+            // Ottieni l'attuale quantità del gioco acquistato
+            Integer oldValue = purchaseMap.getOrDefault(iteratedVideogameName, 0);
+            // Aggiungi la quantità acquistata a quella esistente
+            purchaseMap.put(iteratedVideogameName, oldValue + purchase.getQuantity());
+        }
+        return purchaseMap;
     }
 }
