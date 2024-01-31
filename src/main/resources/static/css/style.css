@@ -15,6 +15,15 @@
            padding: 10px;
        }
 
+       footer {
+           margin-top: auto;
+       }
+
+        main {
+           min-height: 400px;
+           margin-bottom: 20px;
+        }
+
        /* Stile generico per le cards */
 
        .card {
@@ -178,6 +187,11 @@
             transition: background 0.3s ease-out;
        }
 
+       .dark-mode .improved-table tbody tr.table-danger td,
+       .dark-mode .improved-table tbody tr.table-warning td {
+           color: white;
+       }
+
               /* Stile dark per il custom costainer*/
        body.dark-mode .custom-container {
              background: rgba(0, 0, 0, 0.6);
@@ -221,8 +235,6 @@
         min-height: 400px;
         margin-bottom: 20px;
         }
-
-
 
 
 
