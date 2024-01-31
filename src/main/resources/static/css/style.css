@@ -8,6 +8,7 @@
            background-attachment: fixed;
            margin: 0;
             transition: background 0.3s ease-out;
+            animation: fadeIn 0.8s ease-out;
        }
 
        header {
@@ -26,7 +27,7 @@
 
         h1 {
           /* effetto di animazione */
-            animation: slideIn 2s ease-out;
+            animation: slideIn 1.5s ease-out;
          }
 
        /* Stile generico per le cards */
@@ -235,30 +236,39 @@
 
         /* ---------- VARIE ED EVENTUALI ---------- */
 
-         .gold {
-            color: #ffd700;
+       .gold {
+           color: #ffd700;
         }
 
-        .silver {
-            color: #c0c0c0;
+       .silver {
+           color: #c0c0c0;
         }
 
-         .bronze {
-            color: #cd7f32;
+       .bronze {
+           color: #cd7f32;
         }
 
 
         /* CSS per animazione testo */
-        @keyframes slideIn {
-                    from {
-                        transform: translateY(-50px);
-                        opacity: 0;
-                    }
-                    to {
-                        transform: translateY(0);
-                        opacity: 1;
-                    }
-                }
+       @keyframes slideIn {
+           from {
+               transform: translateY(-50px);
+               opacity: 0;
+           }
+           to {
+               transform: translateY(0);
+               opacity: 1;
+           }
+       }
+
+       @keyframes fadeIn {
+           from {
+               opacity: 0;
+           }
+           to {
+               opacity: 1;
+           }
+       }
 
 
 
