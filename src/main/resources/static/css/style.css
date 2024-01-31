@@ -7,12 +7,24 @@
            background-repeat: no-repeat;
            background-attachment: fixed;
            margin: 0;
+            transition: background 0.3s ease-out;
        }
 
        header {
            background-color: rgba(0, 0, 0, 0.8);
            padding: 10px;
        }
+
+       footer {
+           margin-top: auto;
+       }
+
+        main {
+           min-height: 400px;
+           margin-bottom: 20px;
+        }
+
+       /* Stile generico per le cards */
 
        .card {
            background: rgba(255, 255, 255, 0.1);
@@ -22,6 +34,7 @@
            position: relative;
            color: #fff;
            backdrop-filter: blur(10px); /* Aggiungi l'effetto glass */
+
        }
 
        .card:hover {
@@ -43,7 +56,49 @@
            z-index: -1;
        }
 
-       /* Light mode styles */
+       /* Stile generico per le tabelle */
+
+       body table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 16px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+       }
+
+       body table thead, body table tbody {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+       }
+
+       body table th, body table td {
+            padding: 12px;
+            text-align: left;
+       }
+
+       body table tbody tr:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transition: background 0.3s ease-out;
+       }
+
+              /* Stile generico per custom container */
+
+       .custom-container {
+             border-radius: 10px;
+              overflow: hidden;
+              transition: background 0.3s ease-out;
+              padding: 20px;
+              backdrop-filter: blur(10px); /* Effetto glass */
+              position: relative;
+       }
+
+        .custom-container:hover {
+              background: rgba(255, 255, 255, 0.3);
+              transition: background 0.3s ease-out;
+        }
+
+       /* --------------------------- Light mode styles --------------------------- */
+
        body.light-mode {
            background-image: url('https://www.bhmpics.com/downloads/Firewatch-Wallpapers/76.firewatch-sunny-day-wallpaper.jpg');
            background-color: #fff;
@@ -53,6 +108,8 @@
        header.light-mode {
            background-color: rgba(255, 255, 255, 0.8);
        }
+
+        /* Stile light per le cards*/
 
        .card.light-mode {
            background: rgba(255, 255, 255, 0.9);
@@ -67,16 +124,43 @@
            color: #000; /* Colore del testo nelle card durante la modalità chiara */
        }
 
-       /* Dark mode styles */
+        /* Stile light per le tabelle */
+
+       body.light-mode table {
+           background: rgba(255, 255, 255, 0.7);
+           color: #000;
+           transition: background 0.3s ease-out;
+       }
+
+       body.light-mode table tbody tr:hover {
+            background: rgba(255, 255, 255, 0.5);
+            transition: background 0.3s ease-out;
+       }
+
+       /* Stile light per il custom container */
+
+       body.light-mode .custom-container {
+             background: rgba(255, 255, 255, 0.3);
+             color: #000;
+       }
+
+       body.light-mode .custom-container:hover {
+             background: rgba(255, 255, 255, 0.5);
+       }
+
+       /* --------------------------- Dark mode styles --------------------------- */
+
        body.dark-mode {
-           background-image: url('https://wallpaperaccess.com/full/970936.jpg');
-           background-color: #1a1a1a;
-           color: #fff;
+            background-image: url('https://wallpaperaccess.com/full/970936.jpg');
+            background-color: #1a1a1a;
+            color: #fff;
        }
 
        header.dark-mode {
-           background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.8);
        }
+
+        /* Stile dark per le cards */
 
        .card.dark-mode {
            background: rgba(0, 0, 0, 0.6);
@@ -89,6 +173,34 @@
 
        .card.dark-mode .card-body {
            color: #fff; /* Colore del testo nelle card durante la modalità scura */
+       }
+
+        /* Stile dark per le tabelle */
+
+       body.dark-mode table {
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            transition: background 0.3s ease-out;
+            }
+
+       body.dark-mode table tbody tr:hover {
+            background: rgba(0, 0, 0, 0.8);
+            transition: background 0.3s ease-out;
+       }
+
+       .dark-mode .improved-table tbody tr.table-danger td,
+       .dark-mode .improved-table tbody tr.table-warning td {
+           color: white;
+       }
+
+              /* Stile dark per il custom costainer*/
+       body.dark-mode .custom-container {
+             background: rgba(0, 0, 0, 0.6);
+             color: #fff;
+       }
+
+       body.dark-mode .custom-container:hover {
+             background: rgba(0, 0, 0, 0.8);
        }
 
        /* Navbar button styles */
@@ -115,3 +227,29 @@
        .card form button:hover {
            background-color: #0056b3;
        }
+
+        footer {
+        margin-top: auto;
+        }
+
+        main {
+        min-height: 400px;
+        margin-bottom: 20px;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -134,6 +134,7 @@
                 <div class="card mx-auto">
                     <a th:href="@{'/videogames/show/' + ${videogame.id}}">
                         <img th:src="${videogame.photo}" class="card-img-top" alt="Game Image" style="max-height: 500px;">
+                        <!--Grandezze img +- 810x1080 (questo rateo)-->
                     </a>
                     <div class="card-body text-center">
                         <h5 th:text="${videogame.name}" class="card-title"></h5>
@@ -153,41 +154,8 @@
 </main>
 
 <!-- Footer -->
-<footer class="bg-dark text-light p-4">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                <h5>Link Utili</h5>
-                <ul class="list-unstyled">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Offerte</a></li>
-                    <li><a href="#">Preordini</a></li>
-                    <li><a href="#">Prossime Uscite</a></li>
-                </ul>
-            </div>
-            <div class="col-md-3">
-                <h5>Assistenza</h5>
-                <ul class="list-unstyled">
-                    <li><a href="#">Centro Assistenza</a></li>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Contattaci</a></li>
-                </ul>
-            </div>
-            <div class="col-md-3">
-                <h5>Social</h5>
-                <ul class="list-unstyled">
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">Twitter</a></li>
-                    <li><a href="#">Instagram</a></li>
-                </ul>
-            </div>
-            <div class="col-md-3">
-                <h5>Riscatta una Gift Card</h5>
-                <!-- Aggiungi qui il codice per la sezione "Riscatta una Gift Card" -->
-            </div>
-        </div>
-    </div>
-</footer>
+
+<footer th:replace="fragments/footer :: footer"></footer>
 
 <th:block th:replace="fragments/resources :: script"></th:block>
 

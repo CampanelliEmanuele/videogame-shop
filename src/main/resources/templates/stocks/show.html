@@ -16,7 +16,7 @@
         <a class="btn btn-primary" th:href="@{/stocks/create(videogameId=${stock.stockedVideogame.id})}">Refueling</a>
     </div>
 </main>
-
+<footer th:replace="fragments/footer :: footer"></footer>
 <th:block th:replace="fragments/resources :: script"></th:block>
 </body>
 </html>

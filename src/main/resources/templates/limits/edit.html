@@ -2,14 +2,14 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments/resources :: head('Edit Limit')"></head>
 
-<body class="bg-dark text-white">
+<body class="dark-mode">
 
 <header>
     <nav th:replace="fragments/navbar :: topNavbar('limits')"></nav>
 </header>
 
-<main>
-    <div class="container">
+<main class="container-fluid">
+    <div class="container custom-container">
         <h1 class="text-center">Edit the limit</h1>
         <hr>
         <form
@@ -46,7 +46,7 @@
         </form>
     </div>
 </main>
-
+<footer th:replace="fragments/footer :: footer"></footer>
 <th:block th:replace="fragments/resources :: script"></th:block>
 </body>
 </html>

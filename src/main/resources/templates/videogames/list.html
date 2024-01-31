@@ -9,11 +9,10 @@
 
 <main class="container-fluid">
     <div class="container">
-        <h1 class="text-center">Details</h1>
         <hr>
         <a class="btn btn-primary mb-2" th:href="@{/videogames/create}">New videogame</a>
         <div class="alert alert-info" th:if="${videogameList.size() == 0}">The list is empty</div>
-        <table class="table table-secondary" th:unless="${videogameList.size() == 0}">
+        <table th:unless="${videogameList.size() == 0}">
             <thead>
             <tr>
                 <th>Name</th>
@@ -58,6 +57,7 @@
         </table>
     </div>
 </main>
+<footer th:replace="fragments/footer :: footer"></footer>
 
 <th:block th:replace="fragments/resources :: script"></th:block>
 

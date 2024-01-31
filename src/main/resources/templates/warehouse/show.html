@@ -2,14 +2,14 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments/resources :: head('Warehouse list')"></head>
 
-<body>
+<body class="dark-mode">
 
 <header>
     <nav th:replace="fragments/navbar :: topNavbar('warehouse')"></nav>
 </header>
 
-<main>
-    <div class="container">
+<main class="container-fluid">
+    <div class="container custom-container">
         <div class="row justify-content-between">
             <div class="col-3 mb-2">
                 <h1>Game List</h1>
@@ -18,7 +18,7 @@
         <div class="row">
             <div class="alert alert-info" th:if="${videogameList.size() == 0}">The list is empty</div>
             <div class="col-12" th:unless="${videogameList.size() == 0}" >
-                <table class="table improved-table">
+                <table class="improved-table">
                     <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -50,7 +50,7 @@
             </div>
             <div class="alert alert-info" th:if="${stockList.size() == 0}">The list of stock is empty</div>
             <div class="col-12 " th:unless="${stockList.size() == 0}">
-                <table class="table improved-table table-borderless">
+                <table class="improved-table">
                     <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -83,7 +83,7 @@
             </div>
             <div class="alert alert-info" th:if="${videogameList.size() == 0}">The list of stock is empty</div>
             <div class="col-12 " th:unless="${videogameList.size() == 0}">
-                <table class="table improved-table table-borderless">
+                <table class="improved-table">
                     <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -105,6 +105,7 @@
         </div>
     </div>
 </main>
+<footer th:replace="fragments/footer :: footer"></footer>
 
 <th:block th:replace="fragments/resources :: script"></th:block>
 </body>
