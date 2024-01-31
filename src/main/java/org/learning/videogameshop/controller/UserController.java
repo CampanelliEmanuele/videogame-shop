@@ -39,7 +39,7 @@ public class UserController {
         if (result.isPresent()) {
             User user = result.get();
             model.addAttribute("user", user);
-            return "register/users/show/" + id;
+            return "register/users/show";
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User with id " + id + " not found");
         }
@@ -49,6 +49,7 @@ public class UserController {
     public String createUser(Model model) {
         User user = new User();
         model.addAttribute("user", user);
+        model.addAttribute("roleSet", roleRepository.findAll());
         return "register/users/create";
     }
 
