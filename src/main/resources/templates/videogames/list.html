@@ -9,7 +9,6 @@
 
 <main class="container-fluid">
     <div class="container">
-        <hr>
         <a class="btn btn-primary mb-2" th:href="@{/videogames/create}">New videogame</a>
         <div class="alert alert-info" th:if="${videogameList.size() == 0}">The list is empty</div>
         <table th:unless="${videogameList.size() == 0}">
