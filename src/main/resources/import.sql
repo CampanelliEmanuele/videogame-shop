@@ -30,3 +30,12 @@ INSERT INTO purchases (purchase_date, quantity, videogame_id) VALUES ('2024-01-2
 INSERT INTO purchases (purchase_date, quantity, videogame_id) VALUES ('2023-12-23', 1, 3);
 INSERT INTO purchases (purchase_date, quantity, videogame_id) VALUES ('2024-01-22', 3, 1);
 INSERT INTO purchases (purchase_date, quantity, videogame_id) VALUES ('2023-12-21', 1, 2);
+
+
+INSERT INTO `role` (name) VALUES('ADMIN');
+INSERT INTO `role` (name) VALUES('USER');
+INSERT INTO `user` (email, first_name, last_name, password) VALUES('jane@email.com', 'Jane', 'Doe', '{noop}jane');
+INSERT INTO `user` (email, first_name, last_name, password) VALUES('john@email.com', 'John', 'Doe', '{noop}john');
+INSERT INTO user_role_set (user_id, role_set_name) VALUES(1, 'ADMIN');
+INSERT INTO user_role_set (user_id, role_set_name) VALUES(1, 'USER');
+INSERT INTO user_role_set (user_id, role_set_name) VALUES(2, 'USER');
