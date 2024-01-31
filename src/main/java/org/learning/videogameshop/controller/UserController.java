@@ -2,7 +2,6 @@ package org.learning.videogameshop.controller;
 
 import jakarta.validation.Valid;
 import org.learning.videogameshop.model.User;
-import org.learning.videogameshop.model.User;
 import org.learning.videogameshop.repository.RoleRepository;
 import org.learning.videogameshop.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -41,7 +39,7 @@ public class UserController {
         if (result.isPresent()) {
             User user = result.get();
             model.addAttribute("user", user);
-            return "register/users/show";
+            return "register/users/show/" + id;
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User with id " + id + " not found");
         }
@@ -99,7 +97,7 @@ public class UserController {
             userRepository.deleteById(id);
             redirectAttributes.addFlashAttribute("redirectMessage",
                         "User " + result.get().getEmail() + " deleted!");
-            return "register/users";
+            return "redirect:/register/users";
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User with di " + id + " not found");
         }
