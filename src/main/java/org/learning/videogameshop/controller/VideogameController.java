@@ -87,6 +87,7 @@ public class VideogameController {
         if (result.isPresent()) {
             if (bindingResult.hasErrors()) {
                 System.out.println(bindingResult.getAllErrors());
+                // TODO: is this route correct?
                 return "videogames/edit";
             }
             Videogame savedRecipe = videogameRepository.save(videogameForm);

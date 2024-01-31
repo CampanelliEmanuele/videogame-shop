@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 @Entity
@@ -19,6 +20,9 @@ public class User {
     private String lastName;
     private String email;
     private String password;
+
+    // TODO: add registration date
+//    private LocalDate registrationDate;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roleSet;

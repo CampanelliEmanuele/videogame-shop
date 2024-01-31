@@ -51,8 +51,7 @@ public class SecurityConfiguration {
         .requestMatchers(HttpMethod.POST, "/stocks/**").hasAuthority("ADMIN")
         .requestMatchers(HttpMethod.POST, "/limits/**").hasAuthority("ADMIN")
         .requestMatchers("/", "/**").permitAll()
-        .and().formLogin()
-        .loginPage("/login").failureUrl("/login-error")
+        .and().formLogin().loginPage("/login").failureUrl("/login-error")
         .and().logout().logoutSuccessUrl("/store")
         .and().exceptionHandling()
         .and().csrf().disable();
