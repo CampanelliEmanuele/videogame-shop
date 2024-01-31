@@ -3,6 +3,7 @@ package org.learning.videogameshop.controller;
 import jakarta.validation.Valid;
 import org.learning.videogameshop.model.User;
 import org.learning.videogameshop.model.User;
+import org.learning.videogameshop.repository.RoleRepository;
 import org.learning.videogameshop.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,9 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
 
     @GetMapping
     public String list(Model model) {
@@ -61,13 +65,14 @@ public class UserController {
     }
 
     @GetMapping("/edit/{id}")
-    public String edit(@PathVariable Integer userId, Model model) {
-        Optional<User> result = userRepository.findById(userId);
+    public String edit(@PathVariable Integer id, Model model) {
+        Optional<User> result = userRepository.findById(id);
         if (result.isPresent()) {
             model.addAttribute("user", result.get());
-            return "register/users/edit/" + userId;
+            model.addAttribute("roleSet", roleRepository.findAll());
+            return "register/users/edit";
         } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User with id " + userId + " not found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User with id " + id + " not found");
         }
     }
 
