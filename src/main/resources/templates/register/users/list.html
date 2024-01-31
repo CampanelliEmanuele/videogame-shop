@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.springframework.org/security/tags">
+<head th:replace="fragments/resources :: head('Users list')"></head>
+
+<body>
+<header>
+    <nav th:replace="fragments/navbar :: topNavbar('users')"></nav>
+</header>
+<main class="container-fluid">
+    <div class="container">
+        <h1>List of Users</h1>
+        <hr>
+        <a class="btn btn-primary mb-2" th:href="@{/register/users/create}">New User</a>
+        <div class="alert alert-info" th:if="${userList.size() == 0}">The list is empty</div>
+        <table class="table table-secondary" th:unless="${userList.size() == 0}">
+            <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Role</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${userList}">
+                <td th:text="${user.firstName}"></td>
+                <td th:text="${user.lastName}"></td>
+                <td th:text="${user.email}"></td>
+                <td th:text="${user.password}"></td>
+                <td>
+                    <span th:each="role, iterStat : ${user.getRoleSet}">
+                        <span th:text="${role.name}"></span>
+                        <span th:if="${not iterStat.last}"> / </span> <!-- Aggiunge uno spazio se non è l'ultimo ruolo -->
+                    </span>
+                </td>
+                <td>
+                    <a class="btn btn-primary btn-sm" th:href="@{/register/users/show/{id}(id=${user.id})}" role="button">Details</a>
+                </td>
+                <td>
+                    <a class="btn btn-primary btn-sm" th:href="@{/register/users/edit/{id}(id=${user.id})}" role="button">
+                        <i class="fa-solid fa-pencil"></i>
+                    </a>
+                </td>
+                <td>
+                    <form
+                            th:action="@{/register/users/delete/{id}(id=${user.id})}"
+                            method="post"
+                            onsubmit="return confirm('Are you sure?')"
+                    >
+                        <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+<th:block th:replace="fragments/resources :: script"></th:block>
+</body>
+</html>
