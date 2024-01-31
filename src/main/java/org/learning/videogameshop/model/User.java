@@ -27,6 +27,18 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roleSet;
 
+    public boolean hasRole(String role) throws IllegalArgumentException {
+        if (!role.equals("ADMIN") && !role.equals("USER")) {
+            throw new IllegalArgumentException("User.hasRole() method has invalid String in input.");
+        }
+        for (Role r : roleSet) {
+            if (r.getName().equals(role)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public Integer getId() {
         return id;
     }
