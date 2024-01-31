@@ -27,13 +27,14 @@
                 <!-- Tabella a destra -->
                 <div class="col-md-6">
                     <table>
+                        <!--
                         <thead>
                         <tr>
                             <th>#</th>
                             <th>Name</th>
                             <th>Quantity</th>
                         </tr>
-                        </thead>
+                        </thead> <-->
                         <tbody>
                         <tr th:each="purchase, rowStat : ${purchasesRanking}">
                             <td th:text="${rowStat.index + 1}"></td>
