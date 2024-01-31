@@ -35,7 +35,7 @@
                 <td>
                     <span th:each="role, iterStat : ${user.getRoleSet}">
                         <span th:text="${role.name}"></span>
-                        <span th:if="${not iterStat.last}"> / </span> <!-- Aggiunge uno spazio se non è l'ultimo ruolo -->
+                        <span th:if="${not iterStat.last}"> and </span> <!-- Aggiunge uno spazio se non è l'ultimo ruolo -->
                     </span>
                 </td>
                 <td>
