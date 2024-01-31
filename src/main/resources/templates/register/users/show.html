@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.springframework.org/security/tags">
+<head th:replace="fragments/resources :: head('User Show')"></head>
+
+<body>
+
+<header>
+    <nav th:replace="fragments/navbar :: topNavbar('register')"></nav>
+</header>
+
+<main class="container-fluid">
+    <div class="container text-center">
+        <h1><span th:text="${user.firstName}"></span> <span th:text="${user.lastName}"></span></h1>
+        <h3>L'utente <span th:text="${user.firstName}"></span> <span th:text="${user.lastName}"></span> ha effettuato la registrazione il giorno <span>TOT</span></h3>
+        <div class="row justify-content-center">
+            <div class="card text-bg-dark mt-5 d-flex" style="max-width: 18rem;">
+                <div class="card-header"><span th:text="${user.firstName}"></span> <span th:text="${user.lastName}"></span></div>
+                <div class="card-body">
+                    <h5 class="card-title">Dati Utente</h5>
+                    <p class="card-text" >Role : <span th:each="role, iterStat : ${user.getRoleSet}">
+                                                 <span th:text="${role.name}"></span>
+                                                 <span th:if="${not iterStat.last}"> / </span></span>
+                    </p>
+                    <p class="card-text" >Email : <span th:text="${user.email}"></span></p>
+                    <p class="card-text" >Password : <span th:text="${user.password}"></span></p>
+                    <a class="btn btn-primary" th:href="@{/register/users}">Return Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<th:block th:replace="fragments/resources :: script"></th:block>
+</body>
+</html>

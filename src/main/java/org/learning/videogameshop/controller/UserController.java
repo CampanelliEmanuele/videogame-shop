@@ -2,7 +2,7 @@ package org.learning.videogameshop.controller;
 
 import jakarta.validation.Valid;
 import org.learning.videogameshop.model.User;
-import org.learning.videogameshop.model.User;
+import org.learning.videogameshop.repository.RoleRepository;
 import org.learning.videogameshop.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -24,6 +23,9 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private RoleRepository roleRepository;
+
     @GetMapping
     public String list(Model model) {
         List<User> userList = userRepository.findAll();
@@ -32,14 +34,14 @@ public class UserController {
     }
 
     @GetMapping("/show/{id}")
-    public String show(@PathVariable Integer userId, Model model) {
-        Optional<User> result = userRepository.findById(userId);
+    public String show(@PathVariable Integer id, Model model) {
+        Optional<User> result = userRepository.findById(id);
         if (result.isPresent()) {
             User user = result.get();
             model.addAttribute("user", user);
-            return "register/users/show/" + userId;
+            return "register/users/show/" + id;
         } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User with id " + userId + " not found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User with id " + id + " not found");
         }
     }
     
@@ -57,17 +59,18 @@ public class UserController {
             return "register/users/create";
         }
         User savedUser = userRepository.save(userForm);
-        return "register/users/show/" + savedUser.getId();
+        return "redirect:/register/users/show/" + savedUser.getId();
     }
 
     @GetMapping("/edit/{id}")
-    public String edit(@PathVariable Integer userId, Model model) {
-        Optional<User> result = userRepository.findById(userId);
+    public String edit(@PathVariable Integer id, Model model) {
+        Optional<User> result = userRepository.findById(id);
         if (result.isPresent()) {
             model.addAttribute("user", result.get());
-            return "register/users/edit/" + userId;
+            model.addAttribute("roleSet", roleRepository.findAll());
+            return "register/users/edit";
         } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User with id " + userId + " not found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User with id " + id + " not found");
         }
     }
 
@@ -81,7 +84,7 @@ public class UserController {
                 return "register/users/edit";
             }
             User savedRecipe = userRepository.save(videogameForm);
-            return "register/users/show/" + id;
+            return "redirect:/register/users/show/" + id;
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User with id " + id + " not found");
         }
@@ -94,7 +97,7 @@ public class UserController {
             userRepository.deleteById(id);
             redirectAttributes.addFlashAttribute("redirectMessage",
                         "User " + result.get().getEmail() + " deleted!");
-            return "register/users";
+            return "redirect:/register/users";
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User with di " + id + " not found");
         }
