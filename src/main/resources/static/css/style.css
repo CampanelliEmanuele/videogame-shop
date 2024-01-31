@@ -24,6 +24,11 @@
            margin-bottom: 20px;
         }
 
+        h1 {
+          /* effetto di animazione */
+            animation: slideIn 2s ease-out;
+         }
+
        /* Stile generico per le cards */
 
        .card {
@@ -228,7 +233,7 @@
            background-color: #0056b3;
        }
 
-        /* VARIE ED EVENTUALI */
+        /* ---------- VARIE ED EVENTUALI ---------- */
 
          .gold {
             color: #ffd700;
@@ -241,6 +246,21 @@
          .bronze {
             color: #cd7f32;
         }
+
+
+        /* CSS per animazione testo */
+        @keyframes slideIn {
+                    from {
+                        transform: translateY(-50px);
+                        opacity: 0;
+                    }
+                    to {
+                        transform: translateY(0);
+                        opacity: 1;
+                    }
+                }
+
+
 
 
 
