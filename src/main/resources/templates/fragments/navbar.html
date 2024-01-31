@@ -5,7 +5,7 @@
 <body>
 <nav th:fragment="topNavbar(area)" class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand mx-auto" href="#">
+        <a class="navbar-brand mx-auto" th:href="@{/}">
             <img src="https://media.tenor.com/2a4KThsm4YgAAAAi/gaming-game-on.gif" alt="Game Store Logo" style="max-width: 60px;">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -36,6 +36,7 @@
                        th:href="@{/store}">Shop</a>
                 </li>
 
+                <!-- Admin only -->
                 <li class="nav-item">
                     <a
                             class="nav-link"
@@ -71,7 +72,7 @@
             </ul>
         </div>
 
-        <!-- Bottone per cambiare modalità -->
+        <!-- Background switch -->
         <button id="toggle-mode-btn" onclick="toggleMode()" title="Cambia modalità">☀️</button>
 
         <!-- Login -->
