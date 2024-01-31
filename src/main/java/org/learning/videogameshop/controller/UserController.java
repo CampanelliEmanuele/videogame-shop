@@ -6,6 +6,8 @@ import org.learning.videogameshop.repository.RoleRepository;
 import org.learning.videogameshop.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -59,6 +61,10 @@ public class UserController {
             System.out.println(bindingResult.getAllErrors());
             return "register/users/create";
         }
+        BCryptPasswordEncoder bcpe = new BCryptPasswordEncoder();
+        userForm.setPassword("{bcrypt}" + bcpe.encode(userForm.getPassword()));
+
+//        userForm.setPassword("{noop}" + userForm.getPassword());
         User savedUser = userRepository.save(userForm);
         return "redirect:/register/users/show/" + savedUser.getId();
     }
