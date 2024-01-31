@@ -193,7 +193,7 @@
            color: white;
        }
 
-              /* Stile dark per il custom costainer*/
+       /* Stile dark per il custom costainer*/
        body.dark-mode .custom-container {
              background: rgba(0, 0, 0, 0.6);
              color: #fff;
@@ -228,13 +228,18 @@
            background-color: #0056b3;
        }
 
-        footer {
-        margin-top: auto;
+        /* VARIE ED EVENTUALI */
+
+         .gold {
+            color: #ffd700;
         }
 
-        main {
-        min-height: 400px;
-        margin-bottom: 20px;
+        .silver {
+            color: #c0c0c0;
+        }
+
+         .bronze {
+            color: #cd7f32;
         }
 
 
