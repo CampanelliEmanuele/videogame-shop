@@ -1,0 +1,21 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/resources :: head('Purchase Success')"></head>
+<body>
+<header>
+    <nav th:replace="fragments/navbar :: topNavbar('store')"></nav>
+</header>
+<main>
+    <div class="container mt-4">
+        <div class="alert alert-success" role="alert">
+            Acquisto completato con successo! Grazie per il tuo ordine.
+        </div>
+    </div>
+
+
+</main>
+<footer th:replace="fragments/footer :: footer"></footer>
+<th:block th:replace="fragments/resources :: script"></th:block>
+</body>
+</html>
