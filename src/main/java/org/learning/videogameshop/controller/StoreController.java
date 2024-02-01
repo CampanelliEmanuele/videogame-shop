@@ -42,11 +42,6 @@ public class StoreController {
         return "store/list";
     }
 
-    @GetMapping("/purchase-success")
-    public String purchaseSuccess() {
-        return "store/purchase-success";
-    }
-
     @PostMapping("/purchase")
     public String makePurchase(@RequestParam Integer videogameId, @RequestParam int quantity) {
         Videogame videogame = videogameRepository.findById(videogameId)
@@ -59,7 +54,7 @@ public class StoreController {
 
         purchaseRepository.save(purchase);
 
-        return "redirect:/store/purchase-success";
+        return "redirect:/purchase-success";
     }
 
     private Map<String, Integer> getPurchaseMap(List<Purchase> lastMonthPurchases) {
