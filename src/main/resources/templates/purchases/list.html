@@ -11,10 +11,23 @@
 </header>
 
 <main>
+    <div th:if="${redirectMessage != null}"
+         class="alert alert-success alert-dismissible fade show custom-container mx-md-5 mb-5 mt-5"
+         role="alert">
+        <div th:text="${redirectMessage}"></div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
     <div class="custom-container mx-md-5 mb-5 mt-5">
         <section>
-            <h1 class="text-center pb-3 pt-3">Stock history</h1>
-
+            <div class="row justify-content-between">
+                <div class="col-4 align-items-center d-flex">
+                    <a sec:authorize="hasAuthority('ADMIN')" class="btn btn-primary" th:href="@{/purchases/create}">New purchase</a>
+                </div>
+                <div class="col-7">
+                    <h1 class=" pb-3 pt-3">Stock history</h1>
+                </div>
+            </div>
             <div class="alert alert-info" th:if="${purchaseList.size() == 0}">There are no recent purchase.</div>
             <div th:unless="${purchaseList.size() == 0}">
                 <table class="improved-table">
@@ -37,7 +50,7 @@
                             <td th:text="${purchase.quantity}"></td>
                             <td th:text="${purchase.getVideogame().getPrice()}"></td>
                             <td>
-                                <a class="btn btn-primary btn-sm" th:href="@{/purchase/edit/{id}(id=${purchase.id})}" role="button">
+                                <a class="btn btn-primary btn-sm" th:href="@{/purchases/edit/{id}(id=${purchase.id})}" role="button">
                                     <i class="fa-solid fa-pencil"></i>
                                 </a>
                             </td>
