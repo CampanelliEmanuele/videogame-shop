@@ -24,6 +24,8 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Purchase> purchaseList;
 
+    /* AUXILIARY METHODS */
+
     public boolean hasRole(String role) throws IllegalArgumentException {
         if (!role.equals("ADMIN") && !role.equals("USER")) {
             throw new IllegalArgumentException("User.hasRole() method has invalid String in input.");
@@ -35,6 +37,8 @@ public class User {
         }
         return false;
     }
+
+    /* GETTERS AND SETTERS */
 
     public Integer getId() {
         return id;
