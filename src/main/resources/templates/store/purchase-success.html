@@ -9,29 +9,49 @@
 <main>
     <div class="container mt-4">
         <div class="alert alert-success" role="alert">
-            Acquisto completato con successo! Grazie per il tuo ordine.
+            Acquisto completato con successo! Grazie per il tuo ordine. <span><img src="https://media2.giphy.com/media/RJaiws3GnVHcybdk0l/giphy.gif?cid=ecf05e47gcvljj98dymqlq1v139rtrc5szgjgvvt40nzu6ci&ep=v1_gifs_related&rid=giphy.gif&ct=s" alt="GIF di conferma" style="width: 50px; height: 45px;"></span>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-4">
+            <p>
+                <img th:src="${lastPurchase.videogame.photo}" alt="Immagine Videogioco" width="400">
+            </p>
+            </div>
+            <div class="col-8">
+                <table class="">
+                    <tbody>
+                    <tr th:if="${lastPurchase != null}">
+                        <td><strong>Prodotto:</strong></td>
+                        <td><span th:text="${lastPurchase.videogame.name}"></span></td>
+                    </tr>
+                    <tr th:if="${lastPurchase != null}">
+                        <td><strong>Data Acquisto:</strong></td>
+                        <td><span th:text="${lastPurchase.purchaseDate}"></span></td>
+                    </tr>
+                    <tr th:if="${lastPurchase != null}">
+                        <td><strong>Quantità:</strong></td>
+                        <td><span th:text="${lastPurchase.quantity}"></span></td>
+                    </tr>
+                    <tr th:if="${lastPurchase != null}">
+                        <td><strong>Totale Speso:</strong></td>
+                        <td><span th:text="${lastPurchase.videogame.price * lastPurchase.quantity} + '€'"></span></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
-    <div th:if="${lastPurchase != null}">
-        <p><strong>Prodotto:</strong> <span th:text="${lastPurchase.videogame.name}"></span></p>
-        <p><strong>Data Acquisto:</strong> <span th:text="${lastPurchase.purchaseDate}"></span></p>
-        <p><strong>Quantità:</strong> <span th:text="${lastPurchase.quantity}"></span></p>
-        <p><strong>Totale Speso:</strong> <span th:text="${lastPurchase.videogame.price * lastPurchase.quantity} + €"></span></p>
-    </div>
 
-    <p>
-        <strong>Immagine:</strong>
-        <img th:src="${lastPurchase.videogame.photo}" alt="Immagine Videogioco" width="100">
-    </p>
+
 
     <div th:if="${lastPurchase == null}">
         <p>Nessun acquisto effettuato.</p>
     </div>
 
-    <div class="container mt-4 text-center">
-        <img src="https://media2.giphy.com/media/RJaiws3GnVHcybdk0l/giphy.gif?cid=ecf05e47gcvljj98dymqlq1v139rtrc5szgjgvvt40nzu6ci&ep=v1_gifs_related&rid=giphy.gif&ct=s" alt="GIF di conferma">
-    </div>
+
 
     <div class="container">
         <a href="/store" class="btn btn-dark btn-sm mt-3 ml-2">
