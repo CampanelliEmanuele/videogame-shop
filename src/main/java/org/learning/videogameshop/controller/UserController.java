@@ -37,6 +37,9 @@ public class UserController {
     @Autowired
     private RoleRepository roleRepository;
 
+    // TODO: Can this be global??
+//    private BCryptPasswordEncoder bcpe = new BCryptPasswordEncoder();
+
     @GetMapping
     public String list(Model model) {
         List<User> userList = userRepository.findAll();
@@ -71,6 +74,8 @@ public class UserController {
         Optional<User> result = userRepository.findById(id);
         if (result.isPresent()) {
             User user = result.get();
+//            BCryptPasswordEncoder bcpe = new BCryptPasswordEncoder();
+//            user.setPassword("{bcrypt}" + bcpe.encode(user.getPassword()));
             model.addAttribute("user", user);
             return "register/users/show";
         } else {
@@ -106,7 +111,6 @@ public class UserController {
         // Assegnare il Set di ruoli all'utente
         userForm.setRoleSet(roles);
 
-//        userForm.setPassword("{noop}" + userForm.getPassword());
         User savedUser = userRepository.save(userForm);
         return "redirect:/register/users/show/" + savedUser.getId();
     }

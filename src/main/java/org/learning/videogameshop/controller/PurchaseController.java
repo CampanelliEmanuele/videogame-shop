@@ -52,7 +52,6 @@ public class PurchaseController {
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Purchase with id " + id + " not found");
         }
-
     }
 
     @GetMapping("/edit/{id}")

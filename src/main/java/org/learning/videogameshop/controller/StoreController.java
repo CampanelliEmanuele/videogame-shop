@@ -54,7 +54,7 @@ public class StoreController {
     }
 
     @PostMapping("/purchase")
-    public String makePurchase(@RequestParam Integer videogameId, @RequestParam int quantity, Authentication authentication) {
+    public String makePurchase(@RequestParam(required = true) Integer videogameId, @RequestParam(required = true) int quantity, Authentication authentication) {
         // Dall'oggetto authentication si estrae il campo principal
         Object principal = authentication.getPrincipal();
         // Si fa il cast da Object a DatabaseUserDetails (il quale contiene, tra le altre cose, l'id dello user)
