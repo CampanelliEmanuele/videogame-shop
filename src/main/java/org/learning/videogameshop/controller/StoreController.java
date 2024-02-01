@@ -54,7 +54,7 @@ public class StoreController {
 
         purchaseRepository.save(purchase);
 
-        return "redirect:/store";
+        return "redirect:/purchase-success";
     }
 
     private Map<String, Integer> getPurchaseMap(List<Purchase> lastMonthPurchases) {

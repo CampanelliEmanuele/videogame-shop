@@ -8,6 +8,7 @@
            background-attachment: fixed;
            margin: 0;
             transition: background 0.3s ease-out;
+            animation: fadeIn 0.8s ease-out;
        }
 
        header {
@@ -23,6 +24,11 @@
            min-height: 400px;
            margin-bottom: 20px;
         }
+
+        h1 {
+          /* effetto di animazione */
+            animation: slideIn 1.5s ease-out;
+         }
 
        /* Stile generico per le cards */
 
@@ -193,7 +199,7 @@
            color: white;
        }
 
-              /* Stile dark per il custom costainer*/
+       /* Stile dark per il custom container */
        body.dark-mode .custom-container {
              background: rgba(0, 0, 0, 0.6);
              color: #fff;
@@ -228,14 +234,65 @@
            background-color: #0056b3;
        }
 
-        footer {
-        margin-top: auto;
+       .card form button.btn-dark {
+           background-color: #343a40;
+           color: #fff;
+           padding: 6px 16px;
+       }
+
+       .card form button.btn-dark:hover {
+          background-color: #1d2124;
+       }
+
+        /* ---------- VARIE ED EVENTUALI ---------- */
+
+        /* H1 per lo Store */
+
+        .store-header {
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+            font-size: 2.5em;
+            letter-spacing: 3px;
         }
 
-        main {
-        min-height: 400px;
-        margin-bottom: 20px;
+        /* Colore coppe */
+
+       .gold {
+           color: #ffd700;
         }
+
+       .silver {
+           color: #c0c0c0;
+        }
+
+       .bronze {
+           color: #cd7f32;
+        }
+
+        /* CSS per animazione testo */
+
+       @keyframes slideIn {
+           from {
+               transform: translateY(-50px);
+               opacity: 0;
+           }
+           to {
+               transform: translateY(0);
+               opacity: 1;
+           }
+       }
+
+       @keyframes fadeIn {
+           from {
+               opacity: 0;
+           }
+           to {
+               opacity: 1;
+           }
+       }
+
+
+
+
 
 
 

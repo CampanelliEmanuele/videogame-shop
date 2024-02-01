@@ -11,8 +11,7 @@
 
 <main class="container-fluid">
     <div class="container">
-        <hr>
-        <a sec:authorize="hasAuthority('ADMIN')" class="btn btn-primary mb-2" th:href="@{/videogames/create}">New videogame</a>
+        <a sec:authorize="hasAuthority('ADMIN')" class="btn btn-dark mb-2" th:href="@{/videogames/create}">New videogame</a>
         <div class="alert alert-info" th:if="${videogameList.size() == 0}">The list is empty</div>
         <table th:unless="${videogameList.size() == 0}">
             <thead>
@@ -37,7 +36,7 @@
                 </td>
                 <td th:text="${videogame.getAvailableCopies()}"></td>
                 <td>
-                    <a sec:authorize="hasAuthority('ADMIN')" class="btn btn-primary btn-sm" th:href="@{/videogames/show/{id}(id=${videogame.id})}" role="button">Details</a>
+                    <a sec:authorize="hasAuthority('ADMIN')" class="btn btn-dark btn-sm" th:href="@{/videogames/show/{id}(id=${videogame.id})}" role="button">Details</a>
                 </td>
                 <td>
                     <a sec:authorize="hasAuthority('ADMIN')" class="btn btn-primary btn-sm" th:href="@{/videogames/edit/{id}(id=${videogame.id})}" role="button">
