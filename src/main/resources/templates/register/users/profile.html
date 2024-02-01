@@ -29,6 +29,47 @@
                 </div>
             </div>
         </div>
+        <div class="col-7">
+            <table class="table table-secondary mt-5" th:if="${user.purchaseList.size() > 0}">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Date Purchase</th>
+                    <th>Quantity</th>
+                    <th>Videogame</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="pur : ${user.purchaseList}">
+                    <td th:text="${pur.id}"></td>
+                    <td th:text="${pur.purchaseDate}"></td>
+                    <td th:text="${pur.quantity}"></td>
+                    <td th:text="${pur.videogame.name}"></td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" th:href="@{/purchases/show/{id}(id=${pur.id})}" role="button">Details</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" th:href="@{/purchases/edit/{id}(id=${pur.id})}" role="button">
+                            <i class="fa-solid fa-pencil"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <form
+                                th:action="@{/purchases/delete/{id}(id=${pur.id})}"
+                                method="post"
+                                onsubmit="return confirm('Are you sure?')"
+                        >
+                            <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </main>
 
