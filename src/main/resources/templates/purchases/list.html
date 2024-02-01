@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.springframework.org/security/tags">
+
+<head th:replace="fragments/resources :: head('Purchases history')"></head>
+
+<body>
+
+<header>
+    <nav th:replace="fragments/navbar :: topNavbar('stocks')"></nav>
+</header>
+
+<main>
+    <div class="custom-container mx-md-5 mb-5 mt-5">
+        <section>
+            <h1 class="text-center pb-3 pt-3">Stock history</h1>
+
+            <div class="alert alert-info" th:if="${purchaseList.size() == 0}">There are no recent purchase.</div>
+            <div th:unless="${purchaseList.size() == 0}">
+                <table class="improved-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Purchase date</th>
+                            <th scope="col">Buyer</th>
+                            <th scope="col">Purchased videogame</th>
+                            <th scope="col">Quantity purchased</th>
+                            <th scope="col">Price per item</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="purchase : ${purchaseList}">
+                            <th th:text="${purchase.purchaseDate}"></th>
+                            <th th:text="${purchase.getUser().getEmail()}"></th>
+                            <th th:text="${purchase.getVideogame().getName()}"></th>
+                            <th th:text="${purchase.quantity}"></th>
+                            <th th:text="${purchase.getVideogame().getPrice()}"></th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</main>
+
+<footer th:replace="fragments/footer :: footer"></footer>
+
+<th:block th:replace="fragments/resources :: script"></th:block>
+</body>
+</html>
