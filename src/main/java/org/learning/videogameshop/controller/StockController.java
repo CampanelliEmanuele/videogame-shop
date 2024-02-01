@@ -39,7 +39,6 @@ public class StockController {
         Optional<Stock> result = stockRepository.findById(id);
         if (result.isPresent()) {
             model.addAttribute("stock", result.get());
-
             return "stocks/show";
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Stock with id " + id + " not found");
@@ -47,7 +46,6 @@ public class StockController {
     }
 
     @GetMapping("/create")
-    //   public String create(Model model) {
     public String create(@RequestParam(name = "videogameId", required = false) Integer videogameId, Model model) {
         Stock stock = new Stock();
         stock.setPurchaseDate(LocalDate.now());
