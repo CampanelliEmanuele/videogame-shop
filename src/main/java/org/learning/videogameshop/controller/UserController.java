@@ -2,6 +2,7 @@ package org.learning.videogameshop.controller;
 
 import jakarta.validation.Valid;
 import org.learning.videogameshop.model.Purchase;
+import org.learning.videogameshop.model.Role;
 import org.learning.videogameshop.model.User;
 import org.learning.videogameshop.repository.RoleRepository;
 import org.learning.videogameshop.repository.UserRepository;
@@ -17,8 +18,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 // TODO: La creazione di un nuovo dato User deve avere obbligatoriamente almeno un ruolo selezionato!
 // Non deve essere possibile creare uno User senza aver inserito un ruolo.
@@ -91,6 +94,17 @@ public class UserController {
         }
         BCryptPasswordEncoder bcpe = new BCryptPasswordEncoder();
         userForm.setPassword("{bcrypt}" + bcpe.encode(userForm.getPassword()));
+
+        // Creare un oggetto Role con il nome "USER"
+        Role userRole = new Role();
+        userRole.setName("USER");
+
+        // Creare un Set<Role> contenente il ruolo "USER"
+        Set<Role> roles = new HashSet<>();
+        roles.add(userRole);
+
+        // Assegnare il Set di ruoli all'utente
+        userForm.setRoleSet(roles);
 
 //        userForm.setPassword("{noop}" + userForm.getPassword());
         User savedUser = userRepository.save(userForm);
