@@ -25,15 +25,30 @@
                             <th scope="col">Purchased videogame</th>
                             <th scope="col">Quantity purchased</th>
                             <th scope="col">Price per item</th>
+                            <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr th:each="purchase : ${purchaseList}">
-                            <th th:text="${purchase.purchaseDate}"></th>
-                            <th th:text="${purchase.getUser().getEmail()}"></th>
-                            <th th:text="${purchase.getVideogame().getName()}"></th>
-                            <th th:text="${purchase.quantity}"></th>
-                            <th th:text="${purchase.getVideogame().getPrice()}"></th>
+                            <td th:text="${purchase.purchaseDate}"></td>
+                            <td th:text="${purchase.getUser().getEmail()}"></td>
+                            <td th:text="${purchase.getVideogame().getName()}"></td>
+                            <td th:text="${purchase.quantity}"></td>
+                            <td th:text="${purchase.getVideogame().getPrice()}"></td>
+                            <td>
+                                <a class="btn btn-primary btn-sm" th:href="@{/purchase/edit/{id}(id=${purchase.id})}" role="button">
+                                    <i class="fa-solid fa-pencil"></i>
+                                </a>
+                            </td>
+                            <td><form
+                                    th:action="@{/purchases/delete/{id}(id=${purchase.id})}"
+                                    method="post"
+                                    onsubmit="return confirm('Are you sure?')"
+                            >
+                                <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </form></td>
                         </tr>
                     </tbody>
                 </table>
