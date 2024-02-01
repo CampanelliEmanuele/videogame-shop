@@ -234,6 +234,16 @@
            background-color: #0056b3;
        }
 
+       .card form button.btn-dark {
+           background-color: #343a40;
+           color: #fff;
+           padding: 6px 16px;
+       }
+
+       .card form button.btn-dark:hover {
+          background-color: #1d2124;
+       }
+
         /* ---------- VARIE ED EVENTUALI ---------- */
 
        .gold {
@@ -269,6 +279,8 @@
                opacity: 1;
            }
        }
+
+
 
 
 
