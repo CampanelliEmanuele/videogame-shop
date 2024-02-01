@@ -128,6 +128,10 @@ public class UserController {
     public String delete(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
         Optional<User> result = userRepository.findById(id);
         if (result.isPresent()) {
+            User userToDelete = result.get();
+            // set to null the purchase list
+            userToDelete.setPurchaseList(null);
+
             userRepository.deleteById(id);
             redirectAttributes.addFlashAttribute("redirectMessage",
                         "User " + result.get().getEmail() + " deleted!");

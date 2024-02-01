@@ -3,7 +3,6 @@ package org.learning.videogameshop.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "purchases")
@@ -20,6 +19,10 @@ public class Purchase {
     @ManyToOne()
     @JoinColumn(name = "videogame_id")
     private Videogame videogame;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = true)
+    private User user;
 
     public Integer getId() {
         return id;
@@ -53,7 +56,11 @@ public class Purchase {
         this.videogame = videogame;
     }
 
+    public User getUser() {
+        return user;
+    }
 
-
-
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
