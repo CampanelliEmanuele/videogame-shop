@@ -17,8 +17,8 @@
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
                     <a class="nav-link rounded-pill"
-                       th:classappend="${area == 'home' ? 'active' : ''}"
-                       th:href="@{/}">Home Page</a>
+                       th:classappend="${area == 'store' ? 'active' : ''}"
+                       th:href="@{/store}">Shop</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link rounded-pill"
@@ -29,53 +29,6 @@
                     <a class="nav-link rounded-pill"
                        th:classappend="${area == 'types' ? 'active' : ''}"
                        th:href="@{/types}">Categories</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link rounded-pill"
-                       th:classappend="${area == 'store' ? 'active' : ''}"
-                       th:href="@{/store}">Shop</a>
-                </li>
-
-                <!-- Admin only -->
-                <li class="nav-item">
-                    <a
-                            class="nav-link"
-                            th:classappend="${area == 'stocks' ? 'active' : ''}"
-                            th:href="@{/stocks}"
-                            sec:authorize="hasAuthority('ADMIN')"
-                    >Stocks</a>
-                </li>
-                <li class="nav-item">
-                    <a
-                            class="nav-link"
-                            th:classappend="${area == 'warehouse' ? 'active' : ''}"
-                            th:href="@{/warehouse}"
-                            sec:authorize="hasAuthority('ADMIN')"
-                    >Warehouse</a>
-                </li>
-                <li class="nav-item">
-                    <a
-                            class="nav-link"
-                            th:classappend="${area == 'limits' ? 'active' : ''}"
-                            th:href="@{/limits}"
-                            sec:authorize="hasAuthority('ADMIN')"
-                    >Limits</a>
-                </li>
-                <li class="nav-item">
-                    <a
-                            class="nav-link"
-                            th:classappend="${area == 'users' ? 'active' : ''}"
-                            th:href="@{/register/users}"
-                            sec:authorize="hasAuthority('ADMIN')"
-                    >Users</a>
-                </li>
-                <li class="nav-item">
-                    <a
-                            class="nav-link"
-                            th:classappend="${area == 'purchases' ? 'active' : ''}"
-                            th:href="@{/purchases/list}"
-                            sec:authorize="hasAuthority('ADMIN')"
-                    >Purchases</a>
                 </li>
             </ul>
         </div>
@@ -93,6 +46,7 @@
                         </i>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-dark  dropdown-menu-end">
+                        <li><a sec:authorize="hasAuthority('ADMIN')" class="dropdown-item" th:href="@{/register/admins/administration}">Administration</a></li>
                         <li><a sec:authorize="isAuthenticated()" class="dropdown-item" th:href="@{/register/users/profile}">See profile</a></li>
                         <li><a sec:authorize="!isAuthenticated()" class="dropdown-item" th:href="@{/login}">Login</a></li>
                         <li><a sec:authorize="isAuthenticated()" class="dropdown-item" th:href="@{/logout}">Logout</a></li>
@@ -101,24 +55,60 @@
                 </li>
             </ul>
         </div>
+
     </div>
 </nav>
 
 <!-- navbar per lo stocks -->
-<ul th:fragment="stockNavbar(area)" class="nav nav-tabs">
+<ul th:fragment="stockNavbar(area)" class="nav nav-tabs" sec:authorize="hasAuthority('ADMIN')" >
     <li class="nav-item">
         <a class="nav-link"
-           th:classappend="${area == 'list' ? 'active' : ''}"
-           th:href="@{/stocks}">List
-        </a>
+           th:classappend="${area == 'administration' ? 'active' : ''}"
+           th:href="@{/register/admins/administration}"
+        >Administration</a>
     </li>
     <li class="nav-item">
         <a class="nav-link"
-           th:classappend="${area == 'create' ? 'active' : ''}"
-           th:href="@{/stocks/create}">Create
-        </a>
+           th:classappend="${area == 'videogames' ? 'active' : ''}"
+           th:href="@{/videogames}"
+        >Videogames</a>
     </li>
-    <!-- Altri elementi per lo stock -->
+    <li class="nav-item">
+        <a class="nav-link"
+           th:classappend="${area == 'categories' ? 'active' : ''}"
+           th:href="@{/types}"
+        >Categories</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link"
+           th:classappend="${area == 'stocks' ? 'active' : ''}"
+           th:href="@{/stocks}"
+        >Stocks</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link"
+           th:classappend="${area == 'purchases' ? 'active' : ''}"
+           th:href="@{/purchases/list}"
+        >Purchases</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link"
+           th:classappend="${area == 'warehouse' ? 'active' : ''}"
+           th:href="@{/warehouse}"
+        >Warehouse</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link"
+           th:classappend="${area == 'limits' ? 'active' : ''}"
+           th:href="@{/limits}"
+        >Limits</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link"
+           th:classappend="${area == 'users' ? 'active' : ''}"
+           th:href="@{/register/users}"
+        >Users</a>
+    </li>
 </ul>
 
 </body>
