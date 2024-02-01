@@ -4,16 +4,22 @@
 <head th:replace="fragments/resources :: head('Users list')"></head>
 
 <body>
+
 <header>
     <nav th:replace="fragments/navbar :: topNavbar('users')"></nav>
 </header>
+
 <main class="container-fluid">
+
     <div class="container">
-        <h1>List of Users</h1>
+        <ul th:replace="fragments/navbar :: stockNavbar('users')"></ul>
+    </div>
+
+    <div class="container custom-container">
+        <h1 class="text-center">List of Users</h1>
         <hr>
-        <a class="btn btn-primary mb-2" th:href="@{/register/users/create}">New User</a>
         <div class="alert alert-info" th:if="${userList.size() == 0}">The list is empty</div>
-        <table class="table table-secondary" th:unless="${userList.size() == 0}">
+        <table class="table" th:unless="${userList.size() == 0}">
             <thead>
             <tr>
                 <th>First Name</th>
@@ -59,8 +65,14 @@
             </tr>
             </tbody>
         </table>
+        <a class="btn btn-primary mb-2" th:href="@{/register/users/create}">New user</a>
     </div>
+
 </main>
+
+<footer th:replace="fragments/footer :: footer"></footer>
+
 <th:block th:replace="fragments/resources :: script"></th:block>
+
 </body>
 </html>

@@ -11,6 +11,10 @@
 </header>
 
 <main>
+    <div class="container">
+        <ul th:replace="fragments/navbar :: stockNavbar('purchases')"></ul>
+    </div>
+
     <div th:if="${redirectMessage != null}"
          class="alert alert-success alert-dismissible fade show custom-container mx-md-5 mb-5 mt-5"
          role="alert">
@@ -20,7 +24,7 @@
 
     <div class="custom-container mx-md-5 mb-5 mt-5">
         <section>
-                <h1 class="text-center pb-3 pt-3">Purchases history</h1>
+            <h1 class="text-center pb-3 pt-3">Purchases history</h1>
             <div class="alert alert-info" th:if="${purchaseList.size() == 0}">There are no recent purchase.</div>
             <div th:unless="${purchaseList.size() == 0}">
                 <table class="improved-table">
@@ -69,5 +73,6 @@
 <footer th:replace="fragments/footer :: footer"></footer>
 
 <th:block th:replace="fragments/resources :: script"></th:block>
+
 </body>
 </html>

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.springframework.org/security/tags">
 
 <head th:replace="fragments/resources :: head('Edit a videogame')"></head>
-
 
 <body>
 
@@ -11,6 +11,7 @@
 </header>
 
 <main class="mx-3">
+
     <div class="container-fluid">
         <div class="row">
             <!-- Immagine -->
@@ -26,34 +27,28 @@
                 <p><b>Description:</b> <span th:text="${videogame.description}"></span></p>
                 <p><b>Price:</b> <span th:text="${videogame.price}"></span> €</p>
 
-                <h5>Types</h5>
+                <h5>Categories</h5>
 
-                <div class="alert alert-info" th:if="${videogame.getTypeList().size() == 0}">This game has no types</div>
+                <div class="alert alert-info" th:if="${videogame.getTypeList().size() == 0}">This game has no categories</div>
                 <div th:unless="${videogame.getTypeList().size() == 0}" th:each="type : ${videogame.getTypeList()}">
                     <p th:text="${type.name}"></p>
                 </div>
 
                 <div class="mt-3">
                     <a th:href="@{/videogames}" class="btn btn-dark">
-                        <i class="fa-solid fa-arrow-left"></i> Back to list
+                        <i class="fa-solid fa-arrow-left"></i> Back to shop
                     </a>
-                    <a class="btn btn-danger" th:href="@{/videogames/edit/{id}(id=${videogame.id})}" role="button">
+                    <a sec:authorize="hasAuthority('ADMIN')" class="btn btn-danger"
+                       th:href="@{/videogames/edit/{id}(id=${videogame.id})}" role="button">
                         <i class="fa-solid fa-pencil"></i> Edit
                     </a>
-                    <!--
-                    <form
-                        th:action="@{/videogames/delete/{id}(id=${videogame.id})}"
-                        method="post"
-                        onsubmit="return confirm('Are you sure?')"
-                    >
-                        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-trash-can"></i></button>
-                    </form>
-                    -->
                 </div>
             </div>
         </div>
     </div>
+
 </main>
+
 <footer th:replace="fragments/footer :: footer"></footer>
 
 <th:block th:replace="fragments/resources :: script"></th:block>

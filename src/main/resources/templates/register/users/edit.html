@@ -2,10 +2,13 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
       xmlns:sec="http://www.springframework.org/security/tags">
 <head th:replace="fragments/resources :: head('Users Edit')"></head>
+
 <body>
+
 <header>
     <nav th:replace="fragments/navbar :: topNavbar('users')"></nav>
 </header>
+
 <main class="container-fluid">
     <div class="container">
         <h1 class="text-center mb-4">Edit</h1>
@@ -78,6 +81,10 @@
         </form>
     </div>
 </main>
+
+<footer th:replace="fragments/footer :: footer"></footer>
+
 <th:block th:replace="fragments/resources :: script"></th:block>
+
 </body>
 </html>

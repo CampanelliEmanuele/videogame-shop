@@ -10,53 +10,49 @@
 </header>
 
 <main>
-
-    <div>
-        <div class="container">
-
-            <div class="mt-4 mb-4">
+    <div class="container">
+        <div class="mt-4 mb-4">
             <h1 class="text-center store-header">Classifica dei videogiochi più venduti nell'ultimo mese</h1>
+        </div>
+
+        <div class="row">
+            <!-- Immagine a sinistra -->
+            <div class="col-md-6">
+                <img src="https://freepngimg.com/download/anime/104923-sekiro-pic-download-hq.png" alt="Sekiro Character" style="max-width: 100%; height: auto;">
             </div>
 
-            <div class="row">
-                <!-- Immagine a sinistra -->
-                <div class="col-md-6">
-                    <img src="https://freepngimg.com/download/anime/104923-sekiro-pic-download-hq.png" alt="Sekiro Character" style="max-width: 100%; height: auto;">
-                </div>
-
-                <!-- Tabella a destra -->
-                <div class="col-md-6">
-                    <table>
-                        <!--
-                        <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Name</th>
-                            <th>Quantity</th>
-                        </tr>
-                        </thead> <-->
-                        <tbody>
-                        <tr th:each="purchase, rowStat : ${purchasesRanking}">
-                            <td th:text="${rowStat.index + 1}"></td>
-                            <td>
-                                <i th:switch="${rowStat.index}">
-                                    <i th:case="0" class="fas fa-trophy gold"></i>
-                                    <i th:case="1" class="fas fa-trophy silver"></i>
-                                    <i th:case="2" class="fas fa-trophy bronze"></i>
-                                    <i th:case="*"></i>
-                                </i>
-                                <span th:text="${purchase.key}"></span>
-                            </td>
-                            <td th:text="${purchase.value} + pz"></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
+            <!-- Tabella a destra -->
+            <div class="col-md-6">
+                <table>
+                    <!--
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Quantity</th>
+                    </tr>
+                    </thead> <-->
+                    <tbody>
+                    <tr th:each="purchase, rowStat : ${purchasesRanking}">
+                        <td th:text="${rowStat.index + 1}"></td>
+                        <td>
+                            <i th:switch="${rowStat.index}">
+                                <i th:case="0" class="fas fa-trophy gold"></i>
+                                <i th:case="1" class="fas fa-trophy silver"></i>
+                                <i th:case="2" class="fas fa-trophy bronze"></i>
+                                <i th:case="*"></i>
+                            </i>
+                            <span th:text="${purchase.key}"></span>
+                        </td>
+                        <td th:text="${purchase.value} + pz"></td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 
-<hr>
+    <hr>
 
     <div class="mt-4 mb-4">
         <h1 class="text-center store-header">Store</h1>
@@ -110,9 +106,8 @@
         </div>
     </div>
     <hr>
-</main>
 
-<!-- Footer -->
+</main>
 
 <footer th:replace="fragments/footer :: footer"></footer>
 

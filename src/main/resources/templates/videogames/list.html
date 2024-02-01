@@ -10,6 +10,11 @@
 </header>
 
 <main class="container-fluid">
+
+    <div class="container">
+        <ul th:replace="fragments/navbar :: stockNavbar('videogames')"></ul>
+    </div>
+
     <div class="container">
         <a sec:authorize="hasAuthority('ADMIN')" class="btn btn-dark mb-2" th:href="@{/videogames/create}">New videogame</a>
         <div class="alert alert-info" th:if="${videogameList.size() == 0}">The list is empty</div>
@@ -60,7 +65,9 @@
             </tbody>
         </table>
     </div>
+
 </main>
+
 <footer th:replace="fragments/footer :: footer"></footer>
 
 <th:block th:replace="fragments/resources :: script"></th:block>

@@ -11,9 +11,12 @@
 </header>
 
 <main>
-    <div class="custom-container mx-md-5 mb-5 mt-5">
-        <ul th:replace="fragments/navbar :: stockNavbar('list')"></ul>
 
+    <div class="container">
+        <ul th:replace="fragments/navbar :: stockNavbar('stocks')"></ul>
+    </div>
+
+    <div class="custom-container mx-md-5 mb-5 mt-5">
         <section>
             <h1 class="text-center pb-3 pt-3">Stock history</h1>
 
@@ -56,13 +59,14 @@
                     </tbody>
                 </table>
             </div>
-
         </section>
-
     </div>
+
 </main>
 
-<th:block th:replace="fragments/resources :: script"></th:block>
 <footer th:replace="fragments/footer :: footer"></footer>
+
+<th:block th:replace="fragments/resources :: script"></th:block>
+
 </body>
 </html>

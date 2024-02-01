@@ -11,8 +11,13 @@
 </header>
 
 <main>
+
+    <div class="container">
+        <ul th:replace="fragments/navbar :: stockNavbar('categories')"></ul>
+    </div>
+
     <div th:if="${redirectMessage != null}"
-         class="alert alert-success alert-dismissible fade show mt-4"
+         class="container alert alert-success alert-dismissible fade show mt-4"
          role="alert">
         <div th:text="${redirectMessage}"></div>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -52,11 +57,12 @@
             </tbody>
         </table>
     </div>
+
 </main>
 
 <footer th:replace="fragments/footer :: footer"></footer>
 
 <th:block th:replace="fragments/resources :: script"></th:block>
-</body>
 
+</body>
 </html>
