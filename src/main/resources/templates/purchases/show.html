@@ -14,7 +14,7 @@
     <div class="container">
         <h1><span th:text="${purchase.user.firstName}"></span> <span th:text="${purchase.user.lastName}"></span></h1>
         <h3>Il videogioco <span th:text="${purchase.videogame.name}"></span> è stato acquistato il giorno <span th:text="${purchase.purchaseDate}"></span>.  Quantità : <span th:text="${purchase.quantity}"></span></h3>
-        <a class="btn btn-primary me-3" th:href="@{/purchases}">Return Back</a>
+        <a class="btn btn-primary me-3" th:href="@{/purchases/list}">Return Back</a>
     </div>
 </main>
 <footer th:replace="fragments/footer :: footer"></footer>

@@ -36,9 +36,8 @@ public class PurchaseController {
         return "store/purchase-success";
     }
 
-    @GetMapping
+    @GetMapping("/list")
     public String list(Model model) {
-//        List<Purchase> purchaseList = purchaseRepository.findAll(Sort.by("purchaseDate").descending());
         List<Purchase> purchaseList = purchaseRepository.findAll(Sort.by("purchaseDate").descending());
         model.addAttribute("purchaseList", purchaseList);
         return "purchases/list";
@@ -108,7 +107,7 @@ public class PurchaseController {
                 return "purchases/edit";
             }
             Purchase savedRecipe = purchaseRepository.save(stockFrom);
-            return "redirect:/purchases";
+            return "redirect:/purchases/list";
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Purchase with id " + id + " not found");
         }
@@ -121,7 +120,7 @@ public class PurchaseController {
             purchaseRepository.deleteById(id);
             redirectAttributes.addFlashAttribute("redirectMessage",
                     "Purchase with id " + result.get().getId() + " deleted!");
-            return "redirect:/purchases";
+            return "redirect:/purchases/list";
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Purchase with id " + id + " not found");
         }
