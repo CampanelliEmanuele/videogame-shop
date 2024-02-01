@@ -42,6 +42,7 @@ public class StoreController {
         List<Type> types = typeRepository.findAll();
         model.addAttribute("videogames", videogames);
         model.addAttribute("types", types);
+
         LocalDate lastMonth = LocalDate.now().minusMonths(1);
         List<Purchase> lastMonthPurchases = purchaseRepository.findByPurchaseDateAfterOrderByPurchaseDateDesc(lastMonth);
         Map<String, Integer> purchaseMap = getPurchaseMap(lastMonthPurchases);
