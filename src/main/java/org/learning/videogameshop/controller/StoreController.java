@@ -46,6 +46,7 @@ public class StoreController {
     public String purchaseSuccess() {
         return "store/purchase-success";
     }
+
     @PostMapping("/purchase")
     public String makePurchase(@RequestParam Integer videogameId, @RequestParam int quantity) {
         Videogame videogame = videogameRepository.findById(videogameId)
