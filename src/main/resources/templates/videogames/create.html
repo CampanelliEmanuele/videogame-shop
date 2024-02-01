@@ -56,23 +56,10 @@
                 </div>
             </div>
 
-<!--            <div class="col-12">-->
-<!--                <h4>Categories</h4>-->
-<!--                <div class="d-flex justify-content-start">-->
-<!--                    <div class="px-2" th:each="type : ${typeList}">-->
-<!--                        <input type="checkbox" class="btn-check"-->
-<!--                               autocomplete="off"-->
-<!--                               th:id="|btn-check-outlined-${type.name}|"-->
-<!--                               th:field="*{typeList}"-->
-<!--                               th:value="${type.id}"-->
-<!--                        >-->
-<!--                        <label class="btn btn-outline-success"-->
-<!--                               th:for="|btn-check-outlined-${type.name}|"-->
-<!--                               th:text="${type.name}"-->
-<!--                        ></label>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
+<!--            <div th:replace="fragments/CRUD :: form-fields(label='Name',        type='text',    id='name',          field=${videogame.name},          fieldName='name')"></div>-->
+<!--            <div th:replace="fragments/CRUD :: form-fields(label='Description', type='text',    id='description',   field=${videogame.description},   fieldName='description')"></div>-->
+<!--            <div th:replace="fragments/CRUD :: form-fields(label='Price',       type='number',  id='price',         field=${videogame.price},         fieldName='price')"></div>-->
+<!--            <div th:replace="fragments/CRUD :: form-fields(label='Image URL',   type='text',    id='image',         field=${videogame.photo},         fieldName='photo')"></div>-->
 
             <div class="col-12">
                 <h4>Categories</h4>

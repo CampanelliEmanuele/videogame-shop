@@ -69,6 +69,14 @@
                             sec:authorize="hasAuthority('ADMIN')"
                     >Users</a>
                 </li>
+                <li class="nav-item">
+                    <a
+                            class="nav-link"
+                            th:classappend="${area == 'purchases' ? 'active' : ''}"
+                            th:href="@{/purchases}"
+                            sec:authorize="hasAuthority('ADMIN')"
+                    >Purchases</a>
+                </li>
             </ul>
         </div>
 
@@ -85,6 +93,7 @@
                         </i>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-dark  dropdown-menu-start">
+                        <li><a sec:authorize="isAuthenticated()" class="dropdown-item" th:href="@{/register/users/profile}">See profile</a></li>
                         <li><a sec:authorize="!isAuthenticated()" class="dropdown-item" th:href="@{/login}">Login</a></li>
                         <li><a sec:authorize="isAuthenticated()" class="dropdown-item" th:href="@{/logout}">Logout</a></li>
                         <li><a sec:authorize="!isAuthenticated()" class="dropdown-item" th:href="@{/register/users/create}">Register</a></li>

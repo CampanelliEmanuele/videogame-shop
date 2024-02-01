@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.springframework.org/security/tags">
+<head th:replace="fragments/resources :: head('Users list')"></head>
+
+<body>
+
+<header>
+    <nav th:replace="fragments/navbar :: topNavbar('users')"></nav>
+</header>
+
+<main class="container-fluid">
+    <div class="row">
+        <div class="col-4 ms-5">
+            <div class="card text-bg-dark mt-5 d-flex" style="max-width: 18rem;">
+                <div class="card-header"><h1><span th:text="${user.firstName}"></span> <span th:text="${user.lastName}"></span>
+                    <a class="btn btn-primary btn-sm" th:href="@{/register/users/edit/{id}(id=${user.id})}" role="button">
+                    <i class="fa-solid fa-pencil"></i>
+                </a></h1></div>
+                <div class="card-body">
+                    <h5 class="card-title">Dati Utente</h5>
+                    <p class="card-text" >Role : <span th:each="role, iterStat : ${user.getRoleSet}">
+                                                 <span th:text="${role.name}"></span>
+                                                 <span th:if="${not iterStat.last}"> / </span></span>
+                    </p>
+                    <p class="card-text" >Email : <span th:text="${user.email}"></span></p>
+                    <a class="btn btn-primary" sec:authorize="hasAuthority('ADMIN')" th:href="@{/register/users}">Return to users list</a>
+                    <a class="btn btn-primary" sec:authorize="!isAuthenticated()" th:href="@{/}">Return home page</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-7">
+            <table class="table table-secondary mt-5" th:if="${user.purchaseList.size() > 0}">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Date Purchase</th>
+                    <th>Quantity</th>
+                    <th>Videogame</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="pur : ${user.purchaseList}">
+                    <td th:text="${pur.id}"></td>
+                    <td th:text="${pur.purchaseDate}"></td>
+                    <td th:text="${pur.quantity}"></td>
+                    <td th:text="${pur.videogame.name}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+<th:block th:replace="fragments/resources :: script"></th:block>
+
+</body>
+</html>

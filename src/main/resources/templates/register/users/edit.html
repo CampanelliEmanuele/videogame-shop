@@ -56,7 +56,7 @@
                 </div>
             </div>
 
-            <div class="col-12">
+            <div sec:authorize="hasAuthority('ADMIN')" class="col-12">
                 <h4>Roles</h4>
                 <div th:if="${roleSet.size() == 0}">There are no available user roles.</div>
                 <div th:unless="${roleSet.size() == 0}" class="form-check" th:each="role : ${roleSet}">

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.springframework.org/security/tags">
+
+<head th:replace="fragments/resources :: head('Purchase Show')"></head>
+
+<body>
+
+<header>
+    <nav th:replace="fragments/navbar :: topNavbar('purchases')"></nav>
+</header>
+
+<main>
+    <div class="container">
+        <h1><span th:text="${purchase.user.firstName}"></span> <span th:text="${purchase.user.lastName}"></span></h1>
+        <h3>Il videogioco <span th:text="${purchase.videogame.name}"></span> è stato acquistato il giorno <span th:text="${purchase.purchaseDate}"></span>.  Quantità : <span th:text="${purchase.quantity}"></span></h3>
+        <a class="btn btn-primary me-3" th:href="@{/purchases}">Return Back</a>
+    </div>
+</main>
+<footer th:replace="fragments/footer :: footer"></footer>
+<th:block th:replace="fragments/resources :: script"></th:block>
+</body>
+</html>

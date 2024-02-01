@@ -21,17 +21,6 @@ INSERT INTO stocks (purchase_date, supplier_name, price, quantity, videogame_id)
 
 INSERT INTO limits (id, videogame_lower_bound, videogame_middle_bound) VALUES(1, 100, 200);
 
-INSERT INTO purchases (purchase_date, quantity, videogame_id) VALUES ('2024-01-29', 100, 3);
-INSERT INTO purchases (purchase_date, quantity, videogame_id) VALUES ('2024-01-28', 27, 1);
-INSERT INTO purchases (purchase_date, quantity, videogame_id) VALUES ('2023-12-27', 90, 2);
-INSERT INTO purchases (purchase_date, quantity, videogame_id) VALUES ('2024-01-26', 3, 3);
-INSERT INTO purchases (purchase_date, quantity, videogame_id) VALUES ('2023-12-25', 1, 1);
-INSERT INTO purchases (purchase_date, quantity, videogame_id) VALUES ('2024-01-24', 2, 2);
-INSERT INTO purchases (purchase_date, quantity, videogame_id) VALUES ('2023-12-23', 1, 3);
-INSERT INTO purchases (purchase_date, quantity, videogame_id) VALUES ('2024-01-22', 3, 1);
-INSERT INTO purchases (purchase_date, quantity, videogame_id) VALUES ('2023-12-21', 1, 2);
-
-
 INSERT INTO `role` (name) VALUES('ADMIN');
 INSERT INTO `role` (name) VALUES('USER');
 INSERT INTO `user` (email, first_name, last_name, password) VALUES('jane@email.com', 'Jane', 'Doe', '{noop}jane');
@@ -39,3 +28,13 @@ INSERT INTO `user` (email, first_name, last_name, password) VALUES('john@email.c
 INSERT INTO user_role_set (user_id, role_set_name) VALUES(1, 'ADMIN');
 INSERT INTO user_role_set (user_id, role_set_name) VALUES(1, 'USER');
 INSERT INTO user_role_set (user_id, role_set_name) VALUES(2, 'USER');
+
+INSERT INTO purchases (user_id, purchase_date, quantity, videogame_id) VALUES (1, '2024-01-29', 100, 3);
+INSERT INTO purchases (user_id, purchase_date, quantity, videogame_id) VALUES (1, '2024-01-28', 27, 1);
+INSERT INTO purchases (user_id, purchase_date, quantity, videogame_id) VALUES (1, '2023-12-27', 90, 2);
+INSERT INTO purchases (user_id, purchase_date, quantity, videogame_id) VALUES (2, '2024-01-26', 3, 3);
+INSERT INTO purchases (user_id, purchase_date, quantity, videogame_id) VALUES (2, '2023-12-25', 1, 1);
+INSERT INTO purchases (user_id, purchase_date, quantity, videogame_id) VALUES (2, '2024-01-24', 2, 2);
+INSERT INTO purchases (user_id, purchase_date, quantity, videogame_id) VALUES (2, '2023-12-23', 1, 3);
+INSERT INTO purchases (user_id, purchase_date, quantity, videogame_id) VALUES (2, '2024-01-22', 3, 1);
+INSERT INTO purchases (user_id, purchase_date, quantity, videogame_id) VALUES (1, '2023-12-21', 1, 2);

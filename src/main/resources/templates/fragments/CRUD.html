@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.springframework.org/security/tags">
+
+<body>
+
+<div th:fragment="form-fields(label, type, id, field, fieldName)" class="col-6">
+    <label class="form-label" th:for="${id}" th:text="${label}"></label>
+    <input class="form-control"
+           th:type="${type}"
+           th:id="${id}"
+           th:name="${fieldName}">
+    <div class="invalid-feedback" th:if="${#fields.hasErrors(fieldName)}">
+        <ul>
+            <li th:each="err : ${#fields.errors(fieldName)}" th:text="${err}"></li>
+        </ul>
+    </div>
+</div>
+
+</body>
+
+</html>
