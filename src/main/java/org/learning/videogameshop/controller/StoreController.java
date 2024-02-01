@@ -2,17 +2,24 @@ package org.learning.videogameshop.controller;
 
 import org.learning.videogameshop.model.Purchase;
 import org.learning.videogameshop.model.Type;
+import org.learning.videogameshop.model.User;
 import org.learning.videogameshop.model.Videogame;
 import org.learning.videogameshop.repository.PurchaseRepository;
 import org.learning.videogameshop.repository.TypeRepository;
+import org.learning.videogameshop.repository.UserRepository;
 import org.learning.videogameshop.repository.VideogameRepository;
+import org.learning.videogameshop.security.DatabaseUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.server.ResponseStatusException;
+
 import java.time.LocalDate;
 import java.util.*;
 
@@ -25,6 +32,9 @@ public class StoreController {
     private PurchaseRepository purchaseRepository;
     @Autowired
     private TypeRepository typeRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping
     public String viewGames(Model model) {
@@ -43,18 +53,31 @@ public class StoreController {
     }
 
     @PostMapping("/purchase")
-    public String makePurchase(@RequestParam Integer videogameId, @RequestParam int quantity) {
-        Videogame videogame = videogameRepository.findById(videogameId)
-                .orElseThrow(() -> new RuntimeException("Videogame not found with ID: " + videogameId));
+    public String makePurchase(@RequestParam Integer videogameId, @RequestParam int quantity, Authentication authentication) {
+        // Dall'oggetto authentication si estrae il campo principal
+        Object principal = authentication.getPrincipal();
+        // Si fa il cast da Object a DatabaseUserDetails (il quale contiene, tra le altre cose, l'id dello user)
+        DatabaseUserDetails dud = (DatabaseUserDetails) principal;
+        // Dal DatabaseUserDetails si estrae l'id dello user e lo si usa per ottenere l'oggetto User con quell'id
+        Integer userId = dud.getId();
+        Optional<User> result = userRepository.findById(userId);
 
-        Purchase purchase = new Purchase();
-        purchase.setVideogame(videogame);
-        purchase.setPurchaseDate(LocalDate.now());
-        purchase.setQuantity(quantity);
+        if (result.isPresent()) {
+            Videogame videogame = videogameRepository.findById(videogameId)
+                    .orElseThrow(() -> new RuntimeException("Videogame not found with ID: " + videogameId));
 
-        purchaseRepository.save(purchase);
+            Purchase purchase = new Purchase();
+            purchase.setUser(result.get());
+            purchase.setVideogame(videogame);
+            purchase.setPurchaseDate(LocalDate.now());
+            purchase.setQuantity(quantity);
 
-        return "redirect:/store";
+            purchaseRepository.save(purchase);
+
+            return "redirect:/store";
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User with id " + userId + " not found");
+        }
     }
 
     private Map<String, Integer> getPurchaseMap(List<Purchase> lastMonthPurchases) {
