@@ -249,9 +249,9 @@
         /* H1 per lo Store */
 
         .store-header {
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5); /* Ombra leggera più marcata */
-            font-size: 2.5em; /* Dimensione del carattere leggermente più grande */
-            letter-spacing: 2px; /* Spaziatura tra le lettere */
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+            font-size: 2.5em;
+            letter-spacing: 3px;
         }
 
         /* Colore coppe */
