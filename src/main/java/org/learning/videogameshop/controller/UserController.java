@@ -4,9 +4,10 @@ import jakarta.validation.Valid;
 import org.learning.videogameshop.model.User;
 import org.learning.videogameshop.repository.RoleRepository;
 import org.learning.videogameshop.repository.UserRepository;
+import org.learning.videogameshop.security.DatabaseUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +22,7 @@ import java.util.Optional;
 // TODO: La creazione di un nuovo dato User deve avere obbligatoriamente almeno un ruolo selezionato!
 // Non deve essere possibile creare uno User senza aver inserito un ruolo.
 
+// Soluzione: assegnare di default il ruolo 'USER'
 @Controller
 @RequestMapping("/register/users")
 public class UserController {
@@ -36,6 +38,28 @@ public class UserController {
         List<User> userList = userRepository.findAll();
         model.addAttribute("userList", userList);
         return "register/users/list";
+    }
+
+    @GetMapping("/profile")
+    public String profile(Authentication authentication, Model model) {
+        if (authentication == null)
+            return "redirect:/login";
+
+        // Dall'oggetto authentication si estrae il campo principal
+        Object principal = authentication.getPrincipal();
+        // Si fa il cast da Object a DatabaseUserDetails (il quale contiene, tra le altre cose, l'id dello user)
+        DatabaseUserDetails dud = (DatabaseUserDetails) principal;
+        // Dal DatabaseUserDetails si estrae l'id dello user e lo si usa per ottenere l'oggetto User con quell'id
+        Integer userId = dud.getId();
+        Optional<User> result = userRepository.findById(userId);
+
+        if (result.isPresent()) {
+            User user = result.get();
+
+            return "register/users/profile";
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User with id " + userId + " not found");
+        }
     }
 
     @GetMapping("/show/{id}")
