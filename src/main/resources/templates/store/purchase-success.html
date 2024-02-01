@@ -20,6 +20,11 @@
         <p><strong>Totale Speso:</strong> <span th:text="${lastPurchase.videogame.price * lastPurchase.quantity} + €"></span></p>
     </div>
 
+    <p>
+        <strong>Immagine:</strong>
+        <img th:src="${lastPurchase.videogame.photo}" alt="Immagine Videogioco" width="100">
+    </p>
+
     <div th:if="${lastPurchase == null}">
         <p>Nessun acquisto effettuato.</p>
     </div>
