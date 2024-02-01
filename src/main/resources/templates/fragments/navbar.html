@@ -73,7 +73,7 @@
                     <a
                             class="nav-link"
                             th:classappend="${area == 'purchases' ? 'active' : ''}"
-                            th:href="@{/purchases}"
+                            th:href="@{/purchases/list}"
                             sec:authorize="hasAuthority('ADMIN')"
                     >Purchases</a>
                 </li>
