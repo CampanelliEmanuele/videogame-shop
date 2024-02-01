@@ -55,37 +55,6 @@ public class PurchaseController {
 
     }
 
-//    @GetMapping("/create")
-//    //   public String create(Model model) {
-//    public String create(@RequestParam(name = "videogameId", required = false) Integer videogameId, Model model) {
-//        Purchase purchase = new Purchase();
-//        purchase.setPurchaseDate(LocalDate.now());
-//        model.addAttribute("purchase", purchase);
-//
-//        List<Videogame> videogameList = videogameRepository.findAll();
-//        model.addAttribute("videogameList", videogameList);
-//
-//        if (videogameId != null) {
-//            Optional<Videogame> videogame = videogameRepository.findById(videogameId);
-//            if (videogame.isPresent()) {
-//                //model.addAttribute("selectedVideogame", videogame.orElse(null));
-//                purchase.setStockedVideogame(videogame.orElse(null));
-//            }
-//        }
-//
-//        return "purchases/create";
-//    }
-//
-//    @PostMapping("/create")
-//    public String store(@Valid @ModelAttribute("purchase") Purchase purchaseForm, BindingResult bindingResult, Model model) {
-//        if (bindingResult.hasErrors()) {
-//            System.out.println(bindingResult.getAllErrors());
-//            return "purchases/create";
-//        }
-//        Purchase savedStock = purchaseRepository.save(purchaseForm);
-//        return "redirect:/purchases";
-//    }
-//
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable Integer id, Model model) {
         Optional<Purchase> result = purchaseRepository.findById(id);
