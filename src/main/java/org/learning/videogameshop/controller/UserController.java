@@ -55,7 +55,7 @@ public class UserController {
 
         if (result.isPresent()) {
             User user = result.get();
-
+            model.addAttribute("user", user);
             return "register/users/profile";
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User with id " + userId + " not found");
