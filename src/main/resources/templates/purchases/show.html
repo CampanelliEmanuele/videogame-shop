@@ -2,20 +2,19 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
       xmlns:sec="http://www.springframework.org/security/tags">
 
-<head th:replace="fragments/resources :: head('Stock Show')"></head>
+<head th:replace="fragments/resources :: head('Purchase Show')"></head>
 
 <body>
 
 <header>
-    <nav th:replace="fragments/navbar :: topNavbar('stocks')"></nav>
+    <nav th:replace="fragments/navbar :: topNavbar('purchases')"></nav>
 </header>
 
 <main>
     <div class="container">
-        <h1>Stock del  <span th:text="${stock.stockedVideogame.name}"></span></h1>
-        <h3>Lo stock del <span th:text="${stock.stockedVideogame.name}"></span> è stato effettuato il giorno <span th:text="${stock.purchaseDate}"></span> presso il fornitore : <span th:text="${stock.supplierName}"></span></h3>
-        <a class="btn btn-primary me-3" th:href="@{/stocks}">Return Back</a>
-        <a class="btn btn-primary" th:href="@{/stocks/create(videogameId=${stock.stockedVideogame.id})}">Refueling</a>
+        <h1><span th:text="${purchase.user.firstName}"></span> <span th:text="${purchase.user.lastName}"></span></h1>
+        <h3>Il videogioco <span th:text="${purchase.videogame.name}"></span> è stato acquistato il giorno <span th:text="${purchase.purchaseDate}"></span>.  Quantità : <span th:text="${purchase.quantity}"></span></h3>
+        <a class="btn btn-primary me-3" th:href="@{/purchases}">Return Back</a>
     </div>
 </main>
 <footer th:replace="fragments/footer :: footer"></footer>
