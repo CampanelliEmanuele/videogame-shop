@@ -1,6 +1,7 @@
 package org.learning.videogameshop.controller;
 
 import jakarta.validation.Valid;
+import org.learning.videogameshop.model.Purchase;
 import org.learning.videogameshop.model.User;
 import org.learning.videogameshop.repository.RoleRepository;
 import org.learning.videogameshop.repository.UserRepository;
@@ -129,9 +130,11 @@ public class UserController {
         Optional<User> result = userRepository.findById(id);
         if (result.isPresent()) {
             User userToDelete = result.get();
-            // set to null the purchase list
-            userToDelete.setPurchaseList(null);
-
+            // Affinché il dato purchase persista anche dopo l'eliminazione di un dato user, si setta a null qualsiasi purchase collegato all'id dell'user eliminato
+            List<Purchase> purchaseList = userToDelete.getPurchaseList();
+            for (Purchase purchase : purchaseList) {
+                purchase.setUser(null);
+            }
             userRepository.deleteById(id);
             redirectAttributes.addFlashAttribute("redirectMessage",
                         "User " + result.get().getEmail() + " deleted!");

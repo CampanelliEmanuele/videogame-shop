@@ -20,7 +20,7 @@
 
     <div class="custom-container mx-md-5 mb-5 mt-5">
         <section>
-            <div class="row justify-content-around">
+            <div class="row justify-content-between">
                 <div class="col-4 align-items-center d-flex">
                     <a sec:authorize="hasAuthority('ADMIN')" class="btn btn-primary" th:href="@{/purchases/create}">New purchase</a>
                 </div>
@@ -45,10 +45,13 @@
                     <tbody>
                         <tr th:each="purchase : ${purchaseList}">
                             <td th:text="${purchase.purchaseDate}"></td>
-                            <td th:text="${purchase.getUser().getEmail()}"></td>
+                            <td>
+                                <span th:if="${!(purchase.getUser() == null)}" th:text="${purchase.getUser().getEmail()}"></span>
+                                <b><span th:unless="${!(purchase.getUser() == null)}" th:text="|Deleted user|"></span></b>
+                            </td>
                             <td th:text="${purchase.getVideogame().getName()}"></td>
                             <td th:text="${purchase.quantity}"></td>
-                            <td th:text="${purchase.getVideogame().getPrice()}"></td>
+                            <td><span th:text="${purchase.getVideogame().getPrice()}"></span>€</td>
                             <td>
                                 <a class="btn btn-primary btn-sm" th:href="@{/purchases/edit/{id}(id=${purchase.id})}" role="button">
                                     <i class="fa-solid fa-pencil"></i>
