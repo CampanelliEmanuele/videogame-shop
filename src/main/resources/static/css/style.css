@@ -248,8 +248,8 @@
            color: #cd7f32;
         }
 
-
         /* CSS per animazione testo */
+
        @keyframes slideIn {
            from {
                transform: translateY(-50px);
