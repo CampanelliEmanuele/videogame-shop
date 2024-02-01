@@ -92,7 +92,7 @@
                             <span sec:authorize="isAuthenticated()" sec:authentication="name"></span>
                         </i>
                     </button>
-                    <ul class="dropdown-menu dropdown-menu-dark  dropdown-menu-start">
+                    <ul class="dropdown-menu dropdown-menu-dark  dropdown-menu-end">
                         <li><a sec:authorize="isAuthenticated()" class="dropdown-item" th:href="@{/register/users/profile}">See profile</a></li>
                         <li><a sec:authorize="!isAuthenticated()" class="dropdown-item" th:href="@{/login}">Login</a></li>
                         <li><a sec:authorize="isAuthenticated()" class="dropdown-item" th:href="@{/logout}">Logout</a></li>
