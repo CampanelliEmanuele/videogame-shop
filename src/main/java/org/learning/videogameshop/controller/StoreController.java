@@ -74,7 +74,7 @@ public class StoreController {
 
             purchaseRepository.save(purchase);
 
-            return "redirect:/purchase-success";
+            return "redirect:/purchases";
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User with id " + userId + " not found");
         }
