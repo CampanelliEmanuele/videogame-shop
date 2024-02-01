@@ -50,8 +50,10 @@
                             method="post"
                             onsubmit="return confirm('Are you sure?')"
                     >
-                        <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i>
-                        </button>
+                        <button th:if="${videogame.getAvailableCopies() <= 0}" type="submit"
+                                class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></button>
+                        <button th:unless="${videogame.getAvailableCopies() <= 0}" type="submit"
+                                class="btn btn-danger btn-sm" disabled><i class="fa-solid fa-trash-can"></i></button>
                     </form>
                 </td>
             </tr>
