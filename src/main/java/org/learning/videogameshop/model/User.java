@@ -1,13 +1,8 @@
 package org.learning.videogameshop.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
 
-import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -23,9 +18,11 @@ public class User {
 
     // TODO: add registration date
 //    private LocalDate registrationDate;
-
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roleSet;
+
+    @OneToMany(mappedBy = "user")
+    private List<Purchase> purchaseList;
 
     public boolean hasRole(String role) throws IllegalArgumentException {
         if (!role.equals("ADMIN") && !role.equals("USER")) {
@@ -85,5 +82,13 @@ public class User {
 
     public void setRoleSet(Set<Role> roleSet) {
         this.roleSet = roleSet;
+    }
+
+    public List<Purchase> getPurchaseList() {
+        return purchaseList;
+    }
+
+    public void setPurchaseList(List<Purchase> purchaseList) {
+        this.purchaseList = purchaseList;
     }
 }

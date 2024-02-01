@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.springframework.org/security/tags">
+
+<head th:replace="fragments/resources :: head('Purchases history')"></head>
+
+<body>
+
+<header>
+    <nav th:replace="fragments/navbar :: topNavbar('purchases')"></nav>
+</header>
+
+<main>
+    <div th:if="${redirectMessage != null}"
+         class="alert alert-success alert-dismissible fade show custom-container mx-md-5 mb-5 mt-5"
+         role="alert">
+        <div th:text="${redirectMessage}"></div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <div class="custom-container mx-md-5 mb-5 mt-5">
+        <section>
+            <div class="row justify-content-between">
+                <div class="col-4 align-items-center d-flex">
+                    <a sec:authorize="hasAuthority('ADMIN')" class="btn btn-primary" th:href="@{/purchases/create}">New purchase</a>
+                </div>
+                <div class="col-7">
+                    <h1 class=" pb-3 pt-3">Purchases history</h1>
+                </div>
+            </div>
+            <div class="alert alert-info" th:if="${purchaseList.size() == 0}">There are no recent purchase.</div>
+            <div th:unless="${purchaseList.size() == 0}">
+                <table class="improved-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Purchase date</th>
+                            <th scope="col">Buyer</th>
+                            <th scope="col">Purchased videogame</th>
+                            <th scope="col">Quantity purchased</th>
+                            <th scope="col">Price per item</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="purchase : ${purchaseList}">
+                            <td th:text="${purchase.purchaseDate}"></td>
+                            <td>
+                                <span th:if="${!(purchase.getUser() == null)}" th:text="${purchase.getUser().getEmail()}"></span>
+                                <b><span th:unless="${!(purchase.getUser() == null)}" th:text="|Deleted user|"></span></b>
+                            </td>
+                            <td th:text="${purchase.getVideogame().getName()}"></td>
+                            <td th:text="${purchase.quantity}"></td>
+                            <td><span th:text="${purchase.getVideogame().getPrice()}"></span>€</td>
+                            <td>
+                                <a class="btn btn-primary btn-sm" th:href="@{/purchases/edit/{id}(id=${purchase.id})}" role="button">
+                                    <i class="fa-solid fa-pencil"></i>
+                                </a>
+                            </td>
+                            <td><form
+                                    th:action="@{/purchases/delete/{id}(id=${purchase.id})}"
+                                    method="post"
+                                    onsubmit="return confirm('Are you sure?')"
+                            >
+                                <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </form></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</main>
+
+<footer th:replace="fragments/footer :: footer"></footer>
+
+<th:block th:replace="fragments/resources :: script"></th:block>
+</body>
+</html>
