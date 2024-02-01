@@ -13,6 +13,17 @@
         </div>
     </div>
 
+    <div th:if="${lastPurchase != null}">
+        <p><strong>Prodotto:</strong> <span th:text="${lastPurchase.videogame.name}"></span></p>
+        <p><strong>Data Acquisto:</strong> <span th:text="${lastPurchase.purchaseDate}"></span></p>
+        <p><strong>Quantità:</strong> <span th:text="${lastPurchase.quantity}"></span></p>
+        <p><strong>Totale Speso:</strong> <span th:text="${lastPurchase.videogame.price * lastPurchase.quantity} + €"></span></p>
+    </div>
+
+    <div th:if="${lastPurchase == null}">
+        <p>Nessun acquisto effettuato.</p>
+    </div>
+
     <div class="container mt-4 text-center">
         <img src="https://media2.giphy.com/media/RJaiws3GnVHcybdk0l/giphy.gif?cid=ecf05e47gcvljj98dymqlq1v139rtrc5szgjgvvt40nzu6ci&ep=v1_gifs_related&rid=giphy.gif&ct=s" alt="GIF di conferma">
     </div>
@@ -25,6 +36,8 @@
 
 
 </main>
+
+
 <footer th:replace="fragments/footer :: footer"></footer>
 <th:block th:replace="fragments/resources :: script"></th:block>
 </body>
