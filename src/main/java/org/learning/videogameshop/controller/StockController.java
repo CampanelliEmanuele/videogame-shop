@@ -33,6 +33,19 @@ public class StockController {
         model.addAttribute("stockList", stockList);
         return "stocks/list";
     }
+
+    @GetMapping("/show/{id}")
+    public String show(@PathVariable Integer id, Model model) {
+        Optional<Stock> result = stockRepository.findById(id);
+        if (result.isPresent()) {
+            model.addAttribute("stock", result.get());
+
+            return "stocks/show";
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Stock with id " + id + " not found");
+        }
+    }
+
     @GetMapping("/create")
     //   public String create(Model model) {
     public String create(@RequestParam(name = "videogameId", required = false) Integer videogameId, Model model) {
@@ -102,19 +115,6 @@ public class StockController {
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Stock with id " + id + " not found");
         }
-    }
-
-    @GetMapping("/show/{id}")
-    public String show(@PathVariable Integer id, Model model) {
-        Optional<Stock> result = stockRepository.findById(id);
-        if (result.isPresent()) {
-            model.addAttribute("stock", result.get());
-
-            return "stocks/show";
-        } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Stock with id " + id + " not found");
-        }
-
     }
 
 }
