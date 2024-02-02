@@ -7,35 +7,24 @@ import jakarta.validation.constraints.NotNull;
 @Table(name = "limits")
 public class Limit {
     @Id
-    private Integer id;
+    private String name;
 
     @NotNull
-    private Integer videogameLowerBound;
+    private Integer value;
 
-    @NotNull
-    private Integer videogameMiddleBound;
-
-    public Integer getId() {
-        return id;
+    public String getName() {
+        return name;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Integer getVideogameLowerBound() {
-        return videogameLowerBound;
+    public Integer getValue() {
+        return value;
     }
 
-    public void setVideogameLowerBound(Integer videogameLowerBound) {
-        this.videogameLowerBound = videogameLowerBound;
-    }
-
-    public Integer getVideogameMiddleBound() {
-        return videogameMiddleBound;
-    }
-
-    public void setVideogameMiddleBound(Integer videogameMiddleBound) {
-        this.videogameMiddleBound = videogameMiddleBound;
+    public void setValue(Integer value) {
+        this.value = value;
     }
 }

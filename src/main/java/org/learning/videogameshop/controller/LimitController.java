@@ -2,7 +2,6 @@ package org.learning.videogameshop.controller;
 
 import jakarta.validation.Valid;
 import org.learning.videogameshop.model.Limit;
-import org.learning.videogameshop.model.Videogame;
 import org.learning.videogameshop.repository.LimitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -19,20 +19,17 @@ import java.util.Optional;
 public class LimitController {
     @Autowired
     LimitRepository limitRepository;
+
     @GetMapping
-    public String show(Model model) {
-        Optional<Limit> result = limitRepository.findById(1);
-        if (result.isPresent()) {
-            model.addAttribute("limit", result.get());
-            return "limits/show";
-        } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Limit not found");
-        }
+    public String list(Model model) {
+        List<Limit> limitList = limitRepository.findAll();
+        model.addAttribute("limitList", limitList);
+        return "limits/list";
     }
 
-    @GetMapping("/edit/{id}")
-    public String edit(@PathVariable Integer id, Model model) {
-        Optional<Limit> result = limitRepository.findById(1);
+    @GetMapping("/edit/{name}")
+    public String edit(@PathVariable String name, Model model) {
+        Optional<Limit> result = limitRepository.findById(name);
         if (result.isPresent()) {
             model.addAttribute("limit", result.get());
             return "limits/edit";
@@ -41,8 +38,8 @@ public class LimitController {
         }
     }
 
-    @PostMapping("/edit/{id}")
-    public String update(@PathVariable Integer id, @Valid @ModelAttribute("limit") Limit formLimit,
+    @PostMapping("/edit/{name}")
+    public String update(@PathVariable String name, @Valid @ModelAttribute("limit") Limit formLimit,
                          BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "limits/edit";
