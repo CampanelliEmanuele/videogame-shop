@@ -19,7 +19,7 @@
         <h1 class="text-center">List of Users</h1>
         <hr>
         <div class="alert alert-info" th:if="${userList.size() == 0}">The list is empty</div>
-        <table class="table" th:unless="${userList.size() == 0}">
+        <table th:unless="${userList.size() == 0}">
             <thead>
             <tr>
                 <th>First Name</th>
