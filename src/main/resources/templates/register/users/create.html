@@ -16,27 +16,15 @@
             <div class="card-body py-5">
                 <h1 class="text-center">Register</h1>
                 <form class="d-flex flex-column align-items-center" th:action="@{/register/users/create}" method="post">
-                    <div class="form-group">
-                        <label class="form-label" for="firstName">First Name</label>:
-                        <input type="text" id="firstName" name="firstName" autofocus="autofocus" class="form-control"/> <br />
-                        <!--<div class="invalid-feedback" th:if="${#fields.hasErrors('firstName')}">
-                            <ul>
-                                <li th:each="err : ${#fields.errors('firstName')}" th:text="${err}"></li>
-                            </ul>
-                        </div>-->
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" for="lastName">Last Name</label>:
-                        <input type="text" id="lastName" name="lastName" autofocus="autofocus" class="form-control"/> <br />
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" for="email">Email</label>:
-                        <input type="email" id="email" name="email" autofocus="autofocus" class="form-control"/> <br />
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" for="password">Password</label>:
-                        <input type="password" id="password" name="password" class="form-control"/> <br />
-                    </div>
+
+                    <div th:replace="fragments/CRUD :: form-floating(inputType='text', inputID='firstName', inputName='firstName', placeholder='First name', labelText='First name')"></div>
+
+                    <div th:replace="fragments/CRUD :: form-floating(inputType='text', inputID='lastName', inputName='lastName', placeholder='Last name', labelText='Last name')"></div>
+
+                    <div th:replace="fragments/CRUD :: form-floating(inputType='text', inputID='email', inputName='email', placeholder='Email', labelText='Email')"></div>
+
+                    <div th:replace="fragments/CRUD :: form-floating(inputType='password', inputID='password', inputName='password', placeholder='Password', labelText='Password')"></div>
+
                     <div sec:authorize="hasAuthority('ADMIN')">
                         <h4>Roles</h4>
                         <div th:if="${roleSet.size() == 0}">There are no available user roles.</div>

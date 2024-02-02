@@ -17,6 +17,11 @@
     </div>
 </div>
 
+<div th:fragment="form-floating(inputType, inputID, inputName, placeholder, labelText)" class="form-group form-floating">
+    <input th:type="${inputType}" th:id="${inputID}" th:name="${inputName}" autofocus="autofocus" class="form-control" th:placeholder="${placeholder}"/> <br />
+    <label class="form-label" th:for="${inputID}" th:text="${labelText}"></label>
+</div>
+
 </body>
 
 </html>
