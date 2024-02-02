@@ -10,76 +10,73 @@
     <nav th:replace="fragments/navbar :: topNavbar('users')"></nav>
 </header>
 
-<main>
+<main class="container-fluid mt-5">
     <div class="container">
-        <h1 class="text-center mb-4">Create a new account</h1>
-        <form class="row gy-3"
-              id="create-user"
-              method="post"
-              th:object="${user}"
-              th:action="@{/register/users/create}"
-        >
-            <div class="col-6">
-                <label class="form-label" for="firstName">First name</label>
-                <input class="form-control" type="text" id="firstName" th:field="*{firstName}" th:errorClass="is-invalid">
-                <div class="invalid-feedback" th:if="${#fields.hasErrors('firstName')}">
-                    <ul>
-                        <li th:each="err : ${#fields.errors('firstName')}" th:text="${err}"></li>
-                    </ul>
-                </div>
+        <div class="card-login border-0 bg-transparent rounded-lg">
+            <div class="card-body py-5">
+                <h1 class="text-center">Register</h1>
+                <form class="d-flex flex-column align-items-center" th:action="@{/register/users/create}" method="post">
+                    <div class="form-group">
+                        <label class="form-label" for="firstName">First Name</label>:
+                        <input type="text" id="firstName" name="firstName" autofocus="autofocus" class="form-control"/> <br />
+                        <!--<div class="invalid-feedback" th:if="${#fields.hasErrors('firstName')}">
+                            <ul>
+                                <li th:each="err : ${#fields.errors('firstName')}" th:text="${err}"></li>
+                            </ul>
+                        </div>-->
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="lastName">Last Name</label>:
+                        <input type="text" id="lastName" name="lastName" autofocus="autofocus" class="form-control"/> <br />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="email">Email</label>:
+                        <input type="email" id="email" name="email" autofocus="autofocus" class="form-control"/> <br />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="password">Password</label>:
+                        <input type="password" id="password" name="password" class="form-control"/> <br />
+                    </div>
+                    <div sec:authorize="hasAuthority('ADMIN')">
+                        <h4>Roles</h4>
+                        <div th:if="${roleSet.size() == 0}">There are no available user roles.</div>
+                        <div th:unless="${roleSet.size() == 0}" class="form-check btn-group" th:each="role : ${roleSet}">
+                            <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    th:value="${role.name}"
+                                    th:id="|role-${role.name}|"
+                                    th:field="*{roleSet}"
+                            >
+                            <label class="form-check-label" th:for="|role-${role.name}|" th:text="${role.name}"></label>
+                        </div>
+                    </div>
+                    <!-- TODO : checkbox orizzontali a forma di bottone -->
+                    <!--<div sec:authorize="hasAuthority('ADMIN')">
+                        <h6 class="text-center">Roles</h6>
+                        <div th:if="${roleSet.size() == 0}">There are no available user roles.</div>
+                        <div th:unless="${roleSet.size() == 0}" class="btn-group" role="group">
+                            <input
+                                    th:each="role : ${roleSet}"
+                                    type="checkbox"
+                                    class="btn-check"
+                                    role="group"
+                                    th:value="${role.name}"
+                                    th:id="|role-${role.name}|"
+                                    th:field="*{roleSet}">
+                            <label th:each="role : ${roleSet}"
+                                   class="btn btn-outline-primary form-check-label"
+                                   th:for="|role-${role.name}|"
+                                   th:text="${role.name}"></label>
+                        </div>
+                    </div>-->
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                            <a class="btn btn-danger" th:href="@{/register/users}">Cancel</a>
+                        </div>
+                </form>
             </div>
-
-            <div class="col-6">
-                <label class="form-label" for="lastName">Last name</label>
-                <input class="form-control" type="text" id="lastName" th:field="*{lastName}" th:errorClass="is-invalid">
-                <div class="invalid-feedback" th:if="${#fields.hasErrors('lastName')}">
-                    <ul>
-                        <li th:each="err : ${#fields.errors('lastName')}" th:text="${err}"></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="col-6">
-                <label class="form-label" for="email">Email address</label>
-                <input class="form-control" type="email" id="email" aria-describedby="emailHelp" th:field="*{email}" th:errorClass="is-invalid">
-                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                <div class="invalid-feedback" th:if="${#fields.hasErrors('email')}">
-                    <ul>
-                        <li th:each="err : ${#fields.errors('email')}" th:text="${err}"></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="col-6">
-                <label for="password" class="form-label">Password</label>
-                <input required type="password" class="form-control" id="password" th:field="*{password}" th:errorClass="is-invalid">
-                <div class="invalid-feedback" th:if="${#fields.hasErrors('password')}">
-                    <ul>
-                        <li th:each="err : ${#fields.errors('password')}" th:text="${err}"></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="col-12" sec:authorize="hasAuthority('ADMIN')">
-                <h4>Roles</h4>
-                <div th:if="${roleSet.size() == 0}">There are no available user roles.</div>
-                <div th:unless="${roleSet.size() == 0}" class="form-check" th:each="role : ${roleSet}">
-                    <input
-                            class="form-check-input"
-                            type="checkbox"
-                            th:value="${role.name}"
-                            th:id="|role-${role.name}|"
-                            th:field="*{roleSet}"
-                    >
-                    <label class="form-check-label" th:for="|role-${role.name}|" th:text="${role.name}"></label>
-                </div>
-            </div>
-
-            <div class="col-12">
-                <button type="submit" class="btn btn-dark">Save</button>
-                <a class="btn btn-danger" th:href="@{/register/users}">Cancel</a>
-            </div>
-        </form>
+        </div>
     </div>
 </main>
 
