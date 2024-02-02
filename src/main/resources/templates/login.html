@@ -14,17 +14,18 @@
     <div class="container">
         <div class="card-login border-0 bg-transparent rounded-lg">
             <div class="card-body py-5">
-                <h1 class="text-center">Login page</h1>
+                <h1 class="text-center">Login</h1>
                 <p th:if="${loginError}" class="error text-center">Wrong user or password</p>
                 <form class="d-flex flex-column align-items-center" th:action="@{/login}" method="post">
-                    <div class="form-group">
-                        <label for="username">Email</label>:
-                        <input type="text" id="username" name="username" autofocus="autofocus" class="form-control"/> <br />
+                    <div class="form-group form-floating">
+                        <input type="text" id="username" name="username" autofocus="autofocus" class="form-control" placeholder="Email"/> <br />
+                        <label for="username">Email</label>
                     </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>:
-                        <input type="password" id="password" name="password" class="form-control"/> <br />
+                    <div class="form-group form-floating">
+                        <input type="password" id="password" name="password" class="form-control" placeholder="Password"/> <br />
+                        <label for="password">Password</label>
                     </div>
+                    <p><small>Don't have an account? <a th:href="@{/register/users/create}" class="link-info">Register here</a></small></p>
                     <input type="submit" value="Log in" class="btn btn-primary"/>
                 </form>
             </div>
@@ -32,6 +33,9 @@
     </div>
 </main>
 
+<!--<footer th:replace="fragments/footer :: footer"></footer>-->
+
 <th:block th:replace="fragments/resources :: script"></th:block>
+
 </body>
 </html>
