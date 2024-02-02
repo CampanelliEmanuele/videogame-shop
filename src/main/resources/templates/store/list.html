@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.springframework.org/security/tags">
 
 <head th:replace="fragments/resources :: head('Store')"></head>
 
@@ -70,11 +71,14 @@
                         <h5 th:text="${videogame.name}" class="card-title"></h5>
                         <p th:text="'Prezzo: ' + ${videogame.price} + €" class="card-text"></p>
                         <div class="mt-auto mb-2">
-                            <form th:action="@{'/store/purchase?videogameId=' + ${videogame.id}}" method="post" class="d-flex align-items-center">
+                            <form sec:authorize="isAuthenticated()" th:action="@{'/store/purchase?videogameId=' + ${videogame.id}}" method="post" class="d-flex align-items-center">
                                 <label for="quantity" class="mr-2">Quantità:</label>
                                 <input type="number" name="quantity" value="1" min="1" required id="quantity" class="form-control form-control-sm mr-2" />
                                 <button type="submit" class="btn btn-sm btn-dark">Acquista</button>
                             </form>
+                            <a sec:authorize="!isAuthenticated()" th:href="@{/login}" class="btn btn-primary btn-sm">
+                                Login per acquistare
+                            </a>
                         </div>
                     </div>
                 </div>
