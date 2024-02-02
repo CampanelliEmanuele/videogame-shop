@@ -60,7 +60,7 @@
 </nav>
 
 <!-- navbar per lo stocks -->
-<ul th:fragment="stockNavbar(area)" class="nav nav-tabs" sec:authorize="hasAuthority('ADMIN')" >
+<ul th:fragment="stockNavbar(area)" class="nav nav-tabs custom-navbar" sec:authorize="hasAuthority('ADMIN')" >
     <li class="nav-item">
         <a class="nav-link"
            th:classappend="${area == 'administration' ? 'active' : ''}"
