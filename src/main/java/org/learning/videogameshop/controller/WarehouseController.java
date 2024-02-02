@@ -9,11 +9,12 @@ import org.learning.videogameshop.repository.PurchaseRepository;
 import org.learning.videogameshop.repository.StockRepository;
 import org.learning.videogameshop.repository.VideogameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,25 +28,29 @@ public class WarehouseController {
     private PurchaseRepository purchaseRepository;
     @Autowired
     private StockRepository stockRepository;
-
     @Autowired
     private LimitRepository limitRepository;
 
     @GetMapping
     public String show(Model model) {
+        Optional<Limit> refuelNeededUpperLimit = limitRepository.findById("refuelNeededUpperLimit");
+        Optional<Limit> refuelNeededLowerLimit = limitRepository.findById("refuelNeededLowerLimit");
+
+        if (refuelNeededUpperLimit.isEmpty())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Limit refuelNeededUpperLimit not found");
+        if (refuelNeededLowerLimit.isEmpty())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Limit refuelNeededLowerLimit not found");
+
         List<Videogame> videogameList = videogameRepository.findAll();
         List<Purchase> purchaseList = purchaseRepository.findAll();
         List<Stock> stockList = stockRepository.findAll();
-        Optional<Limit> limit = limitRepository.findById(1);
-
 
         model.addAttribute("videogameList", videogameList);
         model.addAttribute("purchaseList", purchaseList);
         model.addAttribute("stockList", stockList);
+        model.addAttribute("refuelNeededUpperLimit", refuelNeededUpperLimit.get());
+        model.addAttribute("refuelNeededLowerLimit", refuelNeededLowerLimit.get());
 
-        if (limit.isPresent()) {
-            model.addAttribute("limitsTable", limit.get());
-        }
         return "warehouse/show";
     }
 }

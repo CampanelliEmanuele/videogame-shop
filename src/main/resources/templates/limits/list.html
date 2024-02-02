@@ -30,13 +30,13 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td th:text="${limit.id}"></td>
-                <td th:text="${limit.videogameLowerBound}"></td>
-                <td th:text="${limit.videogameMiddleBound}"></td>
+            <tr th:each="limit : ${limitList}">
+                <td>Numero della colonna</td>
+                <td th:text="${limit.name}"></td>
+                <td th:text="${limit.value}"></td>
                 <td>
-                    <a class="btn btn-primary" th:href="@{/limits/edit/{id}(id=${limit.id})}" role="button">
-                        <i class="fa-solid fa-pencil"></i>  Edit
+                    <a class="btn btn-primary" th:href="@{/limits/edit/{id}(id=${limit.name})}" role="button">
+                        <i class="fa-solid fa-pencil"></i> Edit
                     </a>
                 </td>
             </tr>

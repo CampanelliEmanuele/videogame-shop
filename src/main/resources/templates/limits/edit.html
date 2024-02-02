@@ -14,36 +14,25 @@
     <div class="container custom-container">
         <h1 class="text-center">Edit the limit</h1>
         <hr>
-        <form
-                id="edit-type"
-                method="post"
-                th:object="${limit}"
-                th:action="@{/limits/edit/{id}(id=${limit.id})}"
-                class="row g-3 justify-content-center"
+
+        <form class="row gy-3"
+              id="edit-limit"
+              method="post"
+              th:object="${limit}"
+              th:action="@{/limits/edit/{id}(id=${limit.name})}"
         >
-            <div class="col-4">
-                <label for="videogameLowerBound" class="form-label">Lower Bound</label>
-                <input class="form-control" type="number" id="videogameLowerBound" th:field="*{videogameLowerBound}" th:errorClass="is-invalid">
-                <div class="invalid-feedback" th:if="${#fields.hasErrors('videogameLowerBound')}">
+            <div class="col-6">
+                <label class="form-label" for="value">Price</label>
+                <input required type="number" class="form-control" id="value" th:field="*{value}" th:errorClass="is-invalid">
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('value')}">
                     <ul>
-                        <li th:each="err : ${#fields.errors('videogameLowerBound')}" th:text="${err}"></li>
+                        <li th:each="err : ${#fields.errors('value')}" th:text="${err}"></li>
                     </ul>
                 </div>
             </div>
-            <div class="col-4">
-                <label for="videogameMiddleBound" class="form-label">Middle Bound</label>
-                <input class="form-control" type="number" id="videogameMiddleBound" th:field="*{videogameMiddleBound}" th:errorClass="is-invalid">
-                <div class="invalid-feedback" th:if="${#fields.hasErrors('videogameMiddleBound')}">
-                    <ul>
-                        <li th:each="err : ${#fields.errors('videogameMiddleBound')}" th:text="${err}"></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="row justify-content-center mt-5">
-                <div class="col-8">
-                    <button class="btn btn-primary me-2" type="submit">Save</button>
-                    <a class="btn btn-danger" th:href="@{/limits}"><span><i class="fa-solid fa-arrow-left"></i></span> Return back</a>
-                </div>
+            <div class="col-8">
+                <button class="btn btn-primary" type="submit">Save</button>
+                <a class="btn btn-danger" th:href="@{/limits}"><span><i class="fa-solid fa-arrow-left"></i></span> Return back</a>
             </div>
         </form>
     </div>
