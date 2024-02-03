@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/resources :: head('Purchase Success')"></head>
@@ -7,63 +6,68 @@
     <nav th:replace="fragments/navbar :: topNavbar('store')"></nav>
 </header>
 <main>
-    <div class="container mt-4">
-        <div class="alert alert-success" role="alert">
-            Acquisto completato con successo! Grazie per il tuo ordine. <span><img src="https://media2.giphy.com/media/RJaiws3GnVHcybdk0l/giphy.gif?cid=ecf05e47gcvljj98dymqlq1v139rtrc5szgjgvvt40nzu6ci&ep=v1_gifs_related&rid=giphy.gif&ct=s" alt="GIF di conferma" style="width: 50px; height: 45px;"></span>
-        </div>
-    </div>
     <div class="container">
-        <div class="row">
+        <div class="row mt-3">
+            <!-- Immagine del videogioco acquistato -->
             <div class="col-4">
-            <p>
                 <img th:src="${lastPurchase.videogame.photo}" alt="Immagine Videogioco" width="400">
-            </p>
             </div>
-            <div class="col-8">
-                <table class="">
-                    <tbody>
-                    <tr th:if="${lastPurchase != null}">
-                        <td><strong>Prodotto:</strong></td>
-                        <td><span th:text="${lastPurchase.videogame.name}"></span></td>
-                    </tr>
-                    <tr th:if="${lastPurchase != null}">
-                        <td><strong>Data Acquisto:</strong></td>
-                        <td><span th:text="${lastPurchase.purchaseDate}"></span></td>
-                    </tr>
-                    <tr th:if="${lastPurchase != null}">
-                        <td><strong>Quantità:</strong></td>
-                        <td><span th:text="${lastPurchase.quantity}"></span></td>
-                    </tr>
-                    <tr th:if="${lastPurchase != null}">
-                        <td><strong>Totale Speso:</strong></td>
-                        <td><span th:text="${lastPurchase.videogame.price * lastPurchase.quantity} + '€'"></span></td>
-                    </tr>
-                    </tbody>
-                </table>
+
+            <div class="col-1"></div>
+
+            <!-- Riepilogo dati dell'acquistato -->
+            <div class="col d-flex flex-column justify-content-between">
+                <!-- Tabella di riepilogo acquisto -->
+                <div>
+                    <h2>Riepilogo acquisto:</h2>
+                    <table>
+                        <tbody>
+                        <tr th:if="${lastPurchase != null}">
+                            <td><strong>Prodotto:</strong></td>
+                            <td><span th:text="${lastPurchase.videogame.name}"></span></td>
+                        </tr>
+                        <tr th:if="${lastPurchase != null}">
+                            <td><strong>Data Acquisto:</strong></td>
+                            <td><span th:text="${lastPurchase.purchaseDate}"></span></td>
+                        </tr>
+                        <tr th:if="${lastPurchase != null}">
+                            <td><strong>Quantità:</strong></td>
+                            <td><span th:text="${lastPurchase.quantity}"></span></td>
+                        </tr>
+                        <tr th:if="${lastPurchase != null}">
+                            <td><strong>Totale Speso:</strong></td>
+                            <td><span th:text="${lastPurchase.videogame.price * lastPurchase.quantity} + '€'"></span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Messagio di conferma dell'acquisto -->
+                <div class="alert alert-success" role="alert">
+                    Acquisto completato con successo! Grazie per il tuo ordine. <span><img
+                        src="https://media2.giphy.com/media/RJaiws3GnVHcybdk0l/giphy.gif?cid=ecf05e47gcvljj98dymqlq1v139rtrc5szgjgvvt40nzu6ci&ep=v1_gifs_related&rid=giphy.gif&ct=s"
+                        alt="GIF di conferma" style="width: 50px; height: 45px;"></span>
+                </div>
+
+                <div class="mt-auto d-flex justify-content-end me-2 mb-2">
+                    <a th:href="@{/store}" class="btn btn-dark btn-sm">
+                        <i class="fa-solid fa-arrow-left"></i> Torna al negozio
+                    </a>
+                </div>
             </div>
         </div>
     </div>
-
-
-
 
     <div th:if="${lastPurchase == null}">
         <p>Nessun acquisto effettuato.</p>
     </div>
 
-
-
-    <div class="container">
-        <a href="/store" class="btn btn-dark btn-sm mt-3 ml-2">
-            <i class="fa-solid fa-arrow-left"></i> Torna al negozio
-        </a>
-    </div>
-
-
 </main>
 
-
 <footer th:replace="fragments/footer :: footer"></footer>
+
 <th:block th:replace="fragments/resources :: script"></th:block>
+
 </body>
 </html>
