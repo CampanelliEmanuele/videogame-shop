@@ -14,7 +14,7 @@
     <div class="container">
         <div class="card-login border-0 bg-transparent rounded-lg">
             <div class="card-body py-5">
-                <h1 class="text-center">Register</h1>
+                <h1 class="text-center pb-3">Register</h1>
                 <form class="d-flex flex-column align-items-center" th:action="@{/register/users/create}" method="post">
 
                     <div th:replace="fragments/CRUD :: form-floating(inputType='text', inputID='firstName', inputName='firstName', placeholder='First name', labelText='First name')"></div>
@@ -58,8 +58,8 @@
                                    th:text="${role.name}"></label>
                         </div>
                     </div>-->
-                    <p><small>Already have an account? <a th:href="@{/register}" class="link-info">Log in</a></small></p>
-                    <div class="text-center mt-4">
+                    <p><small>Already have an account? <a th:href="@{/login}" class="link-info">Log in</a></small></p>
+                    <div class="text-center">
                         <button type="submit" class="btn btn-primary">Save</button>
                     </div>
                 </form>
