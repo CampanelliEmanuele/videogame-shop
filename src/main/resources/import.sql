@@ -38,6 +38,7 @@ INSERT INTO stocks (purchase_date, supplier_name, price, quantity, videogame_id)
 INSERT INTO stocks (purchase_date, supplier_name, price, quantity, videogame_id) VALUES ('2024-01-18', 'Supplier H', 25.25, 11, 13);
 INSERT INTO stocks (purchase_date, supplier_name, price, quantity, videogame_id) VALUES ('2024-01-17', 'Supplier I', 21.99, 19, 13);
 INSERT INTO stocks (purchase_date, supplier_name, price, quantity, videogame_id) VALUES ('2024-01-24', 'Supplier B', 19.99, 20, 11);
+INSERT INTO stocks (purchase_date, supplier_name, price, quantity, videogame_id) VALUES ('2024-01-24', 'Supplier B', 59.99, 20, 16);
 INSERT INTO stocks (purchase_date, supplier_name, price, quantity, videogame_id) VALUES ('2024-01-20', 'Supplier F', 27.99, 16, 8);
 INSERT INTO stocks (purchase_date, supplier_name, price, quantity, videogame_id) VALUES ('2024-01-19', 'Supplier G', 26.99, 15, 9);
 INSERT INTO stocks (purchase_date, supplier_name, price, quantity, videogame_id) VALUES ('2024-01-25', 'Supplier A', 30.99, 11, 7);
@@ -49,6 +50,13 @@ INSERT INTO stocks (purchase_date, supplier_name, price, quantity, videogame_id)
 INSERT INTO stocks (purchase_date, supplier_name, price, quantity, videogame_id) VALUES ('2024-01-24', 'Supplier B', 29.99, 15, 7);
 INSERT INTO stocks (purchase_date, supplier_name, price, quantity, videogame_id) VALUES ('2024-01-20', 'Supplier F', 37.99, 18, 4);
 INSERT INTO stocks (purchase_date, supplier_name, price, quantity, videogame_id) VALUES ('2024-01-19', 'Supplier G', 36.99, 16, 5);
+INSERT INTO stocks (purchase_date, supplier_name, price, quantity, videogame_id) VALUES ('2024-01-19', 'Supplier G', 36.99, 16, 1);
+INSERT INTO stocks (purchase_date, supplier_name, price, quantity, videogame_id) VALUES ('2024-01-24', 'Supplier B', 29.99, 15, 2);
+INSERT INTO stocks (purchase_date, supplier_name, price, quantity, videogame_id) VALUES ('2024-01-23', 'Supplier C', 21.49, 20, 3);
+INSERT INTO stocks (purchase_date, supplier_name, price, quantity, videogame_id) VALUES ('2024-01-18', 'Supplier H', 25.25, 23, 6);
+INSERT INTO stocks (purchase_date, supplier_name, price, quantity, videogame_id) VALUES ('2024-01-25', 'Supplier A', 20.99, 19, 10);
+INSERT INTO stocks (purchase_date, supplier_name, price, quantity, videogame_id) VALUES ('2024-01-25', 'Supplier A', 22.49, 25, 14);
+INSERT INTO stocks (purchase_date, supplier_name, price, quantity, videogame_id) VALUES ('2024-01-20', 'Supplier F', 17.99, 14, 15);
 
 INSERT INTO `role` (name) VALUES('ADMIN');
 INSERT INTO `role` (name) VALUES('USER');
