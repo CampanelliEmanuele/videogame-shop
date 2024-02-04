@@ -4,112 +4,126 @@
 
 <body>
 <nav th:fragment="topNavbar(area)" class="navbar navbar-expand-lg navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand mx-auto" th:href="@{/}">
-            <img src="https://media.tenor.com/2a4KThsm4YgAAAAi/gaming-game-on.gif" alt="Game Store Logo" style="max-width: 60px;">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#top-navbar" aria-controls="navbarNav" aria-expanded="false"
-                aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="top-navbar">
-            <ul class="navbar-nav mx-auto">
-                <li class="nav-item">
-                    <a class="nav-link rounded-pill"
-                       th:classappend="${area == 'store' ? 'active' : ''}"
-                       th:href="@{/store}">Shop</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link rounded-pill"
-                       th:classappend="${area == 'videogames' ? 'active' : ''}"
-                       th:href="@{/videogames}">Videogames</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link rounded-pill"
-                       th:classappend="${area == 'types' ? 'active' : ''}"
-                       th:href="@{/types}">Categories</a>
-                </li>
-            </ul>
+    <div class="container-fluid row">
+        <div class="col">
+            <a class="navbar-brand mx-auto" th:href="@{/}">
+                <img src="https://media.tenor.com/2a4KThsm4YgAAAAi/gaming-game-on.gif" alt="Game Store Logo"
+                     style="max-width: 60px;" class="d-inline-block align-text-middle"> GameJAITA99
+            </a>
         </div>
 
-        <!-- Background switch -->
-        <button id="toggle-mode-btn" onclick="toggleMode()" title="Cambia modalità">☀️</button>
+        <div class="col">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#top-navbar" aria-controls="navbarNav" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <!-- Login -->
-        <div class="navbar-nav ml-auto">
-            <ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                    <button class="btn btn-dark dropdown-toggle border-0" style="background-color: transparent;" data-bs-toggle="dropdown" aria-expanded="false">
+            <div class="collapse navbar-collapse" id="top-navbar">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link rounded-pill"
+                           th:classappend="${area == 'store' ? 'active' : ''}"
+                           th:href="@{/store}">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link rounded-pill"
+                           th:classappend="${area == 'videogames' ? 'active' : ''}"
+                           th:href="@{/videogames}">Videogames</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link rounded-pill"
+                           th:classappend="${area == 'types' ? 'active' : ''}"
+                           th:href="@{/types}">Categories</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class=" d-flex justify-contend-end">
+                <!-- Background switch -->
+                <div class="ms-auto">
+                    <button id="toggle-mode-btn" onclick="toggleMode()" title="Cambia modalità">☀️</button>
+                </div>
+
+                <!-- Login -->
+                <div class="dropdown">
+                    <button class="btn btn-dark dropdown-toggle border-0" style="background-color: transparent;"
+                            data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fa-solid fa-user">
                             <span sec:authorize="isAuthenticated()" sec:authentication="name"></span>
                         </i>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-dark  dropdown-menu-end">
-                        <li><a sec:authorize="hasAuthority('ADMIN')" class="dropdown-item" th:href="@{/register/admins/administration}">Administration</a></li>
-                        <li><a sec:authorize="isAuthenticated()" class="dropdown-item" th:href="@{/register/users/profile}">See profile</a></li>
-                        <li><a sec:authorize="!isAuthenticated()" class="dropdown-item" th:href="@{/login}">Login</a></li>
-                        <li><a sec:authorize="isAuthenticated()" class="dropdown-item" th:href="@{/logout}">Logout</a></li>
-                        <li><a sec:authorize="!isAuthenticated()" class="dropdown-item" th:href="@{/register/users/create}">Register</a></li>
+                        <li><a sec:authorize="hasAuthority('ADMIN')" class="dropdown-item"
+                               th:href="@{/register/admins/administration}">Administration</a></li>
+                        <li><a sec:authorize="isAuthenticated()" class="dropdown-item"
+                               th:href="@{/register/users/profile}">See profile</a></li>
+                        <li><a sec:authorize="!isAuthenticated()" class="dropdown-item"
+                               th:href="@{/login}">Login</a>
+                        </li>
+                        <li><a sec:authorize="isAuthenticated()" class="dropdown-item"
+                               th:href="@{/logout}">Logout</a>
+                        </li>
+                        <li><a sec:authorize="!isAuthenticated()" class="dropdown-item"
+                               th:href="@{/register/users/create}">Register</a></li>
                     </ul>
-                </li>
-            </ul>
+                </div>
+            </div>
         </div>
 
     </div>
 </nav>
 
 <!-- navbar per lo stocks -->
-<ul th:fragment="stockNavbar(area)" class="nav nav-tabs" sec:authorize="hasAuthority('ADMIN')" >
-    <li class="nav-item">
-        <a class="nav-link"
-           th:classappend="${area == 'administration' ? 'active' : ''}"
-           th:href="@{/register/admins/administration}"
-        >Administration</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link"
-           th:classappend="${area == 'videogames' ? 'active' : ''}"
-           th:href="@{/videogames}"
-        >Videogames</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link"
-           th:classappend="${area == 'categories' ? 'active' : ''}"
-           th:href="@{/types}"
-        >Categories</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link"
-           th:classappend="${area == 'stocks' ? 'active' : ''}"
-           th:href="@{/stocks}"
-        >Stocks</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link"
-           th:classappend="${area == 'purchases' ? 'active' : ''}"
-           th:href="@{/purchases/list}"
-        >Purchases</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link"
-           th:classappend="${area == 'warehouse' ? 'active' : ''}"
-           th:href="@{/warehouse}"
-        >Warehouse</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link"
-           th:classappend="${area == 'limits' ? 'active' : ''}"
-           th:href="@{/limits}"
-        >Limits</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link"
-           th:classappend="${area == 'users' ? 'active' : ''}"
-           th:href="@{/register/users}"
-        >Users</a>
-    </li>
-</ul>
+<div
+        th:fragment="adminNavbar(area)"
+        sec:authorize="hasAuthority('ADMIN')"
+        class="nav nav-tabs justify-content-center custom-navbar"
+>
+    <a
+            th:classappend="${area == 'administration' ? 'active' : ''}"
+            th:href="@{/register/admins/administration}"
+            class="nav-link border mx-1">Administration
+    </a>
+    <a
+            th:classappend="${area == 'videogames' ? 'active' : ''}"
+            th:href="@{/videogames}"
+            class="nav-link border mx-1">Videogames
+    </a>
+    <a
+            th:classappend="${area == 'categories' ? 'active' : ''}"
+            th:href="@{/types}"
+            class="nav-link border mx-1">Categories
+    </a>
+    <a
+            th:classappend="${area == 'stocks' ? 'active' : ''}"
+            th:href="@{/stocks}"
+            class="nav-link border mx-1">Stocks
+    </a>
+    <a
+            th:classappend="${area == 'purchases' ? 'active' : ''}"
+            th:href="@{/purchases/list}"
+            class="nav-link border mx-1">Purchases
+    </a>
+    <a
+            th:classappend="${area == 'warehouse' ? 'active' : ''}"
+            th:href="@{/warehouse}"
+            class="nav-link border mx-1">Warehouse
+    </a>
+    <a
+            th:classappend="${area == 'limits' ? 'active' : ''}"
+            th:href="@{/limits}"
+            class="nav-link border mx-1">Limits
+    </a>
+    <a
+            th:classappend="${area == 'users' ? 'active' : ''}"
+            th:href="@{/register/users}"
+            class="nav-link border mx-1">Users
+    </a>
+
+</div>
 
 </body>
 

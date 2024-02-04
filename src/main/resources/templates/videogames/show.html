@@ -35,12 +35,16 @@
                 </div>
 
                 <div class="mt-3">
-                    <a th:href="@{/videogames}" class="btn btn-dark">
+                    <a th:href="@{/store}" class="btn btn-dark" role="button">
                         <i class="fa-solid fa-arrow-left"></i> Back to shop
                     </a>
                     <a sec:authorize="hasAuthority('ADMIN')" class="btn btn-danger"
                        th:href="@{/videogames/edit/{id}(id=${videogame.id})}" role="button">
                         <i class="fa-solid fa-pencil"></i> Edit
+                    </a>
+                    <a class="btn btn-dark"
+                       th:href="@{/videogames}" role="button">
+                        <i class="fa-solid fa-arrow-right"></i> Go to Videogames
                     </a>
                 </div>
             </div>

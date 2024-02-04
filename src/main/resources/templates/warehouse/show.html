@@ -22,7 +22,7 @@
 <main class="container-fluid">
 
     <div class="container">
-        <ul th:replace="fragments/navbar :: stockNavbar('warehouse')"></ul>
+        <ul th:replace="fragments/navbar :: adminNavbar('warehouse')"></ul>
     </div>
 
     <div class="container custom-container my-4">
@@ -46,9 +46,9 @@
                     <td th:text="${videogame.id}"></td>
                     <td th:text="${videogame.name}"></td>
                     <td th:text="${videogame.getAvailableCopies()}"></td>
-                    <td th:style="${(videogame.getAvailableCopies() < limitsTable.getVideogameLowerBound() ? 'color : #c90a1d' : '')
-                                     + (videogame.getAvailableCopies() >= limitsTable.getVideogameLowerBound() && videogame.getAvailableCopies() <= limitsTable.getVideogameMiddleBound() ? 'color : #d4aa22' : '')
-                                     + (videogame.getAvailableCopies() > limitsTable.getVideogameMiddleBound() ? 'color : #0cc20f' : '')}">
+                    <td th:style="${(videogame.getAvailableCopies() < refuelNeededLowerLimit.value ? 'color : #c90a1d' : '')
+                                     + (videogame.getAvailableCopies() >= refuelNeededLowerLimit.value && videogame.getAvailableCopies() < refuelNeededUpperLimit.value ? 'color : #d4aa22' : '')
+                                     + (videogame.getAvailableCopies() >= refuelNeededUpperLimit.value ? 'color : #0cc20f' : '')}">
                         <i class="fa-solid fa-circle"></i></td>
                     <td>
                         <a class="btn btn-dark" th:href="@{/stocks/create(videogameId=${videogame.id})}">Refueling</a>

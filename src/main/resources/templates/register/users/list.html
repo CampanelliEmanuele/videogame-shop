@@ -12,12 +12,11 @@
 <main class="container-fluid">
 
     <div class="container">
-        <ul th:replace="fragments/navbar :: stockNavbar('users')"></ul>
+        <ul th:replace="fragments/navbar :: adminNavbar('users')"></ul>
     </div>
 
     <div class="container custom-container">
         <h1 class="text-center">List of Users</h1>
-        <hr>
         <div class="alert alert-info" th:if="${userList.size() == 0}">The list is empty</div>
         <table th:unless="${userList.size() == 0}">
             <thead>
@@ -45,7 +44,7 @@
                     </span>
                 </td>
                 <td>
-                    <a class="btn btn-primary btn-sm" th:href="@{/register/users/show/{id}(id=${user.id})}" role="button">Details</a>
+                    <a class="btn btn-dark btn-sm" th:href="@{/register/users/show/{id}(id=${user.id})}" role="button">Details</a>
                 </td>
                 <td>
                     <a class="btn btn-primary btn-sm" th:href="@{/register/users/edit/{id}(id=${user.id})}" role="button">
@@ -65,7 +64,7 @@
             </tr>
             </tbody>
         </table>
-        <a class="btn btn-primary mb-2" th:href="@{/register/users/create}">New user</a>
+        <a class="btn btn-dark mb-2" th:href="@{/register/users/create}">New user</a>
     </div>
 
 </main>

@@ -12,33 +12,36 @@
 
 <main class="container-fluid mt-5">
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card-login border-0 bg-transparent rounded-lg">
-                    <div class="card-login">
-                        <div class="card-body py-5">
-                            <h1 class="text-center">Login page</h1>
-                            <p th:if="${loginError}" class="error">Wrong user or password</p>
-                            <form class="d-flex flex-column align-items-center" th:action="@{/login}" method="post">
-                                <div class="form-group">
-                                    <label for="username">Email</label>:
-                                    <input type="text" id="username" name="username" autofocus="autofocus" class="form-control"/> <br />
-                                </div>
-                                <div class="form-group">
-                                    <label for="password">Password</label>:
-                                    <input type="password" id="password" name="password" class="form-control"/> <br />
-                                </div>
-                                <input type="submit" value="Log in" class="btn btn-primary"/>
-                            </form>
-                        </div>
+        <div class="card-login border-0 bg-transparent rounded-lg">
+            <div class="card-body py-5">
+                <h1 class="text-center pb-3">Login</h1>
+                <p th:if="${loginError}" class="error text-center">Wrong user or password</p>
+                <form class="d-flex flex-column align-items-center" th:action="@{/login}" method="post">
+
+                    <div class="form-group form-floating">
+                        <input type="text" id="username" name="username" autofocus="autofocus" class="form-control bg-dark" placeholder="Email"/> <br />
+                        <label for="username">Email</label>
                     </div>
-                </div>
+                    <div class="form-group form-floating">
+                        <input type="password" id="password" name="password" class="form-control bg-dark" placeholder="Password"/> <br />
+                        <label for="password">Password</label>
+                    </div>
+
+                    <!-- Non riesco a capire perché, ma non funzionano -->
+<!--                    <div th:replace="fragments/CRUD :: form-floating(inputType='text', inputID='email', inputName='email', placeholder='Email', labelText='Email')"></div>-->
+<!--                    <div th:replace="fragments/CRUD :: form-floating(inputType='password', inputID='password', inputName='password', placeholder='Password', labelText='Password')"></div>-->
+
+                    <p><small>Don't have an account? <a th:href="@{/register/users/create}" class="link-info">Register here</a></small></p>
+                    <input type="submit" value="Log in" class="btn btn-primary"/>
+                </form>
             </div>
         </div>
     </div>
-
 </main>
 
+<!--<footer th:replace="fragments/footer :: footer"></footer>-->
+
 <th:block th:replace="fragments/resources :: script"></th:block>
+
 </body>
 </html>

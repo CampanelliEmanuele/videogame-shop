@@ -87,7 +87,7 @@
             transition: background 0.3s ease-out;
        }
 
-              /* Stile generico per custom container */
+       /* Stile generico per custom container */
 
        .custom-container {
              border-radius: 10px;
@@ -102,6 +102,37 @@
               background: rgba(255, 255, 255, 0.3);
               transition: background 0.3s ease-out;
         }
+
+        /* Stile generico per custom-navbar */
+
+        .custom-navbar {
+               list-style-type: none;
+               padding: 0;
+               margin: 0;
+               overflow: hidden;
+               text-align: center;
+        }
+
+        .custom-navbar .nav-link {
+                display: block;
+                color: black;
+                padding: 14px 16px;
+                text-decoration: none;
+                background-color: rgba(100, 150, 200, 0.5);
+                border: 1px solid rgba(100, 150, 200, 0.8);
+                opacity: 0.8;
+                transition: opacity 0.8s ease, background-color 0.8s ease;
+        }
+
+        .custom-navbar .nav-link:hover,
+        .custom-navbar .nav-link.active {
+                background-color: rgba(100, 150, 200, 1);
+                opacity: 1;
+        }
+
+        .custom-navbar .nav-link.active {
+                border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+         }
 
        /* --------------------------- Light mode styles --------------------------- */
 
@@ -289,7 +320,6 @@
                opacity: 1;
            }
        }
-
 
 
 

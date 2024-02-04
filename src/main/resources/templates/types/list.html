@@ -13,7 +13,7 @@
 <main>
 
     <div class="container">
-        <ul th:replace="fragments/navbar :: stockNavbar('categories')"></ul>
+        <ul th:replace="fragments/navbar :: adminNavbar('categories')"></ul>
     </div>
 
     <div th:if="${redirectMessage != null}"
@@ -24,10 +24,6 @@
     </div>
 
     <div class="container">
-        <div class="col-12">
-            <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/types/create}" class="btn btn-dark">New Type</a>
-        </div>
-
         <table>
             <thead>
             <tr>
@@ -44,7 +40,7 @@
                 <td th:text=${type.description}></td>
                 <td sec:authorize="hasAuthority('ADMIN')" class="d-flex justify-content-around">
                     <a sec:authorize="hasAuthority('ADMIN')" class="btn btn-primary btn-sm" th:href="@{/types/edit/{id}(id=${type.id})}">
-                        <i class="fa-solid fa-pen-to-square"></i>
+                        <i class="fa-solid fa-pencil"></i>
                     </a>
                     <form sec:authorize="hasAuthority('ADMIN')" method="post" th:action="@{/types/delete/{id}(id=${type.id})}"
                           onsubmit="return confirm('Are you sure?')">
@@ -56,6 +52,7 @@
             </tr>
             </tbody>
         </table>
+        <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/types/create}" class="btn btn-dark">New Type</a>
     </div>
 
 </main>
