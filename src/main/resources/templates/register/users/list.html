@@ -17,7 +17,6 @@
 
     <div class="container custom-container">
         <h1 class="text-center">List of Users</h1>
-        <hr>
         <div class="alert alert-info" th:if="${userList.size() == 0}">The list is empty</div>
         <table th:unless="${userList.size() == 0}">
             <thead>
