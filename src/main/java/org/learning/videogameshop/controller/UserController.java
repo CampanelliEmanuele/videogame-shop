@@ -137,7 +137,8 @@ public class UserController {
                 return "register/users/edit";
             }
             User savedRecipe = userRepository.save(videogameForm);
-            return "redirect:/register/users/show/" + id;
+
+            return "redirect:/register/users/profile";
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User with id " + id + " not found");
         }

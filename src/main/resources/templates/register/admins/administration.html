@@ -10,14 +10,53 @@
 </header>
 
 <main class="container-fluid">
-    <div class="container">
+    <div class="container py-3">
         <ul th:replace="fragments/navbar :: adminNavbar('administration')"></ul>
     </div>
+
+    <div class="container bg-dark bg-gradient border border-primary border-4 rounded rounded-5"
+         style="--bs-bg-opacity: .95;">
+        <h2 class="text-center py-3">Sold copies</h2>
+        <div class="row">
+            <div class="col">
+            </div>
+
+            <div class="col-10">
+                <div class="d-flex justify-content-center">
+                    <canvas id="purchasesChart" style="width:100%;max-width:700px" class="mb-3"></canvas>
+                </div>
+            </div>
+
+            <div class="col">
+            </div>
+        </div>
+    </div>
+
+    <div class="container bg-dark bg-gradient border border-primary border-4 rounded rounded-5 my-5"
+         style="--bs-bg-opacity: .95;">
+        <h2 class="text-center py-3">Sold copies</h2>
+        <div class="row">
+            <div class="col">
+            </div>
+
+            <div class="col-10">
+                <div class="d-flex justify-content-center">
+                    <canvas id="incomeChart" style="width:100%;max-width:700px" class="mb-3"></canvas>
+                </div>
+            </div>
+
+            <div class="col">
+            </div>
+        </div>
+    </div>
+
 </main>
 
 <footer th:replace="fragments/footer :: footer"></footer>
 
 <th:block th:replace="fragments/resources :: script"></th:block>
+
+<script src="/js/charts.js"></script>
 
 </body>
 </html>

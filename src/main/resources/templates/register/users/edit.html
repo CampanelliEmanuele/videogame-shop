@@ -19,6 +19,7 @@
               th:object="${user}"
               th:action="@{/register/users/edit/{id}(id=${user.id})}"
         >
+            <input type="hidden" th:field="*{roleSet}">
             <div class="col-6">
                 <label class="form-label" for="firstName">First name</label>
                 <input class="form-control" type="text" id="firstName" th:field="*{firstName}" th:errorClass="is-invalid">

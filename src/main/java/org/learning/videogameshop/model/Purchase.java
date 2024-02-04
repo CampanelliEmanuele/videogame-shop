@@ -1,11 +1,14 @@
 package org.learning.videogameshop.model;
 
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "purchases")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Purchase {
 
     @Id
@@ -18,11 +21,22 @@ public class Purchase {
 
     @ManyToOne()
     @JoinColumn(name = "videogame_id")
+//    @JsonManagedReference
+//    @JsonBackReference(value = "videogame-purchase")
     private Videogame videogame;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = true)
+    @JsonIgnore
     private User user;
+
+    /* AUXILIARY METHODS */
+
+    public Double getTotalProfit() {
+        return quantity * videogame.getPrice();
+    }
+
+    /* GETTERS AND SETTERS */
 
     public Integer getId() {
         return id;
