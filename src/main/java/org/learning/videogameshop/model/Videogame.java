@@ -1,6 +1,7 @@
 package org.learning.videogameshop.model;
 
 
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "videogames")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Videogame {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +25,7 @@ public class Videogame {
     @NotNull(message = "Video game must have a price")
 //    @Size(min = 2, max = 40, message = "Video game price must be at least 1")
     @Column(nullable = false)
-    private BigDecimal price;
+    private Double price;
     private String description;
     @Lob
     private String photo;
@@ -33,12 +35,16 @@ public class Videogame {
             joinColumns = @JoinColumn(name = "videogame_id"),
             inverseJoinColumns = @JoinColumn(name = "type_id")
     )
+    @JsonIgnore
     private List<Type> typeList;
 
-    @OneToMany(mappedBy = "videogame")
+    @OneToMany(mappedBy = "videogame", fetch = FetchType.EAGER)
+//    @JsonBackReference
+//    @JsonManagedReference(value = "videogame-purchase")
     private List<Purchase> purchaseList;
 
     @OneToMany(mappedBy = "stockedVideogame")
+    @JsonIgnore
     private List<Stock> stockList;
 
     /* AUXILIARY METHODS */
@@ -112,11 +118,11 @@ public class Videogame {
         this.photo = photo;
     }
 
-    public BigDecimal getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

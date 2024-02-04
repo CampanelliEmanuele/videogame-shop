@@ -32,6 +32,14 @@ public class Stock {
     @JoinColumn(name = "videogame_id")
     private Videogame stockedVideogame;
 
+    /* AUXILIARY METHODS */
+
+    public Double getTotalCost() {
+        return -1 * quantity * price;
+    }
+
+    /* GETTERS AND SETTERS */
+
     public Integer getId() {
         return id;
     }
