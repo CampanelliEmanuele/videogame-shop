@@ -30,7 +30,7 @@
             <h1 class="text-center">Game List</h1>
         </div>
         <div class="alert alert-info" th:if="${videogameList.size() == 0}">The list is empty</div>
-        <div th:unless="${videogameList.size() == 0}" >
+        <div th:unless="${videogameList.size() == 0}">
             <table class="improved-table">
                 <thead>
                 <tr>
@@ -42,7 +42,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr  th:each="videogame : ${videogameList}">
+                <tr th:each="videogame : ${videogameList}">
                     <td th:text="${videogame.id}"></td>
                     <td th:text="${videogame.name}"></td>
                     <td th:text="${videogame.getAvailableCopies()}"></td>
@@ -51,8 +51,12 @@
                                      + (videogame.getAvailableCopies() >= refuelNeededUpperLimit.value ? 'color : #0cc20f' : '')}">
                         <i class="fa-solid fa-circle"></i></td>
                     <td>
-                        <a class="btn btn-dark" th:href="@{/stocks/create(videogameId=${videogame.id})}">Refueling</a>
-                        <a class="btn btn-danger" th:href="@{/videogames/show/{id}(id=${videogame.id})}" role="button">Details</a>
+                        <div class="d-flex justify-content-end">
+                            <a class="btn btn-dark me-2"
+                               th:href="@{/stocks/create(videogameId=${videogame.id})}">Refueling</a>
+                            <a class="btn btn-danger" th:href="@{/videogames/show/{id}(id=${videogame.id})}"
+                               role="button">Details</a>
+                        </div>
                     </td>
                 </tr>
                 </tbody>
@@ -78,14 +82,15 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr  th:each="stock : ${stockList}">
+                <tr th:each="stock : ${stockList}">
                     <td th:text="${stock.id}"></td>
                     <td th:text="${stock.stockedVideogame.name}"></td>
                     <td th:text="${stock.supplierName}"></td>
                     <td th:text="${stock.quantity}"></td>
                     <td th:text="${stock.purchaseDate}"></td>
                     <td>
-                        <a class="btn btn-danger" th:href="@{/stocks/show/{id}(id=${stock.id})}" role="button">Details</a>
+                        <a class="btn btn-danger" th:href="@{/stocks/show/{id}(id=${stock.id})}"
+                           role="button">Details</a>
                     </td>
                 </tr>
                 </tbody>
@@ -109,7 +114,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr  th:each="purchase : ${purchaseList}">
+                <tr th:each="purchase : ${purchaseList}">
                     <td th:text="${purchase.id}"></td>
                     <td th:text="${purchase.videogame.name}"></td>
                     <td th:text="${purchase.quantity}"></td>
