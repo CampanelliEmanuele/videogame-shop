@@ -76,7 +76,7 @@
                                 <input type="number" name="quantity" value="1" min="1" required id="quantity" class="form-control form-control-sm mr-2" />
                                 <button type="submit" class="btn btn-sm btn-dark">Acquista</button>
                             </form>
-                            <a sec:authorize="!isAuthenticated()" th:href="@{/login}" class="btn btn-primary btn-sm">
+                            <a sec:authorize="!isAuthenticated()" th:href="@{/login}" class="btn btn-dark btn-sm">
                                 Login per acquistare
                             </a>
                         </div>
