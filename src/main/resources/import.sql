@@ -96,6 +96,6 @@ INSERT INTO purchases (user_id, purchase_date, quantity, videogame_id) VALUES (2
 --INSERT INTO purchases (user_id, purchase_date, quantity, videogame_id) VALUES (1, '2024-01-29', 4, 9);
 --INSERT INTO purchases (user_id, purchase_date, quantity, videogame_id) VALUES (1, '2024-01-28', 1, 11);
 
-INSERT INTO limits (name, `value`) VALUES ("refuelNeededUpperLimit", 200);
-INSERT INTO limits (name, `value`) VALUES ("refuelNeededLowerLimit", 100);
+INSERT INTO limits (name, `value`) VALUES ("refuelNeededUpperLimit", 20);
+INSERT INTO limits (name, `value`) VALUES ("refuelNeededLowerLimit", 10);
 INSERT INTO limits (name, `value`) VALUES ("maxPurchasableItems", 50);
