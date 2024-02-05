@@ -38,7 +38,7 @@ public class StoreController {
 
     @GetMapping
     public String viewGames(Model model) {
-        int showLimit = 6;
+        int showLimit = 12;
         List<Videogame> videogames = videogameRepository.findAll();
         // Vengono mostrati solo i primi showLimit videogame nello store
         videogames = videogames.subList(0, Math.min(videogames.size(), showLimit));
