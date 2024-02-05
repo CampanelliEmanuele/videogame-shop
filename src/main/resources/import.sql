@@ -81,7 +81,6 @@ INSERT INTO purchases (user_id, purchase_date, quantity, videogame_id) VALUES (1
 INSERT INTO purchases (user_id, purchase_date, quantity, videogame_id) VALUES (2, '2024-01-26', 4, 11);
 INSERT INTO purchases (user_id, purchase_date, quantity, videogame_id) VALUES (2, '2023-12-25', 8, 13);
 INSERT INTO purchases (user_id, purchase_date, quantity, videogame_id) VALUES (2, '2024-01-24', 2, 15);
-INSERT INTO purchases (user_id, purchase_date, quantity, videogame_id) VALUES (2, '2023-12-23', 5, 2);
 --INSERT INTO purchases (user_id, purchase_date, quantity, videogame_id) VALUES (2, '2024-01-22', 1, 4);
 --INSERT INTO purchases (user_id, purchase_date, quantity, videogame_id) VALUES (1, '2023-12-21', 2, 6);
 --INSERT INTO purchases (user_id, purchase_date, quantity, videogame_id) VALUES (1, '2024-01-29', 4, 8);
