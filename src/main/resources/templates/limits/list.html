@@ -34,8 +34,8 @@
                 <td>Numero della colonna</td>
                 <td th:text="${limit.name}"></td>
                 <td th:text="${limit.value}"></td>
-                <td>
-                    <a class="btn btn-dark" th:href="@{/limits/edit/{id}(id=${limit.name})}" role="button">
+                <td class="d-flex justify-content-end">
+                    <a class="btn btn-primary" th:href="@{/limits/edit/{id}(id=${limit.name})}" role="button">
                         <i class="fa-solid fa-pencil"></i>  Edit
                     </a>
                 </td>

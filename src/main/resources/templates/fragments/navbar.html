@@ -6,9 +6,10 @@
 <nav th:fragment="topNavbar(area)" class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid row">
         <div class="col">
-            <a class="navbar-brand mx-auto" th:href="@{/}">
+            <a class="navbar-brand mx-auto d-flex justify-content-start" th:href="@{/}">
                 <img src="https://media.tenor.com/2a4KThsm4YgAAAAi/gaming-game-on.gif" alt="Game Store Logo"
-                     style="max-width: 60px;" class="d-inline-block align-text-middle"> GameJAITA99
+                     style="max-width: 60px;" class="d-inline-block align-text-middle">
+                <span class="ps-3 pt-3">GameJAITA99</span>
             </a>
         </div>
 
@@ -76,17 +77,12 @@
     </div>
 </nav>
 
-<!-- navbar per lo stocks -->
+<!-- Administration navbar -->
 <div
         th:fragment="adminNavbar(area)"
         sec:authorize="hasAuthority('ADMIN')"
         class="nav nav-tabs justify-content-center custom-navbar"
 >
-    <a
-            th:classappend="${area == 'administration' ? 'active' : ''}"
-            th:href="@{/register/admins/administration}"
-            class="nav-link border mx-1">Administration
-    </a>
     <a
             th:classappend="${area == 'videogames' ? 'active' : ''}"
             th:href="@{/videogames}"
@@ -96,6 +92,16 @@
             th:classappend="${area == 'categories' ? 'active' : ''}"
             th:href="@{/types}"
             class="nav-link border mx-1">Categories
+    </a>
+    <a
+            th:classappend="${area == 'administration' ? 'active' : ''}"
+            th:href="@{/register/admins/administration}"
+            class="nav-link border mx-1">Administration
+    </a>
+    <a
+            th:classappend="${area == 'warehouse' ? 'active' : ''}"
+            th:href="@{/warehouse}"
+            class="nav-link border mx-1">Warehouse
     </a>
     <a
             th:classappend="${area == 'stocks' ? 'active' : ''}"
@@ -108,19 +114,14 @@
             class="nav-link border mx-1">Purchases
     </a>
     <a
-            th:classappend="${area == 'warehouse' ? 'active' : ''}"
-            th:href="@{/warehouse}"
-            class="nav-link border mx-1">Warehouse
+            th:classappend="${area == 'users' ? 'active' : ''}"
+            th:href="@{/register/users}"
+            class="nav-link border mx-1">Users
     </a>
     <a
             th:classappend="${area == 'limits' ? 'active' : ''}"
             th:href="@{/limits}"
             class="nav-link border mx-1">Limits
-    </a>
-    <a
-            th:classappend="${area == 'users' ? 'active' : ''}"
-            th:href="@{/register/users}"
-            class="nav-link border mx-1">Users
     </a>
 
 </div>

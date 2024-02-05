@@ -38,8 +38,13 @@ public class StoreController {
 
     @GetMapping
     public String viewGames(Model model) {
+        int showLimit = 6;
         List<Videogame> videogames = videogameRepository.findAll();
+        // Vengono mostrati solo i primi showLimit videogame nello store
+        videogames = videogames.subList(0, Math.min(videogames.size(), showLimit));
+
         List<Type> types = typeRepository.findAll();
+
         model.addAttribute("videogames", videogames);
         model.addAttribute("types", types);
 
@@ -81,10 +86,10 @@ public class StoreController {
         }
     }
 
-    private Map<String, Integer> getPurchaseMap(List<Purchase> lastMonthPurchases) {
+    private Map<String, Integer> getPurchaseMap(List<Purchase> purchaseList) {
         // Set contenente i nomi dei videogame venduti nell'ultimo mese
         Set<String> videogameNames = new HashSet<>();
-        for (Purchase purchase : lastMonthPurchases) {
+        for (Purchase purchase : purchaseList) {
             String iteratedName = purchase.getVideogame().getName();
             videogameNames.add(iteratedName);
         }
@@ -96,7 +101,7 @@ public class StoreController {
         }
 
         // Si aggiorna la mappa con le quantità degli acquisti dell'ultimo mese
-        for (Purchase purchase : lastMonthPurchases) {
+        for (Purchase purchase : purchaseList) {
             String iteratedVideogameName = purchase.getVideogame().getName();
             // Ottieni l'attuale quantità del gioco acquistato
             Integer oldValue = purchaseMap.getOrDefault(iteratedVideogameName, 0);

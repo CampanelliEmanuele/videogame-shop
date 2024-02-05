@@ -27,8 +27,6 @@
                 <th>Password</th>
                 <th>Role</th>
                 <th></th>
-                <th></th>
-                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -43,15 +41,11 @@
                         <span th:if="${not iterStat.last}"> and </span> <!-- Aggiunge uno spazio se non è l'ultimo ruolo -->
                     </span>
                 </td>
-                <td>
-                    <a class="btn btn-dark btn-sm" th:href="@{/register/users/show/{id}(id=${user.id})}" role="button">Details</a>
-                </td>
-                <td>
-                    <a class="btn btn-primary btn-sm" th:href="@{/register/users/edit/{id}(id=${user.id})}" role="button">
+                <td class="d-flex justify-content-end">
+                    <a class="btn btn-dark btn-sm me-2" th:href="@{/register/users/show/{id}(id=${user.id})}" role="button">Details</a>
+                    <a class="btn btn-primary btn-sm me-2" th:href="@{/register/users/edit/{id}(id=${user.id})}" role="button">
                         <i class="fa-solid fa-pencil"></i>
                     </a>
-                </td>
-                <td>
                     <form
                             th:action="@{/register/users/delete/{id}(id=${user.id})}"
                             method="post"
