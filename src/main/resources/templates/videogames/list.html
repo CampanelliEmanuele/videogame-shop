@@ -26,8 +26,6 @@
                 <th>Photo</th>
                 <th>Available copies</th>
                 <th></th>
-                <th></th>
-                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -39,15 +37,11 @@
                     <img th:src="@{${videogame.photo}}" alt="videogame photo" width="100" lenght="100" class="img-fluid">
                 </td>
                 <td th:text="${videogame.getAvailableCopies()}"></td>
-                <td>
-                    <a sec:authorize="hasAuthority('ADMIN')" class="btn btn-dark btn-sm" th:href="@{/videogames/show/{id}(id=${videogame.id})}" role="button">Details</a>
-                </td>
-                <td>
-                    <a sec:authorize="hasAuthority('ADMIN')" class="btn btn-primary btn-sm" th:href="@{/videogames/edit/{id}(id=${videogame.id})}" role="button">
+                <td class="d-flex content-justify-end">
+                    <a sec:authorize="hasAuthority('ADMIN')" class="btn btn-dark btn-sm me-2" th:href="@{/videogames/show/{id}(id=${videogame.id})}" role="button">Details</a>
+                    <a sec:authorize="hasAuthority('ADMIN')" class="btn btn-primary btn-sm me-2" th:href="@{/videogames/edit/{id}(id=${videogame.id})}" role="button">
                         <i class="fa-solid fa-pencil"></i>
                     </a>
-                </td>
-                <td>
                     <form
                             sec:authorize="hasAuthority('ADMIN')"
                             th:action="@{/videogames/delete/{id}(id=${videogame.id})}"
