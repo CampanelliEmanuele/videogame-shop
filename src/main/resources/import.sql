@@ -60,8 +60,8 @@ INSERT INTO stocks (purchase_date, supplier_name, price, quantity, videogame_id)
 
 INSERT INTO `role` (name) VALUES('ADMIN');
 INSERT INTO `role` (name) VALUES('USER');
-INSERT INTO `user` (email, first_name, last_name, password) VALUES('jane@email.com', 'Jane', 'Doe', '{noop}jane');
-INSERT INTO `user` (email, first_name, last_name, password) VALUES('john@email.com', 'John', 'Doe', '{noop}john');
+INSERT INTO `user` (email, first_name, last_name, password) VALUES('admin@email.com', 'Tom', 'Smith', '{noop}admin');
+INSERT INTO `user` (email, first_name, last_name, password) VALUES('user@email.com', 'Ted', 'Davis', '{noop}user');
 INSERT INTO user_role_set (user_id, role_set_name) VALUES(1, 'ADMIN');
 INSERT INTO user_role_set (user_id, role_set_name) VALUES(1, 'USER');
 INSERT INTO user_role_set (user_id, role_set_name) VALUES(2, 'USER');
