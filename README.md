@@ -24,7 +24,12 @@ We then enhanced the project by implementing a (trivial) security module and int
 
 ### Administration
 
-<iframe src="custom-carousel.html" width="100%" height="400px"></iframe>
+![ER-Diagram](./documentation/img/ER-Diagram.PNG)
+![Registration](./documentation/img/Register-1.PNG)
+![ER-Diagram](./documentation/img/ER-Diagram.PNG)
+![Registration](./documentation/img/Register-1.PNG)
+![ER-Diagram](./documentation/img/ER-Diagram.PNG)
+![Registration](./documentation/img/Register-1.PNG)
 
 ## How to install and run the project
 
