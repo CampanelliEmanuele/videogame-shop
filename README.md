@@ -4,8 +4,11 @@
   - [Project Description](#project-description)
   - [Project overview](#project-overview)
     - [ER-Diagram](#er-diagram)
+    - [Homa page](#homa-page)
+    - [Registration](#registration)
+    - [User profile](#user-profile)
     - [Administration](#administration)
-  - [How to install and run the project](#how-to-install-and-run-the-project)
+    - [Warehouse](#warehouse)
   - [Credits](#credits)
 
 ## Project Description
@@ -20,20 +23,32 @@ We then enhanced the project by implementing a (trivial) security module and int
 
 ### ER-Diagram
 
-<img src="./documentation/ER-Diagram.PNG" alt="ER-Diagram image">
+![ER-Diagram](./documentation/img/ER-Diagram.PNG)
+
+### Homa page
+
+![Homa-page-1](./documentation/img/shop-1.PNG)
+![Homa-page-2](./documentation/img/shop-2.PNG)
+
+### Registration
+
+![Registration](./documentation/img/Register-1.PNG)
+
+### User profile
+
+![User-profile](./documentation/img/user-profile-1.PNG)
 
 ### Administration
 
-![ER-Diagram](./documentation/img/ER-Diagram.PNG)
-![Registration](./documentation/img/Register-1.PNG)
-![ER-Diagram](./documentation/img/ER-Diagram.PNG)
-![Registration](./documentation/img/Register-1.PNG)
-![ER-Diagram](./documentation/img/ER-Diagram.PNG)
-![Registration](./documentation/img/Register-1.PNG)
+![Administration-1](./documentation/img/Administration-1.PNG)
+![Administration-2](./documentation/img/Administration-2.PNG)
 
-## How to install and run the project
+### Warehouse
+
+![Warehouse](./documentation/img/warehouse-1.PNG)
 
 ## Credits
 
-
-
+<a href="https://github.com/CampanelliEmanuele/videogame-shop/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=CampanelliEmanuele/videogame-shop" />
+</a>
